@@ -9,6 +9,8 @@ import java.beans.PropertyVetoException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+
+
 /**
  *
  * @author Niclas
@@ -21,7 +23,7 @@ public class MainFrame extends javax.swing.JFrame {
      */
     public MainFrame() {
         initComponents();
-      
+        
     }
 
     /**
@@ -42,6 +44,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Skala Sverige 2013.0");
+        setPreferredSize(new java.awt.Dimension(1366, 768));
 
         jToolBar1.setRollover(true);
 
@@ -121,8 +124,7 @@ public class MainFrame extends javax.swing.JFrame {
     private void jButtonCompetitionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCompetitionActionPerformed
         // TODO add your handling code here:
         
-        Competition CompList;
-        CompList = new Competition();
+        Competition CompList = new Competition();
         Component add = jDesktopPane1.add(CompList);
         CompList.setTitle("Tävlingar");
 
@@ -140,20 +142,23 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void jButtonCompetition1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCompetition1ActionPerformed
         // TODO add your handling code here:
-        NewCompetition NwComp = new NewCompetition();
-        jDesktopPane1.add(NwComp);
-        
-        NwComp.setVisible(true);
     }//GEN-LAST:event_jButtonCompetition1ActionPerformed
 
     private void jButtonCompetition2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCompetition2ActionPerformed
         // TODO add your handling code here:
+        ClubSettings CSettings = new ClubSettings();
+        jDesktopPane1.add(CSettings);
+        CSettings.setVisible(true);
     }//GEN-LAST:event_jButtonCompetition2ActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(String args[]) throws ClassNotFoundException {
+        
+        /* Invoke the SQLite driver     */        
+        Class.forName("org.sqlite.JDBC");
+        
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -176,6 +181,7 @@ public class MainFrame extends javax.swing.JFrame {
             @Override
             public void run() {
                 new MainFrame().setVisible(true);
+              
             }
 
         });
