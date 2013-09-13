@@ -4,6 +4,8 @@
  */
 package scalesweden;
 
+import java.awt.Container;
+
 /**
  *
  * @author Niclas
@@ -110,7 +112,7 @@ public class Competition extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addComponent(jButton1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -125,16 +127,12 @@ public class Competition extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_formInternalFrameClosing
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
         
-        //NewCompetition NyTavling = new NewCompetition();
-      //  jDesktopPane1.add(NyTavling);
-       // jDesktopPane1.add(NyTavling);
-        //NyTavling.setVisible(true);
-        //NyTavling.show();
-      //  this.add(jPanel1);
-      //  jPanel1.setVisible(true);
+        NewCompetition NyTavling = new NewCompetition();
+        Container parent = this.getParent();
         
+        parent.add(NyTavling);
+        NyTavling.setVisible(true);        
        
         
     }//GEN-LAST:event_jButton1ActionPerformed
