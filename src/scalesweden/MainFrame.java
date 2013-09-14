@@ -11,9 +11,10 @@ import java.util.logging.Logger;
 
 
 
+
 /**
  *
- * @author Niclas
+ * @author Niclas Olsson, Cobton AB
  */
 public class MainFrame extends javax.swing.JFrame {
 

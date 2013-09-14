@@ -6,7 +6,7 @@ package scalesweden;
 
 /**
  *
- * @author Niclas
+ * @author Niclas Olsson, Cobton AB
  */
 public class NewCompetition extends javax.swing.JInternalFrame {
 

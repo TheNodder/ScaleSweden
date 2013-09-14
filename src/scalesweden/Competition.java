@@ -8,7 +8,7 @@ import java.awt.Container;
 
 /**
  *
- * @author Niclas
+ * @author Niclas Olsson, Cobton AB
  */
 public class Competition extends javax.swing.JInternalFrame {
 
