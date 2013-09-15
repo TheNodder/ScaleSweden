@@ -69,6 +69,11 @@ public class ClubSettings extends javax.swing.JInternalFrame {
         jTextField_Password.setToolTipText("Lösenordet för skala webben.");
 
         jButton_Save.setText("Spara");
+        jButton_Save.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_SaveActionPerformed(evt);
+            }
+        });
 
         jButton_Cancel.setText("Stäng");
         jButton_Cancel.addActionListener(new java.awt.event.ActionListener() {
@@ -160,15 +165,21 @@ public class ClubSettings extends javax.swing.JInternalFrame {
             Statement statement = connection.createStatement();
             statement.setQueryTimeout(30);  // set timeout to 30 sec.
 
-            ResultSet rs = statement.executeQuery("select * from clubsettings");
-            while (rs.next()) {
-                // read the result set
-                jTextField_Clubnr.setText(rs.getString("clubnr"));
-                jTextField_ClubName.setText(rs.getString("clubname"));
-                jTextField_ProtocolDriver.setText(rs.getString("driver"));
-                jTextField_UserId.setText(rs.getString("userid"));
-                jTextField_Password.setText(rs.getString("password"));
+            // Delete all records
+            int rs;
+            rs = statement.executeUpdate("delete from clubsettings;");
+
+            try {
+                Thread.sleep(200);
+            } catch (InterruptedException e) {
             }
+
+            rs = statement.executeUpdate("INSERT INTO clubsettings (clubnr, clubname, driver, userid, password) "
+                    + "VALUES ('" + jTextField_Clubnr.getText() + "', '" + jTextField_ClubName.getText() + "', '"
+                    + jTextField_ProtocolDriver.getText() + "', '" + jTextField_UserId.getText() + "', '"
+                    + jTextField_Password.getText() +"' );");
+
+
         } catch (SQLException e) {
             // if the error message is "out of memory", 
             // it probably means no database file is found
@@ -224,6 +235,11 @@ public class ClubSettings extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         dispose();
     }//GEN-LAST:event_jButton_CancelActionPerformed
+
+    private void jButton_SaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_SaveActionPerformed
+        // TODO add your handling code here:
+        saveData();
+    }//GEN-LAST:event_jButton_SaveActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.Box.Filler filler1;
