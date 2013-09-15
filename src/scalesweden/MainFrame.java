@@ -18,7 +18,7 @@ import java.util.logging.Logger;
  */
 public class MainFrame extends javax.swing.JFrame {
 
-   
+   boolean CompStarted =  false;
     /**
      * Creates new form MainFrame
      */
@@ -49,7 +49,6 @@ public class MainFrame extends javax.swing.JFrame {
 
         jToolBar1.setRollover(true);
 
-        jButtonCompetition.setIcon(new javax.swing.ImageIcon(getClass().getResource("/scalesweden/icons/competition.png"))); // NOI18N
         jButtonCompetition.setText("Tävlingar");
         jButtonCompetition.setToolTipText("");
         jButtonCompetition.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -64,7 +63,6 @@ public class MainFrame extends javax.swing.JFrame {
         });
         jToolBar1.add(jButtonCompetition);
 
-        jButtonCompetition1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/scalesweden/icons/rules.png"))); // NOI18N
         jButtonCompetition1.setText("Regler");
         jButtonCompetition1.setToolTipText("");
         jButtonCompetition1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -80,7 +78,6 @@ public class MainFrame extends javax.swing.JFrame {
         });
         jToolBar1.add(jButtonCompetition1);
 
-        jButtonCompetition2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/scalesweden/icons/settings.png"))); // NOI18N
         jButtonCompetition2.setText("Inställningar");
         jButtonCompetition2.setToolTipText("");
         jButtonCompetition2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -111,9 +108,9 @@ public class MainFrame extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jDesktopPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 312, Short.MAX_VALUE)
+                .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jDesktopPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 371, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -138,6 +135,8 @@ public class MainFrame extends javax.swing.JFrame {
         CompList.setVisible(true);
         //CompList.show();
         jButtonCompetition.setEnabled(false);
+        CompStarted = true;
+        
        
     }//GEN-LAST:event_jButtonCompetitionActionPerformed
 

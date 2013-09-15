@@ -206,7 +206,7 @@ public class ClubSettings extends javax.swing.JInternalFrame {
             statement.setQueryTimeout(30);  // set timeout to 30 sec.
 
             ResultSet rs = statement.executeQuery("select * from clubsettings");
-            while (rs.next()) {
+            while (rs.next()) { // Should only contain 1 row of data !
                 // read the result set
                 jTextField_Clubnr.setText(rs.getString("clubnr"));
                 jTextField_ClubName.setText(rs.getString("clubname"));

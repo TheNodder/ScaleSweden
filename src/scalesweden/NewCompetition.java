@@ -26,16 +26,16 @@ public class NewCompetition extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
+        jTextField_CompName = new javax.swing.JTextField();
+        jTextField_EventLeader = new javax.swing.JTextField();
+        jTextField_Location = new javax.swing.JTextField();
+        jTextField_startDate = new javax.swing.JTextField();
+        jLabel_compName = new javax.swing.JLabel();
+        jLabel_Location = new javax.swing.JLabel();
+        jLabel_EventLeader = new javax.swing.JLabel();
+        jLabel_StartDate = new javax.swing.JLabel();
+        jLabel_endDate = new javax.swing.JLabel();
+        jTextField_endDate = new javax.swing.JTextField();
         jPanelKlasser = new javax.swing.JPanel();
         jCheckBox_F4C = new javax.swing.JCheckBox();
         jComboBox1 = new javax.swing.JComboBox();
@@ -56,25 +56,25 @@ public class NewCompetition extends javax.swing.JInternalFrame {
             e1.printStackTrace();
         }
 
-        jTextField1.setText("jTextField1");
+        jTextField_CompName.setText("jTextField1");
 
-        jTextField2.setText("jTextField1");
+        jTextField_EventLeader.setText("jTextField1");
 
-        jTextField3.setText("jTextField1");
+        jTextField_Location.setText("jTextField1");
 
-        jTextField4.setText("jTextField1");
+        jTextField_startDate.setText("jTextField1");
 
-        jLabel1.setText("Tävlingens namn:");
+        jLabel_compName.setText("Tävlingens namn:");
 
-        jLabel2.setText("Ort:");
+        jLabel_Location.setText("Ort:");
 
-        jLabel3.setText("Tävlingsledare:");
+        jLabel_EventLeader.setText("Tävlingsledare:");
 
-        jLabel4.setText("Startdatum:");
+        jLabel_StartDate.setText("Startdatum:");
 
-        jLabel5.setText("Slutdatum:");
+        jLabel_endDate.setText("Slutdatum:");
 
-        jTextField5.setText("jTextField1");
+        jTextField_endDate.setText("jTextField1");
 
         jPanelKlasser.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true), "Tävlingsklasser"));
         jPanelKlasser.setName("Tävlingsklasser"); // NOI18N
@@ -122,8 +122,8 @@ public class NewCompetition extends javax.swing.JInternalFrame {
                         .addGap(11, 11, 11))
                     .addGroup(jPanelKlasserLayout.createSequentialGroup()
                         .addComponent(jCheckBox_POP)
-                        .addGap(18, 18, 18)
-                        .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanelKlasserLayout.setVerticalGroup(
@@ -166,24 +166,24 @@ public class NewCompetition extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField1)
-                            .addComponent(jTextField3)
-                            .addComponent(jTextField2)
+                            .addComponent(jTextField_CompName)
+                            .addComponent(jTextField_Location)
+                            .addComponent(jTextField_EventLeader)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel3))
+                                    .addComponent(jLabel_compName)
+                                    .addComponent(jLabel_Location)
+                                    .addComponent(jLabel_EventLeader))
                                 .addGap(0, 70, Short.MAX_VALUE)))
                         .addGap(217, 217, 217))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel_StartDate)
+                            .addComponent(jTextField_startDate, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5)
-                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel_endDate)
+                            .addComponent(jTextField_endDate, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanelKlasser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -202,27 +202,27 @@ public class NewCompetition extends javax.swing.JInternalFrame {
                         .addComponent(jButton1)
                         .addComponent(jButton2))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
+                        .addComponent(jLabel_compName)
                         .addGap(4, 4, 4)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTextField_CompName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel2)
+                        .addComponent(jLabel_Location)
                         .addGap(1, 1, 1)
-                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTextField_Location, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel3)
+                                .addComponent(jLabel_EventLeader)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jTextField_EventLeader, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel4)
+                                .addComponent(jLabel_StartDate)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jTextField_startDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel5)
+                                .addComponent(jLabel_endDate)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jTextField_endDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(18, 18, 18)
                         .addComponent(jPanelKlasser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
@@ -251,16 +251,16 @@ public class NewCompetition extends javax.swing.JInternalFrame {
     private javax.swing.JComboBox jComboBox2;
     private javax.swing.JComboBox jComboBox3;
     private javax.swing.JComboBox jComboBox4;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel_EventLeader;
+    private javax.swing.JLabel jLabel_Location;
+    private javax.swing.JLabel jLabel_StartDate;
+    private javax.swing.JLabel jLabel_compName;
+    private javax.swing.JLabel jLabel_endDate;
     private javax.swing.JPanel jPanelKlasser;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
+    private javax.swing.JTextField jTextField_CompName;
+    private javax.swing.JTextField jTextField_EventLeader;
+    private javax.swing.JTextField jTextField_Location;
+    private javax.swing.JTextField jTextField_endDate;
+    private javax.swing.JTextField jTextField_startDate;
     // End of variables declaration//GEN-END:variables
 }
