@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.3" maxVersion="1.8" type="org.netbeans.modules.form.forminfo.JInternalFrameFormInfo">
+<Form version="1.5" maxVersion="1.8" type="org.netbeans.modules.form.forminfo.JInternalFrameFormInfo">
   <Properties>
     <Property name="closable" type="boolean" value="true"/>
     <Property name="title" type="java.lang.String" value="Ny t&#xe4;vling..."/>
@@ -27,82 +27,109 @@
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jTextField_CompName" alignment="0" max="32767" attributes="0"/>
-                          <Component id="jTextField_Location" alignment="0" max="32767" attributes="0"/>
-                          <Component id="jTextField_EventLeader" alignment="0" max="32767" attributes="0"/>
-                          <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jLabel_compName" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel_Location" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel_EventLeader" alignment="0" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="0" pref="70" max="32767" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <EmptySpace min="-2" pref="217" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLabel_StartDate" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextField_startDate" min="-2" pref="99" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLabel_endDate" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextField_endDate" alignment="0" min="-2" pref="99" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="32767" attributes="0"/>
-                  </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="jPanelKlasser" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                      <Component id="jButton_Save" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jButton2" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jButton_Cancel" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Group type="102" alignment="1" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jLabel_StartDate" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jTextField_startDate" min="-2" pref="85" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <Component id="jLabel_endDate" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                  </Group>
+                                  <Component id="jTextField_endDate" max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Component id="jTextField_CompName" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jTextField_AirField" alignment="0" max="32767" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jLabel_compName" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel_airField" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="jTextField_Location" pref="178" max="32767" attributes="0"/>
+                              <Component id="jLabel_EventLeader" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel_Location" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jTextField_EventLeader" alignment="0" max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="103" alignment="1" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="jTextField_Club" alignment="0" pref="178" max="32767" attributes="0"/>
+                              <Component id="jLabel_Club" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
                   </Group>
               </Group>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace pref="14" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jButton2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Component id="jLabel_EventLeader" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jTextField_EventLeader" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
                       <Component id="jLabel_compName" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
                       <Component id="jTextField_CompName" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Group type="102" attributes="0">
                       <Component id="jLabel_Location" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
                       <Component id="jTextField_Location" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Component id="jLabel_EventLeader" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jTextField_EventLeader" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jLabel_StartDate" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jTextField_startDate" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" attributes="0">
-                              <Component id="jLabel_endDate" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jTextField_endDate" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jPanelKlasser" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <Component id="jLabel_airField" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
+                      <Component id="jTextField_AirField" min="-2" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="jLabel_Club" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" alignment="0" groupAlignment="0" attributes="0">
+                      <Component id="jLabel_StartDate" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel_endDate" alignment="1" min="-2" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+              <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="103" groupAlignment="1" attributes="0">
+                      <Component id="jTextField_startDate" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Component id="jTextField_endDate" alignment="1" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="jTextField_Club" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="jPanelKlasser" alignment="1" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" alignment="1" groupAlignment="3" attributes="0">
+                      <Component id="jButton_Cancel" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jButton_Save" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace min="-2" max="-2" attributes="0"/>
@@ -111,44 +138,51 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JTextField" name="jTextField_CompName">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="jTextField1"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="jTextField_EventLeader">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="jTextField1"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="jTextField_Location">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="jTextField1"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="jTextField_startDate">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="jTextField1"/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JLabel" name="jLabel_compName">
       <Properties>
         <Property name="text" type="java.lang.String" value="T&#xe4;vlingens namn:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel_Location">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Ort:"/>
-      </Properties>
+    <Component class="javax.swing.JTextField" name="jTextField_CompName">
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel_EventLeader">
       <Properties>
         <Property name="text" type="java.lang.String" value="T&#xe4;vlingsledare:"/>
       </Properties>
     </Component>
+    <Component class="javax.swing.JTextField" name="jTextField_EventLeader">
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel_airField">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Flygf&#xe4;lt:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="jTextField_AirField">
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel_Location">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Ort:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="jTextField_Location">
+    </Component>
     <Component class="javax.swing.JLabel" name="jLabel_StartDate">
       <Properties>
         <Property name="text" type="java.lang.String" value="Startdatum:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JFormattedTextField" name="jTextField_startDate">
+      <Properties>
+        <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
+          <Format subtype="1" type="1"/>
+        </Property>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JFormattedTextField" name="jTextField_endDate">
+      <Properties>
+        <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
+          <Format subtype="1" type="1"/>
+        </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel_endDate">
@@ -156,10 +190,12 @@
         <Property name="text" type="java.lang.String" value="Slutdatum:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField_endDate">
+    <Component class="javax.swing.JLabel" name="jLabel_Club">
       <Properties>
-        <Property name="text" type="java.lang.String" value="jTextField1"/>
+        <Property name="text" type="java.lang.String" value="Arrangerande klubb:"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="jTextField_Club">
     </Component>
     <Container class="javax.swing.JPanel" name="jPanelKlasser">
       <Properties>
@@ -182,27 +218,19 @@
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jCheckBox_F4C" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jCheckBox_F4H" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jCheckBox_Klubb" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jComboBox1" alignment="1" pref="123" max="32767" attributes="0"/>
-                              <Component id="jComboBox2" alignment="1" max="32767" attributes="0"/>
-                              <Component id="jComboBox3" alignment="1" max="32767" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="jCheckBox_POP" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="jComboBox4" min="-2" pref="124" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
-                      </Group>
+                      <Component id="jCheckBox_F4C" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="jCheckBox_F4H" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="jCheckBox_Klubb" min="-2" max="-2" attributes="0"/>
+                      <Component id="jCheckBox_POP" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="jComboBox_Pop" max="32767" attributes="0"/>
+                      <Component id="jComboBox_F4C" alignment="1" pref="123" max="32767" attributes="0"/>
+                      <Component id="jComboBox_F4H" alignment="1" max="32767" attributes="0"/>
+                      <Component id="jComboBox_Klubb" alignment="1" max="32767" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -212,22 +240,22 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jCheckBox_F4C" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jComboBox1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jComboBox_F4C" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jCheckBox_F4H" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jComboBox2" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jComboBox_F4H" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jCheckBox_Klubb" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jComboBox3" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jComboBox_Klubb" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jCheckBox_POP" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jComboBox4" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jComboBox_Pop" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -243,7 +271,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCheckBox_F4CActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JComboBox" name="jComboBox1">
+        <Component class="javax.swing.JComboBox" name="jComboBox_F4C">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="4">
@@ -253,18 +281,7 @@
                 <StringItem index="3" value="F4c 2016"/>
               </StringArray>
             </Property>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JComboBox" name="jComboBox3">
-          <Properties>
-            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="4">
-                <StringItem index="0" value="Klubb 2013"/>
-                <StringItem index="1" value="Klubb 2012"/>
-                <StringItem index="2" value="Klubb 2011"/>
-                <StringItem index="3" value="Klubb 2010"/>
-              </StringArray>
-            </Property>
+            <Property name="toolTipText" type="java.lang.String" value="V&#xe4;lj regelverk f&#xf6;r klassen h&#xe4;r."/>
           </Properties>
         </Component>
         <Component class="javax.swing.JCheckBox" name="jCheckBox_F4H">
@@ -272,12 +289,7 @@
             <Property name="text" type="java.lang.String" value="F4H"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JCheckBox" name="jCheckBox_Klubb">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Klubbskala"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JComboBox" name="jComboBox2">
+        <Component class="javax.swing.JComboBox" name="jComboBox_F4H">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="4">
@@ -287,6 +299,25 @@
                 <StringItem index="3" value="F4H 2010"/>
               </StringArray>
             </Property>
+            <Property name="toolTipText" type="java.lang.String" value="V&#xe4;lj regelverk f&#xf6;r klassen h&#xe4;r."/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JCheckBox" name="jCheckBox_Klubb">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Klubbskala"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JComboBox" name="jComboBox_Klubb">
+          <Properties>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="4">
+                <StringItem index="0" value="Klubb 2013"/>
+                <StringItem index="1" value="Klubb 2012"/>
+                <StringItem index="2" value="Klubb 2011"/>
+                <StringItem index="3" value="Klubb 2010"/>
+              </StringArray>
+            </Property>
+            <Property name="toolTipText" type="java.lang.String" value="V&#xe4;lj regelverk f&#xf6;r klassen h&#xe4;r."/>
           </Properties>
         </Component>
         <Component class="javax.swing.JCheckBox" name="jCheckBox_POP">
@@ -294,7 +325,7 @@
             <Property name="text" type="java.lang.String" value="POP-skala"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JComboBox" name="jComboBox4">
+        <Component class="javax.swing.JComboBox" name="jComboBox_Pop">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="4">
@@ -304,20 +335,24 @@
                 <StringItem index="3" value="POP 2010"/>
               </StringArray>
             </Property>
+            <Property name="toolTipText" type="java.lang.String" value="V&#xe4;lj regelverk f&#xf6;r klassen h&#xe4;r."/>
+            <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+              <Dimension value="[93, 26]"/>
+            </Property>
             <Property name="name" type="java.lang.String" value="" noResource="true"/>
           </Properties>
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JButton" name="jButton1">
+    <Component class="javax.swing.JButton" name="jButton_Cancel">
       <Properties>
         <Property name="text" type="java.lang.String" value="Avbryt"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton_CancelActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton2">
+    <Component class="javax.swing.JButton" name="jButton_Save">
       <Properties>
         <Property name="text" type="java.lang.String" value="Spara"/>
       </Properties>

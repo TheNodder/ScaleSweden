@@ -26,27 +26,31 @@ public class NewCompetition extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTextField_CompName = new javax.swing.JTextField();
-        jTextField_EventLeader = new javax.swing.JTextField();
-        jTextField_Location = new javax.swing.JTextField();
-        jTextField_startDate = new javax.swing.JTextField();
         jLabel_compName = new javax.swing.JLabel();
-        jLabel_Location = new javax.swing.JLabel();
+        jTextField_CompName = new javax.swing.JTextField();
         jLabel_EventLeader = new javax.swing.JLabel();
+        jTextField_EventLeader = new javax.swing.JTextField();
+        jLabel_airField = new javax.swing.JLabel();
+        jTextField_AirField = new javax.swing.JTextField();
+        jLabel_Location = new javax.swing.JLabel();
+        jTextField_Location = new javax.swing.JTextField();
         jLabel_StartDate = new javax.swing.JLabel();
+        jTextField_startDate = new javax.swing.JFormattedTextField();
+        jTextField_endDate = new javax.swing.JFormattedTextField();
         jLabel_endDate = new javax.swing.JLabel();
-        jTextField_endDate = new javax.swing.JTextField();
+        jLabel_Club = new javax.swing.JLabel();
+        jTextField_Club = new javax.swing.JTextField();
         jPanelKlasser = new javax.swing.JPanel();
         jCheckBox_F4C = new javax.swing.JCheckBox();
-        jComboBox1 = new javax.swing.JComboBox();
-        jComboBox3 = new javax.swing.JComboBox();
+        jComboBox_F4C = new javax.swing.JComboBox();
         jCheckBox_F4H = new javax.swing.JCheckBox();
+        jComboBox_F4H = new javax.swing.JComboBox();
         jCheckBox_Klubb = new javax.swing.JCheckBox();
-        jComboBox2 = new javax.swing.JComboBox();
+        jComboBox_Klubb = new javax.swing.JComboBox();
         jCheckBox_POP = new javax.swing.JCheckBox();
-        jComboBox4 = new javax.swing.JComboBox();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        jComboBox_Pop = new javax.swing.JComboBox();
+        jButton_Cancel = new javax.swing.JButton();
+        jButton_Save = new javax.swing.JButton();
 
         setClosable(true);
         setTitle("Ny tävling...");
@@ -56,25 +60,23 @@ public class NewCompetition extends javax.swing.JInternalFrame {
             e1.printStackTrace();
         }
 
-        jTextField_CompName.setText("jTextField1");
-
-        jTextField_EventLeader.setText("jTextField1");
-
-        jTextField_Location.setText("jTextField1");
-
-        jTextField_startDate.setText("jTextField1");
-
         jLabel_compName.setText("Tävlingens namn:");
-
-        jLabel_Location.setText("Ort:");
 
         jLabel_EventLeader.setText("Tävlingsledare:");
 
+        jLabel_airField.setText("Flygfält:");
+
+        jLabel_Location.setText("Ort:");
+
         jLabel_StartDate.setText("Startdatum:");
+
+        jTextField_startDate.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
+
+        jTextField_endDate.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
 
         jLabel_endDate.setText("Slutdatum:");
 
-        jTextField_endDate.setText("jTextField1");
+        jLabel_Club.setText("Arrangerande klubb:");
 
         jPanelKlasser.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true), "Tävlingsklasser"));
         jPanelKlasser.setName("Tävlingsklasser"); // NOI18N
@@ -87,20 +89,25 @@ public class NewCompetition extends javax.swing.JInternalFrame {
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "F4C 2013", "F4C 2014", "F4C 2015", "F4c 2016" }));
-
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Klubb 2013", "Klubb 2012", "Klubb 2011", "Klubb 2010" }));
+        jComboBox_F4C.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "F4C 2013", "F4C 2014", "F4C 2015", "F4c 2016" }));
+        jComboBox_F4C.setToolTipText("Välj regelverk för klassen här.");
 
         jCheckBox_F4H.setText("F4H");
 
+        jComboBox_F4H.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "F4H 2013", "F4H 2012", "F4H 2011", "F4H 2010" }));
+        jComboBox_F4H.setToolTipText("Välj regelverk för klassen här.");
+
         jCheckBox_Klubb.setText("Klubbskala");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "F4H 2013", "F4H 2012", "F4H 2011", "F4H 2010" }));
+        jComboBox_Klubb.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Klubb 2013", "Klubb 2012", "Klubb 2011", "Klubb 2010" }));
+        jComboBox_Klubb.setToolTipText("Välj regelverk för klassen här.");
 
         jCheckBox_POP.setText("POP-skala");
 
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "POP 2013", "POP 2012", "POP 2011", "POP 2010" }));
-        jComboBox4.setName(""); // NOI18N
+        jComboBox_Pop.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "POP 2013", "POP 2012", "POP 2011", "POP 2010" }));
+        jComboBox_Pop.setToolTipText("Välj regelverk för klassen här.");
+        jComboBox_Pop.setMinimumSize(new java.awt.Dimension(93, 26));
+        jComboBox_Pop.setName(""); // NOI18N
 
         javax.swing.GroupLayout jPanelKlasserLayout = new javax.swing.GroupLayout(jPanelKlasser);
         jPanelKlasser.setLayout(jPanelKlasserLayout);
@@ -109,22 +116,17 @@ public class NewCompetition extends javax.swing.JInternalFrame {
             .addGroup(jPanelKlasserLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanelKlasserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelKlasserLayout.createSequentialGroup()
-                        .addGroup(jPanelKlasserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jCheckBox_F4C)
-                            .addComponent(jCheckBox_F4H)
-                            .addComponent(jCheckBox_Klubb))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanelKlasserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.TRAILING, 0, 123, Short.MAX_VALUE)
-                            .addComponent(jComboBox2, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jComboBox3, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(11, 11, 11))
-                    .addGroup(jPanelKlasserLayout.createSequentialGroup()
-                        .addComponent(jCheckBox_POP)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addComponent(jCheckBox_F4C)
+                    .addComponent(jCheckBox_F4H)
+                    .addComponent(jCheckBox_Klubb)
+                    .addComponent(jCheckBox_POP))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanelKlasserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jComboBox_Pop, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jComboBox_F4C, javax.swing.GroupLayout.Alignment.TRAILING, 0, 123, Short.MAX_VALUE)
+                    .addComponent(jComboBox_F4H, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jComboBox_Klubb, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(11, 11, 11))
         );
         jPanelKlasserLayout.setVerticalGroup(
             jPanelKlasserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -132,30 +134,30 @@ public class NewCompetition extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(jPanelKlasserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jCheckBox_F4C)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jComboBox_F4C, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelKlasserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jCheckBox_F4H)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jComboBox_F4H, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelKlasserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jCheckBox_Klubb)
-                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jComboBox_Klubb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanelKlasserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jCheckBox_POP)
-                    .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jComboBox_Pop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
-        jButton1.setText("Avbryt");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButton_Cancel.setText("Avbryt");
+        jButton_Cancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButton_CancelActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Spara");
+        jButton_Save.setText("Spara");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -165,102 +167,123 @@ public class NewCompetition extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField_CompName)
-                            .addComponent(jTextField_Location)
-                            .addComponent(jTextField_EventLeader)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel_compName)
-                                    .addComponent(jLabel_Location)
-                                    .addComponent(jLabel_EventLeader))
-                                .addGap(0, 70, Short.MAX_VALUE)))
-                        .addGap(217, 217, 217))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel_StartDate)
-                            .addComponent(jTextField_startDate, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel_endDate)
-                            .addComponent(jTextField_endDate, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanelKlasser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1)
+                        .addComponent(jButton_Save)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton2)
-                        .addContainerGap())))
+                        .addComponent(jButton_Cancel))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel_StartDate)
+                                    .addComponent(jTextField_startDate, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel_endDate)
+                                        .addGap(0, 0, Short.MAX_VALUE))
+                                    .addComponent(jTextField_endDate)))
+                            .addComponent(jTextField_CompName, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextField_AirField, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel_compName)
+                                    .addComponent(jLabel_airField))
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jTextField_Location, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
+                                .addComponent(jLabel_EventLeader)
+                                .addComponent(jLabel_Location)
+                                .addComponent(jTextField_EventLeader))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jTextField_Club, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
+                                .addComponent(jLabel_Club)))))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(14, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButton1)
-                        .addComponent(jButton2))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel_EventLeader)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextField_EventLeader, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel_compName)
                         .addGap(4, 4, 4)
-                        .addComponent(jTextField_CompName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextField_CompName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel_Location)
                         .addGap(1, 1, 1)
-                        .addComponent(jTextField_Location, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel_EventLeader)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField_EventLeader, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel_StartDate)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField_startDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel_endDate)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField_endDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(18, 18, 18)
-                        .addComponent(jPanelKlasser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jTextField_Location, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel_airField)
+                        .addGap(4, 4, 4)
+                        .addComponent(jTextField_AirField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel_Club)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel_StartDate, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jLabel_endDate, javax.swing.GroupLayout.Alignment.TRAILING)))
+                .addGap(1, 1, 1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jTextField_startDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTextField_endDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextField_Club, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanelKlasser, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButton_Cancel)
+                        .addComponent(jButton_Save)))
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jButton_CancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CancelActionPerformed
         // TODO add your handling code here:
         this.dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jButton_CancelActionPerformed
 
     private void jCheckBox_F4CActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox_F4CActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jCheckBox_F4CActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton_Cancel;
+    private javax.swing.JButton jButton_Save;
     private javax.swing.JCheckBox jCheckBox_F4C;
     private javax.swing.JCheckBox jCheckBox_F4H;
     private javax.swing.JCheckBox jCheckBox_Klubb;
     private javax.swing.JCheckBox jCheckBox_POP;
-    private javax.swing.JComboBox jComboBox1;
-    private javax.swing.JComboBox jComboBox2;
-    private javax.swing.JComboBox jComboBox3;
-    private javax.swing.JComboBox jComboBox4;
+    private javax.swing.JComboBox jComboBox_F4C;
+    private javax.swing.JComboBox jComboBox_F4H;
+    private javax.swing.JComboBox jComboBox_Klubb;
+    private javax.swing.JComboBox jComboBox_Pop;
+    private javax.swing.JLabel jLabel_Club;
     private javax.swing.JLabel jLabel_EventLeader;
     private javax.swing.JLabel jLabel_Location;
     private javax.swing.JLabel jLabel_StartDate;
+    private javax.swing.JLabel jLabel_airField;
     private javax.swing.JLabel jLabel_compName;
     private javax.swing.JLabel jLabel_endDate;
     private javax.swing.JPanel jPanelKlasser;
+    private javax.swing.JTextField jTextField_AirField;
+    private javax.swing.JTextField jTextField_Club;
     private javax.swing.JTextField jTextField_CompName;
     private javax.swing.JTextField jTextField_EventLeader;
     private javax.swing.JTextField jTextField_Location;
-    private javax.swing.JTextField jTextField_endDate;
-    private javax.swing.JTextField jTextField_startDate;
+    private javax.swing.JFormattedTextField jTextField_endDate;
+    private javax.swing.JFormattedTextField jTextField_startDate;
     // End of variables declaration//GEN-END:variables
 }
