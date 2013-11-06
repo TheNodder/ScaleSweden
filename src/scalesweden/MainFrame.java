@@ -122,8 +122,7 @@ public class MainFrame extends javax.swing.JFrame {
 
    @SuppressWarnings("empty-statement")
     private void jButtonCompetitionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCompetitionActionPerformed
-       
-      
+             
        boolean active = false;
 
        JInternalFrame[] allFrames = jDesktopPane1.getAllFrames();
