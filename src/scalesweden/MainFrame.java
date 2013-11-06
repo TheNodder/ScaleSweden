@@ -8,6 +8,7 @@ import java.awt.Component;
 import java.beans.PropertyVetoException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JInternalFrame;
 
 
 
@@ -39,8 +40,8 @@ public class MainFrame extends javax.swing.JFrame {
 
         jToolBar1 = new javax.swing.JToolBar();
         jButtonCompetition = new javax.swing.JButton();
-        jButtonCompetition1 = new javax.swing.JButton();
-        jButtonCompetition2 = new javax.swing.JButton();
+        jButtonRules = new javax.swing.JButton();
+        jButtonSettings = new javax.swing.JButton();
         jDesktopPane1 = new javax.swing.JDesktopPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -63,34 +64,34 @@ public class MainFrame extends javax.swing.JFrame {
         });
         jToolBar1.add(jButtonCompetition);
 
-        jButtonCompetition1.setText("Regler");
-        jButtonCompetition1.setToolTipText("");
-        jButtonCompetition1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButtonCompetition1.setFocusable(false);
-        jButtonCompetition1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jButtonCompetition1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButtonCompetition1.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        jButtonCompetition1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButtonCompetition1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonRules.setText("Regler");
+        jButtonRules.setToolTipText("");
+        jButtonRules.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonRules.setFocusable(false);
+        jButtonRules.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jButtonRules.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButtonRules.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        jButtonRules.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButtonRules.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonCompetition1ActionPerformed(evt);
+                jButtonRulesActionPerformed(evt);
             }
         });
-        jToolBar1.add(jButtonCompetition1);
+        jToolBar1.add(jButtonRules);
 
-        jButtonCompetition2.setText("Inställningar");
-        jButtonCompetition2.setToolTipText("");
-        jButtonCompetition2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButtonCompetition2.setFocusable(false);
-        jButtonCompetition2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButtonCompetition2.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        jButtonCompetition2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButtonCompetition2.addActionListener(new java.awt.event.ActionListener() {
+        jButtonSettings.setText("Inställningar");
+        jButtonSettings.setToolTipText("");
+        jButtonSettings.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonSettings.setFocusable(false);
+        jButtonSettings.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButtonSettings.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        jButtonSettings.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButtonSettings.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonCompetition2ActionPerformed(evt);
+                jButtonSettingsActionPerformed(evt);
             }
         });
-        jToolBar1.add(jButtonCompetition2);
+        jToolBar1.add(jButtonSettings);
 
         org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, this, org.jdesktop.beansbinding.ELProperty.create("${maximizedBounds}"), jDesktopPane1, org.jdesktop.beansbinding.BeanProperty.create("border"));
         bindingGroup.addBinding(binding);
@@ -119,40 +120,66 @@ public class MainFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+   @SuppressWarnings("empty-statement")
     private void jButtonCompetitionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCompetitionActionPerformed
-        // TODO add your handling code here:
-        
-        Competition CompList = new Competition();
-        Component add = jDesktopPane1.add(CompList);
-        CompList.setTitle("Tävlingar");
+       
+      
+       boolean active = false;
 
-        try {
-            CompList.setMaximum(true);
-        } catch (PropertyVetoException ex) {
-            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
-        }
+       JInternalFrame[] allFrames = jDesktopPane1.getAllFrames();
+       for (JInternalFrame allFrame : allFrames) {
+           if ("compDlg".equals(allFrame.getName())) {
+               try {
+                   active = true;
+                   allFrame.moveToFront();
+                   allFrame.setSelected(true);
+                   allFrame.setMaximum(true);
+               }catch (PropertyVetoException ex) {
+                   Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+               }
+               break;
+           }
+       }
 
-        CompList.setVisible(true);
-        //CompList.show();
-        jButtonCompetition.setEnabled(false);
-        CompStarted = true;
-        
+       if (!active) {
+           Competition CompList = new Competition();
+
+           Component add = jDesktopPane1.add(CompList);
+           CompList.setTitle("Tävlingar");
+
+           try {
+               CompList.setMaximum(true);
+           } catch (PropertyVetoException ex) {
+               Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+           }
+           CompList.setVisible(true);
+       }
+       
        
     }//GEN-LAST:event_jButtonCompetitionActionPerformed
 
-    private void jButtonCompetition1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCompetition1ActionPerformed
+    private void jButtonRulesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRulesActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonCompetition1ActionPerformed
+        Rules CRules = new Rules();
+        jDesktopPane1.add(CRules);
+       try {
+           CRules.setMaximum(true);
+       } catch (PropertyVetoException ex) {
+           Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+       }
+        CRules.setVisible(true);
+    }//GEN-LAST:event_jButtonRulesActionPerformed
 
-    private void jButtonCompetition2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCompetition2ActionPerformed
+    private void jButtonSettingsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSettingsActionPerformed
         // TODO add your handling code here:
         ClubSettings CSettings = new ClubSettings();
         jDesktopPane1.add(CSettings);
         CSettings.setVisible(true);
-    }//GEN-LAST:event_jButtonCompetition2ActionPerformed
+    }//GEN-LAST:event_jButtonSettingsActionPerformed
 
     /**
      * @param args the command line arguments
+     * @throws java.lang.ClassNotFoundException
      */
     public static void main(String args[]) throws ClassNotFoundException {
         
@@ -188,8 +215,8 @@ public class MainFrame extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonCompetition;
-    private javax.swing.JButton jButtonCompetition1;
-    private javax.swing.JButton jButtonCompetition2;
+    private javax.swing.JButton jButtonRules;
+    private javax.swing.JButton jButtonSettings;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JToolBar jToolBar1;
     private org.jdesktop.beansbinding.BindingGroup bindingGroup;

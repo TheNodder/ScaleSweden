@@ -49,7 +49,7 @@ public class ClubSettings extends javax.swing.JInternalFrame {
         filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 0));
 
         setClosable(true);
-        setTitle("Klubb - Inställningar");
+        setTitle("Inställningar - Klubb");
 
         jLabel1.setText("Klubbnr:");
 
