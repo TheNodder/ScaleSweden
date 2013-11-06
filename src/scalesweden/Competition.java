@@ -60,6 +60,11 @@ public class Competition extends javax.swing.JInternalFrame {
             public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
             }
         });
+        addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                formFocusGained(evt);
+            }
+        });
 
         jButton1.setText("Ny tävling...");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -149,6 +154,16 @@ public class Competition extends javax.swing.JInternalFrame {
             Logger.getLogger(Competition.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_formInternalFrameActivated
+
+    private void formFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_formFocusGained
+        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+            this.setMaximum(true);
+        } catch (PropertyVetoException ex) {
+            Logger.getLogger(Competition.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_formFocusGained
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
