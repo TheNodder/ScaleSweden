@@ -67,12 +67,63 @@
         <Component class="javax.swing.JTable" name="jTable1">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="4" rowCount="4">
-                <Column editable="true" title="Title 1" type="java.lang.Object"/>
-                <Column editable="true" title="Title 2" type="java.lang.Object"/>
-                <Column editable="true" title="Title 3" type="java.lang.Object"/>
-                <Column editable="true" title="Title 4" type="java.lang.Object"/>
+              <Table columnCount="4" rowCount="5">
+                <Column editable="true" title="Namn:" type="java.lang.String">
+                  <Data value="Popul&#xe4;rskala"/>
+                  <Data value="F4C - 2013"/>
+                  <Data value="F4H - 2013"/>
+                  <Data value="Klubbskala - 2013"/>
+                  <Data value="Gripen Skala"/>
+                </Column>
+                <Column editable="true" title="Klass:" type="java.lang.String">
+                  <Data value="Popul&#xe4;rskala"/>
+                  <Data value="F4C"/>
+                  <Data value="F4H"/>
+                  <Data value="Klubbskala"/>
+                  <Data value="Egen"/>
+                </Column>
+                <Column editable="true" title="Skapad:" type="java.lang.String">
+                  <Data value="2013-11-07"/>
+                  <Data value="2013-01-01"/>
+                  <Data value="2013-02-01"/>
+                  <Data value="2013-02-03"/>
+                  <Data value="2013-12-24"/>
+                </Column>
+                <Column editable="true" title="Typ:" type="java.lang.String">
+                  <Data value="Officiell"/>
+                  <Data value="Officiell"/>
+                  <Data value="Officell"/>
+                  <Data value="Officiell"/>
+                  <Data value="Klubbt&#xe4;vling"/>
+                </Column>
               </Table>
+            </Property>
+            <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+              <TableColumnModel selectionModel="0">
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+              </TableColumnModel>
+            </Property>
+            <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+              <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
             </Property>
           </Properties>
         </Component>

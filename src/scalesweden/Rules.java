@@ -44,15 +44,24 @@ public class Rules extends javax.swing.JInternalFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {"Populärskala", "Populärskala", "2013-11-07", "Officiell"},
+                {"F4C - 2013", "F4C", "2013-01-01", "Officiell"},
+                {"F4H - 2013", "F4H", "2013-02-01", "Officell"},
+                {"Klubbskala - 2013", "Klubbskala", "2013-02-03", "Officiell"},
+                {"Gripen Skala", "Egen", "2013-12-24", "Klubbtävling"}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Namn:", "Klass:", "Skapad:", "Typ:"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
