@@ -50,6 +50,7 @@ public class ClubSettings extends javax.swing.JInternalFrame {
 
         setClosable(true);
         setTitle("Inställningar - Klubb");
+        setName("setDlg"); // NOI18N
 
         jLabel1.setText("Klubbnr:");
 
