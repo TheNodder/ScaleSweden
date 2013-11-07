@@ -31,8 +31,9 @@ public class Rules extends javax.swing.JInternalFrame {
         jTable1 = new javax.swing.JTable();
 
         setClosable(true);
-        setIconifiable(true);
+        setResizable(true);
         setTitle("Regler");
+        setName("rulesDlg"); // NOI18N
         try {
             setSelected(true);
         } catch (java.beans.PropertyVetoException e1) {
