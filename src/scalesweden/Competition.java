@@ -36,10 +36,9 @@ public class Competition extends javax.swing.JInternalFrame {
         jTable1 = new javax.swing.JTable();
 
         setClosable(true);
-        setIconifiable(true);
-        setMaximizable(true);
         setResizable(true);
         setTitle("Tävlingar");
+        setMaximumSize(new java.awt.Dimension(1960, 1200));
         setName("compDlg"); // NOI18N
         setVisible(false);
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
@@ -147,22 +146,11 @@ public class Competition extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void formInternalFrameActivated(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameActivated
-        try {
-            // TODO add your handling code here:
-            this.setMaximum(true);
-        } catch (PropertyVetoException ex) {
-            Logger.getLogger(Competition.class.getName()).log(Level.SEVERE, null, ex);
-        }
+ 
     }//GEN-LAST:event_formInternalFrameActivated
 
     private void formFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_formFocusGained
-        // TODO add your handling code here:
-        try {
-            // TODO add your handling code here:
-            this.setMaximum(true);
-        } catch (PropertyVetoException ex) {
-            Logger.getLogger(Competition.class.getName()).log(Level.SEVERE, null, ex);
-        }
+ 
     }//GEN-LAST:event_formFocusGained
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
