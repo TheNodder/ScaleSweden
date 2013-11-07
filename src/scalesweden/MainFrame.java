@@ -138,9 +138,9 @@ public class MainFrame extends javax.swing.JFrame {
 
                     //allFrame.to.moveToFront();
                     allFrame.setSelected(true);
-                    allFrame.setMaximum(true);
                     allFrame.toFront();
                     allFrame.setMaximum(true);
+                    
                 } catch (PropertyVetoException ex) {
                     Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -175,21 +175,26 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void jButtonRulesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRulesActionPerformed
         // TODO add your handling code here:
-        Rules CRules = new Rules();
-        jDesktopPane1.add(CRules);
-       try {
-           CRules.setMaximum(true);
-       } catch (PropertyVetoException ex) {
-           Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
-       }
-        CRules.setVisible(true);
+        if (!setModal("rulesDlg")) {
+            Rules CRules = new Rules();
+            jDesktopPane1.add(CRules);
+            try {
+                CRules.setMaximum(true);
+            } catch (PropertyVetoException ex) {
+                Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            CRules.setVisible(true);
     }//GEN-LAST:event_jButtonRulesActionPerformed
-
+    }
+    
     private void jButtonSettingsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSettingsActionPerformed
         // TODO add your handling code here:
-        ClubSettings CSettings = new ClubSettings();
-        jDesktopPane1.add(CSettings);
-        CSettings.setVisible(true);
+        if (!setModal("setDlg"))  {
+            ClubSettings CSettings = new ClubSettings();
+            jDesktopPane1.add(CSettings);
+            CSettings.setVisible(true);
+        }
+        
     }//GEN-LAST:event_jButtonSettingsActionPerformed
 
     /**
@@ -201,11 +206,12 @@ public class MainFrame extends javax.swing.JFrame {
         /* Invoke the SQLite driver     */        
         Class.forName("org.sqlite.JDBC");
         
-        /* Set the Nimbus look and feel */
+        /* Set the Nimbus look and feel 
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
+        
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -215,7 +221,7 @@ public class MainFrame extends javax.swing.JFrame {
             }
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
+        } 
         //</editor-fold>
 
         /* Create and display the form */
@@ -227,7 +233,8 @@ public class MainFrame extends javax.swing.JFrame {
             }
 
         });
-    }
+    } 
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonCompetition;
     private javax.swing.JButton jButtonRules;
