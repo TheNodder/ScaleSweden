@@ -120,27 +120,43 @@ public class MainFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private boolean setModal(String dialogName) {
+        /** We should create a utility class for this stuff:
+         *  This function is being called first to make sure 
+         *  that there is only one dialog present in the pane from the wanted class
+         *  Like a modal behaviour that won't obstruct other dialogs from other classes.
+         */
+        
+        boolean active = false;
+        
+        JInternalFrame[] allFrames = jDesktopPane1.getAllFrames();
+
+        for (JInternalFrame allFrame : allFrames) {
+            // if ("compDlg".equals(allFrame.getName())) {
+            if (dialogName.equals(allFrame.getName())) {
+                try {
+
+                    //allFrame.to.moveToFront();
+                    allFrame.setSelected(true);
+                    allFrame.setMaximum(true);
+                    allFrame.toFront();
+                    allFrame.setMaximum(true);
+                } catch (PropertyVetoException ex) {
+                    Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                active = true;
+                break;
+            }
+        }
+        
+        return active;
+    }
+    
    @SuppressWarnings("empty-statement")
     private void jButtonCompetitionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCompetitionActionPerformed
              
-       boolean active = false;
-
-       JInternalFrame[] allFrames = jDesktopPane1.getAllFrames();
-       for (JInternalFrame allFrame : allFrames) {
-           if ("compDlg".equals(allFrame.getName())) {
-               try {
-                   active = true;
-                   allFrame.moveToFront();
-                   allFrame.setSelected(true);
-                   allFrame.setMaximum(true);
-               }catch (PropertyVetoException ex) {
-                   Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
-               }
-               break;
-           }
-       }
-
-       if (!active) {
+        if (!setModal("compDlg")) {
+      
            Competition CompList = new Competition();
 
            Component add = jDesktopPane1.add(CompList);
