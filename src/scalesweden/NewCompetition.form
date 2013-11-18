@@ -29,7 +29,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="jPanelKlasser" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace pref="103" max="32767" attributes="0"/>
                       <Component id="jButton_Save" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jButton_Cancel" min="-2" max="-2" attributes="0"/>
@@ -265,7 +265,7 @@
       <SubComponents>
         <Component class="javax.swing.JCheckBox" name="jCheckBox_F4C">
           <Properties>
-            <Property name="text" type="java.lang.String" value="F4C"/>
+            <Property name="text" type="java.lang.String" value="1"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCheckBox_F4CActionPerformed"/>
@@ -286,7 +286,7 @@
         </Component>
         <Component class="javax.swing.JCheckBox" name="jCheckBox_F4H">
           <Properties>
-            <Property name="text" type="java.lang.String" value="F4H"/>
+            <Property name="text" type="java.lang.String" value="2"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JComboBox" name="jComboBox_F4H">
@@ -304,7 +304,7 @@
         </Component>
         <Component class="javax.swing.JCheckBox" name="jCheckBox_Klubb">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Klubbskala"/>
+            <Property name="text" type="java.lang.String" value="3"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JComboBox" name="jComboBox_Klubb">
@@ -322,7 +322,7 @@
         </Component>
         <Component class="javax.swing.JCheckBox" name="jCheckBox_POP">
           <Properties>
-            <Property name="text" type="java.lang.String" value="POP-skala"/>
+            <Property name="text" type="java.lang.String" value="4"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JComboBox" name="jComboBox_Pop">

@@ -15,6 +15,8 @@ public class NewCompetition extends javax.swing.JInternalFrame {
      */
     public NewCompetition() {
         initComponents();
+        initScaleClasses();
+        
     }
 
     /**
@@ -82,7 +84,7 @@ public class NewCompetition extends javax.swing.JInternalFrame {
         jPanelKlasser.setName("Tävlingsklasser"); // NOI18N
         jPanelKlasser.setOpaque(false);
 
-        jCheckBox_F4C.setText("F4C");
+        jCheckBox_F4C.setText("1");
         jCheckBox_F4C.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCheckBox_F4CActionPerformed(evt);
@@ -92,17 +94,17 @@ public class NewCompetition extends javax.swing.JInternalFrame {
         jComboBox_F4C.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "F4C 2013", "F4C 2014", "F4C 2015", "F4c 2016" }));
         jComboBox_F4C.setToolTipText("Välj regelverk för klassen här.");
 
-        jCheckBox_F4H.setText("F4H");
+        jCheckBox_F4H.setText("2");
 
         jComboBox_F4H.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "F4H 2013", "F4H 2012", "F4H 2011", "F4H 2010" }));
         jComboBox_F4H.setToolTipText("Välj regelverk för klassen här.");
 
-        jCheckBox_Klubb.setText("Klubbskala");
+        jCheckBox_Klubb.setText("3");
 
         jComboBox_Klubb.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Klubb 2013", "Klubb 2012", "Klubb 2011", "Klubb 2010" }));
         jComboBox_Klubb.setToolTipText("Välj regelverk för klassen här.");
 
-        jCheckBox_POP.setText("POP-skala");
+        jCheckBox_POP.setText("4");
 
         jComboBox_Pop.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "POP 2013", "POP 2012", "POP 2011", "POP 2010" }));
         jComboBox_Pop.setToolTipText("Välj regelverk för klassen här.");
@@ -168,7 +170,7 @@ public class NewCompetition extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanelKlasser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 103, Short.MAX_VALUE)
                         .addComponent(jButton_Save)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton_Cancel))
@@ -250,6 +252,12 @@ public class NewCompetition extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void initScaleClasses() {
+        jCheckBox_F4C.setText(ScaleClasses.ListOfClasses[0]);
+        jCheckBox_F4H.setText(ScaleClasses.ListOfClasses[1]);
+        jCheckBox_Klubb.setText(ScaleClasses.ListOfClasses[2]);
+        jCheckBox_POP.setText(ScaleClasses.ListOfClasses[3]);
+    }
     private void jButton_CancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CancelActionPerformed
         // TODO add your handling code here:
         this.dispose();
