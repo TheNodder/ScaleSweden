@@ -70,7 +70,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonCompetitionActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="jButtonCompetition1">
+        <Component class="javax.swing.JButton" name="jButtonRules">
           <Properties>
             <Property name="text" type="java.lang.String" value="Regler"/>
             <Property name="toolTipText" type="java.lang.String" value=""/>
@@ -84,10 +84,10 @@
             <Property name="verticalTextPosition" type="int" value="3"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonCompetition1ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonRulesActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="jButtonCompetition2">
+        <Component class="javax.swing.JButton" name="jButtonSettings">
           <Properties>
             <Property name="text" type="java.lang.String" value="Inst&#xe4;llningar"/>
             <Property name="toolTipText" type="java.lang.String" value=""/>
@@ -100,7 +100,7 @@
             <Property name="verticalTextPosition" type="int" value="3"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonCompetition2ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonSettingsActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>
@@ -110,7 +110,9 @@
         <BindingProperty name="border" source="Form" sourcePath="${maximizedBounds}" target="jDesktopPane1" targetPath="border" updateStrategy="0" immediately="false"/>
       </BindingProperties>
 
-      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout"/>
+      <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
+        <Property name="useNullLayout" type="boolean" value="true"/>
+      </Layout>
     </Container>
   </SubComponents>
 </Form>
