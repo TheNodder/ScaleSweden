@@ -132,7 +132,7 @@ public class MainFrame extends javax.swing.JFrame {
         JInternalFrame[] allFrames = jDesktopPane1.getAllFrames();
 
         for (JInternalFrame allFrame : allFrames) {
-            // if ("compDlg".equals(allFrame.getName())) {
+            
             if (dialogName.equals(allFrame.getName())) {
                 try {
 
