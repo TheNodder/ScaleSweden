@@ -22,6 +22,7 @@ public class ClubSettings extends javax.swing.JInternalFrame {
      */
     public ClubSettings() {
         initComponents();
+        jLabel9.setVisible(false);
         readData();
     }
 
@@ -34,6 +35,7 @@ public class ClubSettings extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jDialog1 = new javax.swing.JDialog();
         jLabel1 = new javax.swing.JLabel();
         jTextField_Clubnr = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
@@ -43,38 +45,61 @@ public class ClubSettings extends javax.swing.JInternalFrame {
         jLabel4 = new javax.swing.JLabel();
         jTextField_Password = new javax.swing.JTextField();
         jButton_Save = new javax.swing.JButton();
-        jButton_Cancel = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jTextField_UserId = new javax.swing.JTextField();
         filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 0));
         jLabel6 = new javax.swing.JLabel();
-        jTextField_ProtocolDriver1 = new javax.swing.JTextField();
+        jTextField_CompLeader = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jTextField_Clubnr1 = new javax.swing.JTextField();
-        jTextField_ClubName1 = new javax.swing.JTextField();
+        jTextField_Location = new javax.swing.JTextField();
+        jTextField_AirField = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+
+        jDialog1.setModal(true);
+
+        javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
+        jDialog1.getContentPane().setLayout(jDialog1Layout);
+        jDialog1Layout.setHorizontalGroup(
+            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        jDialog1Layout.setVerticalGroup(
+            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
 
         setClosable(true);
         setTitle("Inställningar - Klubb");
-        setMaximumSize(new java.awt.Dimension(431, 357));
+        setMaximumSize(new java.awt.Dimension(431, 387));
         setName("setDlg"); // NOI18N
+        setPreferredSize(new java.awt.Dimension(350, 387));
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setText("Klubbnr:");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 12, -1, -1));
 
         jTextField_Clubnr.setColumns(4);
         jTextField_Clubnr.setToolTipText("Här anger Du klubbens nr enligt SMFF.");
+        getContentPane().add(jTextField_Clubnr, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 30, 90, -1));
 
         jLabel2.setText("Klubbens namn:");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(109, 12, -1, -1));
 
         jTextField_ClubName.setToolTipText("Här anger Du klubbens namn.");
+        getContentPane().add(jTextField_ClubName, new org.netbeans.lib.awtextra.AbsoluteConstraints(109, 30, 210, -1));
 
         jLabel3.setText("Ordinarie protokollförare:");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 162, -1, -1));
 
         jTextField_ProtocolDriver.setToolTipText("Ansvarig protokollförare.");
+        getContentPane().add(jTextField_ProtocolDriver, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 183, 309, -1));
 
         jLabel4.setText("Lösenord för skalaflyg.org:");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 266, -1, -1));
 
         jTextField_Password.setToolTipText("Lösenordet för skala webben.");
+        getContentPane().add(jTextField_Password, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 287, 309, -1));
 
         jButton_Save.setText("Spara");
         jButton_Save.addActionListener(new java.awt.event.ActionListener() {
@@ -82,133 +107,40 @@ public class ClubSettings extends javax.swing.JInternalFrame {
                 jButton_SaveActionPerformed(evt);
             }
         });
-
-        jButton_Cancel.setText("Stäng");
-        jButton_Cancel.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_CancelActionPerformed(evt);
-            }
-        });
+        getContentPane().add(jButton_Save, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 320, -1, -1));
 
         jLabel5.setText("Användarid för skalaflyg.org:");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 214, -1, -1));
 
         jTextField_UserId.setToolTipText("Användarid för skala-webben.");
+        getContentPane().add(jTextField_UserId, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 235, 309, -1));
+        getContentPane().add(filler1, new org.netbeans.lib.awtextra.AbsoluteConstraints(339, 297, -1, -1));
 
         jLabel6.setText("Ordinarie tävlingsledare:");
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 110, -1, -1));
 
-        jTextField_ProtocolDriver1.setToolTipText("Ansvarig protokollförare.");
+        jTextField_CompLeader.setToolTipText("Ansvarig protokollförare.");
+        getContentPane().add(jTextField_CompLeader, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 131, 309, -1));
 
         jLabel7.setText("Ort:");
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 61, -1, -1));
 
-        jLabel8.setText("Fält:");
+        jLabel8.setText("Flygfält:");
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(159, 61, -1, -1));
 
-        jTextField_Clubnr1.setColumns(4);
-        jTextField_Clubnr1.setToolTipText("Här anger Du klubbens nr enligt SMFF.");
+        jTextField_Location.setColumns(4);
+        jTextField_Location.setToolTipText("Här anger Du klubbens nr enligt SMFF.");
+        getContentPane().add(jTextField_Location, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 79, 135, -1));
 
-        jTextField_ClubName1.setToolTipText("Här anger Du klubbens namn.");
+        jTextField_AirField.setToolTipText("Här anger Du klubbens namn.");
+        getContentPane().add(jTextField_AirField, new org.netbeans.lib.awtextra.AbsoluteConstraints(159, 79, 160, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel6)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jTextField_Clubnr, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabel1))
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addGap(28, 28, 28)
-                                            .addComponent(jLabel2))
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addGap(18, 18, 18)
-                                            .addComponent(jTextField_ClubName, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGap(10, 10, 10))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jTextField_Password, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(jLabel7)
-                                                .addComponent(jTextField_Clubnr1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addGroup(layout.createSequentialGroup()
-                                                    .addGap(22, 22, 22)
-                                                    .addComponent(jLabel8))
-                                                .addGroup(layout.createSequentialGroup()
-                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                    .addComponent(jTextField_ClubName1, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                            .addGap(16, 16, 16))
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addComponent(jTextField_ProtocolDriver1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 309, Short.MAX_VALUE)
-                                            .addComponent(jTextField_ProtocolDriver, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 309, Short.MAX_VALUE)
-                                            .addComponent(jTextField_UserId, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 309, Short.MAX_VALUE))))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jButton_Save)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jButton_Cancel))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(filler1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(386, 386, 386))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel4))
-                        .addContainerGap())))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2))
-                .addGap(3, 3, 3)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField_Clubnr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField_ClubName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel8))
-                .addGap(3, 3, 3)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField_Clubnr1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField_ClubName1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField_ProtocolDriver1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel3)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(120, 120, 120)
-                        .addComponent(filler1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField_ProtocolDriver, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12)
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField_UserId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField_Password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton_Save)
-                    .addComponent(jButton_Cancel))
-                .addContainerGap())
-        );
+        jLabel9.setForeground(new java.awt.Color(255, 0, 51));
+        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel9.setLabelFor(this);
+        jLabel9.setText("Sparad");
+        jLabel9.setToolTipText("");
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 320, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -231,10 +163,11 @@ public class ClubSettings extends javax.swing.JInternalFrame {
             } catch (InterruptedException e) {
             }
 
-            rs = statement.executeUpdate("INSERT INTO clubsettings (clubnr, clubname, driver, userid, password) "
+            rs = statement.executeUpdate("INSERT INTO clubsettings (clubnr, clubname, driver, userid, password, airfield, compleader, location) "
                     + "VALUES ('" + jTextField_Clubnr.getText() + "', '" + jTextField_ClubName.getText() + "', '"
                     + jTextField_ProtocolDriver.getText() + "', '" + jTextField_UserId.getText() + "', '"
-                    + jTextField_Password.getText() +"' );");
+                    + jTextField_Password.getText() + "', '" + jTextField_AirField.getText() + "', '"
+                    + jTextField_CompLeader.getText() + "', '" + jTextField_Location.getText() + "');");
 
 
         } catch (SQLException e) {
@@ -244,7 +177,16 @@ public class ClubSettings extends javax.swing.JInternalFrame {
         } finally {
             try {
                 if (connection != null) {
+                    
+                    jLabel9.setVisible(true); 
+                    try {
+                        Thread.sleep(2000);
+                    } catch (InterruptedException e) {
+                        
+                    }
+                    //jLabel9.setVisible(false);
                     connection.close();
+                    
                 }
             } catch (SQLException e) {
                 // connection close failed.
@@ -270,6 +212,10 @@ public class ClubSettings extends javax.swing.JInternalFrame {
                 jTextField_ProtocolDriver.setText(rs.getString("driver"));
                 jTextField_UserId.setText(rs.getString("userid"));
                 jTextField_Password.setText(rs.getString("password"));
+                jTextField_Location.setText(rs.getString("location"));
+                jTextField_AirField.setText(rs.getString("airfield"));
+                jTextField_CompLeader.setText(rs.getString("compleader"));
+                
             }
         } catch (SQLException e) {
             // if the error message is "out of memory", 
@@ -288,11 +234,6 @@ public class ClubSettings extends javax.swing.JInternalFrame {
  
         
     }
-    private void jButton_CancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CancelActionPerformed
-        // TODO add your handling code here:
-        dispose();
-    }//GEN-LAST:event_jButton_CancelActionPerformed
-
     private void jButton_SaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_SaveActionPerformed
         // TODO add your handling code here:
         saveData();
@@ -300,8 +241,8 @@ public class ClubSettings extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.Box.Filler filler1;
-    private javax.swing.JButton jButton_Cancel;
     private javax.swing.JButton jButton_Save;
+    private javax.swing.JDialog jDialog1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -310,13 +251,14 @@ public class ClubSettings extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JTextField jTextField_AirField;
     private javax.swing.JTextField jTextField_ClubName;
-    private javax.swing.JTextField jTextField_ClubName1;
     private javax.swing.JTextField jTextField_Clubnr;
-    private javax.swing.JTextField jTextField_Clubnr1;
+    private javax.swing.JTextField jTextField_CompLeader;
+    private javax.swing.JTextField jTextField_Location;
     private javax.swing.JTextField jTextField_Password;
     private javax.swing.JTextField jTextField_ProtocolDriver;
-    private javax.swing.JTextField jTextField_ProtocolDriver1;
     private javax.swing.JTextField jTextField_UserId;
     // End of variables declaration//GEN-END:variables
 }

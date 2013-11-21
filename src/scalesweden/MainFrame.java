@@ -139,7 +139,10 @@ public class MainFrame extends javax.swing.JFrame {
                     //allFrame.to.moveToFront();
                     allFrame.setSelected(true);
                     allFrame.toFront();
-                    allFrame.setMaximum(true);
+                    if(!dialogName.equals("setDlg")) { //Don't maximize the settingsdialog
+                        allFrame.setMaximum(true);
+                    }
+                    
                     
                 } catch (PropertyVetoException ex) {
                     Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
@@ -192,6 +195,7 @@ public class MainFrame extends javax.swing.JFrame {
         if (!setModal("setDlg"))  {
             ClubSettings CSettings = new ClubSettings();
             jDesktopPane1.add(CSettings);
+            CSettings.setLocation(((int) jDesktopPane1.getBounds().getWidth()/2)-(CSettings.getWidth()/2), 2); //Try to center on screen
             CSettings.setVisible(true);
         }
         
