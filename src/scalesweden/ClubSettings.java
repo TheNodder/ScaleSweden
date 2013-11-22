@@ -23,6 +23,7 @@ public class ClubSettings extends javax.swing.JInternalFrame {
     public ClubSettings() {
         initComponents();
         setSavedInidicatorOff();
+        setAlertOffButton();
         readData();
     }
 
@@ -122,6 +123,7 @@ public class ClubSettings extends javax.swing.JInternalFrame {
         getContentPane().add(jTextField_Password, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 287, 309, -1));
 
         jButton_Save.setText("Spara");
+        jButton_Save.setToolTipText("");
         jButton_Save.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_SaveActionPerformed(evt);
@@ -189,11 +191,23 @@ public class ClubSettings extends javax.swing.JInternalFrame {
 
     private void setSavedInidicatorOff() {
         jLabel_Saved.setVisible(false);
-        
+                
     }
 
     private void setSavedInidicatorOn() {
         jLabel_Saved.setVisible(true);
+    }
+    
+    private void setAlertOnButton() {
+        jButton_Save.setBackground(Color.red);
+        jButton_Save.setToolTipText("Du har osparad data. Klicka på mig för att spara.");
+        jButton_Save.setEnabled(true);
+    }
+    
+    private void setAlertOffButton() {
+        jButton_Save.setBackground(Color.lightGray);
+        jButton_Save.setToolTipText("Här klickar Du om det finns något att spara.");
+        jButton_Save.setEnabled(false);
     }
     
     private void saveData() {
@@ -229,6 +243,7 @@ public class ClubSettings extends javax.swing.JInternalFrame {
                 if (connection != null) {
 
                     setSavedInidicatorOn();  //Inform the user that data has been saved
+                    setAlertOffButton();
                     connection.close();
                 }
             } catch (SQLException e) {
@@ -283,35 +298,43 @@ public class ClubSettings extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton_SaveActionPerformed
 
     private void jTextField_ClubnrKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField_ClubnrKeyTyped
-        setSavedInidicatorOff();      
+        setSavedInidicatorOff();    
+        setAlertOnButton();
     }//GEN-LAST:event_jTextField_ClubnrKeyTyped
 
     private void jTextField_ClubNameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField_ClubNameKeyTyped
         setSavedInidicatorOff();
+        setAlertOnButton();
     }//GEN-LAST:event_jTextField_ClubNameKeyTyped
 
     private void jTextField_LocationKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField_LocationKeyTyped
        setSavedInidicatorOff();
+       setAlertOnButton();
     }//GEN-LAST:event_jTextField_LocationKeyTyped
 
     private void jTextField_AirFieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField_AirFieldKeyTyped
         setSavedInidicatorOff();
+        setAlertOnButton();
     }//GEN-LAST:event_jTextField_AirFieldKeyTyped
 
     private void jTextField_CompLeaderKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField_CompLeaderKeyTyped
         setSavedInidicatorOff();
+        setAlertOnButton();
     }//GEN-LAST:event_jTextField_CompLeaderKeyTyped
 
     private void jTextField_ProtocolDriverKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField_ProtocolDriverKeyTyped
         setSavedInidicatorOff();
+        setAlertOnButton();
     }//GEN-LAST:event_jTextField_ProtocolDriverKeyTyped
 
     private void jTextField_UserIdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField_UserIdKeyTyped
         setSavedInidicatorOff();
+        setAlertOnButton();
     }//GEN-LAST:event_jTextField_UserIdKeyTyped
 
     private void jTextField_PasswordKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField_PasswordKeyTyped
         setSavedInidicatorOff();
+        setAlertOnButton();
     }//GEN-LAST:event_jTextField_PasswordKeyTyped
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
