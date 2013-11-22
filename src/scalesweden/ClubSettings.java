@@ -4,12 +4,12 @@
  */
 package scalesweden;
 
+import java.awt.Color;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-
 
 /**
  *
@@ -22,7 +22,7 @@ public class ClubSettings extends javax.swing.JInternalFrame {
      */
     public ClubSettings() {
         initComponents();
-        jLabel9.setVisible(false);
+        setSavedInidicatorOff();
         readData();
     }
 
@@ -54,7 +54,7 @@ public class ClubSettings extends javax.swing.JInternalFrame {
         jLabel8 = new javax.swing.JLabel();
         jTextField_Location = new javax.swing.JTextField();
         jTextField_AirField = new javax.swing.JTextField();
-        jLabel9 = new javax.swing.JLabel();
+        jLabel_Saved = new javax.swing.JLabel();
 
         jDialog1.setModal(true);
 
@@ -81,24 +81,44 @@ public class ClubSettings extends javax.swing.JInternalFrame {
 
         jTextField_Clubnr.setColumns(4);
         jTextField_Clubnr.setToolTipText("Här anger Du klubbens nr enligt SMFF.");
+        jTextField_Clubnr.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField_ClubnrKeyTyped(evt);
+            }
+        });
         getContentPane().add(jTextField_Clubnr, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 30, 90, -1));
 
         jLabel2.setText("Klubbens namn:");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(109, 12, -1, -1));
 
         jTextField_ClubName.setToolTipText("Här anger Du klubbens namn.");
+        jTextField_ClubName.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField_ClubNameKeyTyped(evt);
+            }
+        });
         getContentPane().add(jTextField_ClubName, new org.netbeans.lib.awtextra.AbsoluteConstraints(109, 30, 210, -1));
 
         jLabel3.setText("Ordinarie protokollförare:");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 162, -1, -1));
 
         jTextField_ProtocolDriver.setToolTipText("Ansvarig protokollförare.");
+        jTextField_ProtocolDriver.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField_ProtocolDriverKeyTyped(evt);
+            }
+        });
         getContentPane().add(jTextField_ProtocolDriver, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 183, 309, -1));
 
         jLabel4.setText("Lösenord för skalaflyg.org:");
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 266, -1, -1));
 
         jTextField_Password.setToolTipText("Lösenordet för skala webben.");
+        jTextField_Password.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField_PasswordKeyTyped(evt);
+            }
+        });
         getContentPane().add(jTextField_Password, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 287, 309, -1));
 
         jButton_Save.setText("Spara");
@@ -107,12 +127,17 @@ public class ClubSettings extends javax.swing.JInternalFrame {
                 jButton_SaveActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton_Save, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 320, -1, -1));
+        getContentPane().add(jButton_Save, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 320, 80, -1));
 
         jLabel5.setText("Användarid för skalaflyg.org:");
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 214, -1, -1));
 
         jTextField_UserId.setToolTipText("Användarid för skala-webben.");
+        jTextField_UserId.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField_UserIdKeyTyped(evt);
+            }
+        });
         getContentPane().add(jTextField_UserId, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 235, 309, -1));
         getContentPane().add(filler1, new org.netbeans.lib.awtextra.AbsoluteConstraints(339, 297, -1, -1));
 
@@ -120,6 +145,11 @@ public class ClubSettings extends javax.swing.JInternalFrame {
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 110, -1, -1));
 
         jTextField_CompLeader.setToolTipText("Ansvarig protokollförare.");
+        jTextField_CompLeader.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField_CompLeaderKeyTyped(evt);
+            }
+        });
         getContentPane().add(jTextField_CompLeader, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 131, 309, -1));
 
         jLabel7.setText("Ort:");
@@ -130,23 +160,44 @@ public class ClubSettings extends javax.swing.JInternalFrame {
 
         jTextField_Location.setColumns(4);
         jTextField_Location.setToolTipText("Här anger Du klubbens nr enligt SMFF.");
+        jTextField_Location.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField_LocationKeyTyped(evt);
+            }
+        });
         getContentPane().add(jTextField_Location, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 79, 135, -1));
 
         jTextField_AirField.setToolTipText("Här anger Du klubbens namn.");
+        jTextField_AirField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField_AirFieldKeyTyped(evt);
+            }
+        });
         getContentPane().add(jTextField_AirField, new org.netbeans.lib.awtextra.AbsoluteConstraints(159, 79, 160, -1));
 
-        jLabel9.setForeground(new java.awt.Color(255, 0, 51));
-        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel9.setLabelFor(this);
-        jLabel9.setText("Sparad");
-        jLabel9.setToolTipText("");
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 320, -1, -1));
+        jLabel_Saved.setForeground(new java.awt.Color(51, 255, 0));
+        jLabel_Saved.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel_Saved.setLabelFor(this);
+        jLabel_Saved.setText("Sparad");
+        jLabel_Saved.setToolTipText("");
+        jLabel_Saved.setOpaque(true);
+        jLabel_Saved.setPreferredSize(new java.awt.Dimension(51, 25));
+        getContentPane().add(jLabel_Saved, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 320, -1, 25));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void saveData(){
+    private void setSavedInidicatorOff() {
+        jLabel_Saved.setVisible(false);
         
+    }
+
+    private void setSavedInidicatorOn() {
+        jLabel_Saved.setVisible(true);
+    }
+    
+    private void saveData() {
+
         Connection connection = null;
         try {
             // create a database connection
@@ -169,7 +220,6 @@ public class ClubSettings extends javax.swing.JInternalFrame {
                     + jTextField_Password.getText() + "', '" + jTextField_AirField.getText() + "', '"
                     + jTextField_CompLeader.getText() + "', '" + jTextField_Location.getText() + "');");
 
-
         } catch (SQLException e) {
             // if the error message is "out of memory", 
             // it probably means no database file is found
@@ -177,26 +227,20 @@ public class ClubSettings extends javax.swing.JInternalFrame {
         } finally {
             try {
                 if (connection != null) {
-                    
-                    jLabel9.setVisible(true); 
-                    try {
-                        Thread.sleep(2000);
-                    } catch (InterruptedException e) {
-                        
-                    }
-                    //jLabel9.setVisible(false);
+
+                    setSavedInidicatorOn();  //Inform the user that data has been saved
                     connection.close();
-                    
                 }
             } catch (SQLException e) {
                 // connection close failed.
                 System.err.println(e);
             }
         }
-        
+
     }
-    private void readData(){
-        
+
+    private void readData() {
+
         Connection connection = null;
         try {
             // create a database connection
@@ -215,7 +259,7 @@ public class ClubSettings extends javax.swing.JInternalFrame {
                 jTextField_Location.setText(rs.getString("location"));
                 jTextField_AirField.setText(rs.getString("airfield"));
                 jTextField_CompLeader.setText(rs.getString("compleader"));
-                
+
             }
         } catch (SQLException e) {
             // if the error message is "out of memory", 
@@ -231,13 +275,44 @@ public class ClubSettings extends javax.swing.JInternalFrame {
                 System.err.println(e);
             }
         }
- 
-        
+
     }
+    
     private void jButton_SaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_SaveActionPerformed
-        // TODO add your handling code here:
         saveData();
     }//GEN-LAST:event_jButton_SaveActionPerformed
+
+    private void jTextField_ClubnrKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField_ClubnrKeyTyped
+        setSavedInidicatorOff();      
+    }//GEN-LAST:event_jTextField_ClubnrKeyTyped
+
+    private void jTextField_ClubNameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField_ClubNameKeyTyped
+        setSavedInidicatorOff();
+    }//GEN-LAST:event_jTextField_ClubNameKeyTyped
+
+    private void jTextField_LocationKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField_LocationKeyTyped
+       setSavedInidicatorOff();
+    }//GEN-LAST:event_jTextField_LocationKeyTyped
+
+    private void jTextField_AirFieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField_AirFieldKeyTyped
+        setSavedInidicatorOff();
+    }//GEN-LAST:event_jTextField_AirFieldKeyTyped
+
+    private void jTextField_CompLeaderKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField_CompLeaderKeyTyped
+        setSavedInidicatorOff();
+    }//GEN-LAST:event_jTextField_CompLeaderKeyTyped
+
+    private void jTextField_ProtocolDriverKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField_ProtocolDriverKeyTyped
+        setSavedInidicatorOff();
+    }//GEN-LAST:event_jTextField_ProtocolDriverKeyTyped
+
+    private void jTextField_UserIdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField_UserIdKeyTyped
+        setSavedInidicatorOff();
+    }//GEN-LAST:event_jTextField_UserIdKeyTyped
+
+    private void jTextField_PasswordKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField_PasswordKeyTyped
+        setSavedInidicatorOff();
+    }//GEN-LAST:event_jTextField_PasswordKeyTyped
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.Box.Filler filler1;
@@ -251,7 +326,7 @@ public class ClubSettings extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel jLabel_Saved;
     private javax.swing.JTextField jTextField_AirField;
     private javax.swing.JTextField jTextField_ClubName;
     private javax.swing.JTextField jTextField_Clubnr;
