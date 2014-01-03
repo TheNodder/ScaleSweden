@@ -20,6 +20,7 @@ public class Competition extends javax.swing.JInternalFrame {
      */
     public Competition() {
         initComponents();
+        checkForDialogs();
     }
 
     /**
@@ -158,4 +159,8 @@ public class Competition extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
+
+    private void checkForDialogs() {
+        
+    }
 }

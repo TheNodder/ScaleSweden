@@ -29,21 +29,26 @@ public class NewRule extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         setClosable(true);
-        setIconifiable(true);
-        setMaximizable(true);
-        setResizable(true);
         setTitle("Ny regel...");
+        setName("newRule"); // NOI18N
+        try {
+            setSelected(true);
+        } catch (java.beans.PropertyVetoException e1) {
+            e1.printStackTrace();
+        }
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 394, Short.MAX_VALUE)
+            .addGap(0, 620, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 274, Short.MAX_VALUE)
+            .addGap(0, 395, Short.MAX_VALUE)
         );
+
+        getAccessibleContext().setAccessibleName("newRule");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

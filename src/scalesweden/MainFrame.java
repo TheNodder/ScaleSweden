@@ -10,22 +10,20 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JInternalFrame;
 
-
-
-
 /**
  *
  * @author Niclas Olsson, Cobton AB
  */
 public class MainFrame extends javax.swing.JFrame {
 
-   boolean CompStarted =  false;
+    boolean CompStarted = false;
+
     /**
      * Creates new form MainFrame
      */
     public MainFrame() {
         initComponents();
-        
+
     }
 
     /**
@@ -121,29 +119,29 @@ public class MainFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private boolean setModal(String dialogName) {
-        /** We should create a utility class for this stuff:
-         *  This function is being called first to make sure 
-         *  that there is only one dialog present in the pane from the wanted class
-         *  Like a modal behaviour that won't obstruct other dialogs from other classes.
+        /**
+         * We should create a utility class for this stuff: This function is
+         * being called first to make sure that there is only one dialog present
+         * in the pane from the wanted class Like a modal behaviour that won't
+         * obstruct other dialogs from other classes.
          */
-        
+
         boolean active = false;
-        
+
         JInternalFrame[] allFrames = jDesktopPane1.getAllFrames();
 
         for (JInternalFrame allFrame : allFrames) {
-            
+
             if (dialogName.equals(allFrame.getName())) {
                 try {
 
-                    //allFrame.to.moveToFront();
-                    allFrame.setSelected(true);
-                    allFrame.toFront();
-                    if(!dialogName.equals("setDlg")) { //Don't maximize the settingsdialog
+                    allFrame.moveToFront();
+                                      
+                    if (!dialogName.equals("setDlg")) { //Don't maximize the settingsdialog
                         allFrame.setMaximum(true);
                     }
-                    
-                    
+                    allFrame.setSelected(true);
+
                 } catch (PropertyVetoException ex) {
                     Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -151,15 +149,15 @@ public class MainFrame extends javax.swing.JFrame {
                 break;
             }
         }
-        
+
         return active;
     }
-    
-   @SuppressWarnings("empty-statement")
+
+    @SuppressWarnings("empty-statement")
     private void jButtonCompetitionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCompetitionActionPerformed
-             
-        if (!setModal("compDlg")) {
-      
+
+       if (!setModal("compDlg")) {
+
            Competition CompList = new Competition();
 
            Component add = jDesktopPane1.add(CompList);
@@ -172,8 +170,8 @@ public class MainFrame extends javax.swing.JFrame {
            }
            CompList.setVisible(true);
        }
-       
-       
+
+
     }//GEN-LAST:event_jButtonCompetitionActionPerformed
 
     private void jButtonRulesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRulesActionPerformed
@@ -189,16 +187,16 @@ public class MainFrame extends javax.swing.JFrame {
             CRules.setVisible(true);
     }//GEN-LAST:event_jButtonRulesActionPerformed
     }
-    
+
     private void jButtonSettingsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSettingsActionPerformed
         // TODO add your handling code here:
-        if (!setModal("setDlg"))  {
+        if (!setModal("setDlg")) {
             ClubSettings CSettings = new ClubSettings();
             jDesktopPane1.add(CSettings);
-            CSettings.setLocation(((int) jDesktopPane1.getBounds().getWidth()/2)-(CSettings.getWidth()/2), 2); //Try to center on screen
+            CSettings.setLocation(((int) jDesktopPane1.getBounds().getWidth() / 2) - (CSettings.getWidth() / 2), 2); //Try to center on screen
             CSettings.setVisible(true);
         }
-        
+
     }//GEN-LAST:event_jButtonSettingsActionPerformed
 
     /**
@@ -206,16 +204,15 @@ public class MainFrame extends javax.swing.JFrame {
      * @throws java.lang.ClassNotFoundException
      */
     public static void main(String args[]) throws ClassNotFoundException {
-        
-        /* Invoke the SQLite driver     */        
+
+        /* Invoke the SQLite driver     */
         Class.forName("org.sqlite.JDBC");
-        
+
         /* Set the Nimbus look and feel 
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -225,7 +222,7 @@ public class MainFrame extends javax.swing.JFrame {
             }
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } 
+        }
         //</editor-fold>
 
         /* Create and display the form */
@@ -233,12 +230,12 @@ public class MainFrame extends javax.swing.JFrame {
             @Override
             public void run() {
                 new MainFrame().setVisible(true);
-              
+
             }
 
         });
-    } 
-    
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonCompetition;
     private javax.swing.JButton jButtonRules;

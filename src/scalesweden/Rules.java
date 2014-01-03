@@ -5,6 +5,10 @@
 package scalesweden;
 
 import java.awt.Container;
+import java.beans.PropertyVetoException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JInternalFrame;
 
 /**
  *
@@ -17,6 +21,7 @@ public class Rules extends javax.swing.JInternalFrame {
      */
     public Rules() {
         initComponents();
+        
     }
 
     /**
@@ -41,6 +46,23 @@ public class Rules extends javax.swing.JInternalFrame {
         } catch (java.beans.PropertyVetoException e1) {
             e1.printStackTrace();
         }
+        addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+                formInternalFrameActivated(evt);
+            }
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+            }
+        });
 
         jButton1.setText("Ny regel...");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -97,15 +119,42 @@ public class Rules extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-       
-        NewRule CRule = new NewRule();
-        Container parent = this.getParent();
+    private boolean checkForDialogs() {
         
-        parent.add(CRule);   
-        CRule.setVisible(true);
+        boolean retVal = false;
+        
+        javax.swing.JDesktopPane pane = this.getDesktopPane();
+        JInternalFrame[] allFrames = pane.getAllFrames();
+
+        for (JInternalFrame frame : allFrames) {
+            if (frame.getName().equals("newRule")) {
+                try {
+                    frame.setSelected(true);
+                    frame.moveToFront();
+                    retVal = true;
+                } catch (PropertyVetoException ex) {
+                }
+            }
+        }
+        return retVal; //We didn't find any dialog so maybe we should allow a creation ?
+    }
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
+       if(!checkForDialogs()){
+           NewRule CRule = new NewRule();
+           Container parent = this.getParent();
+           
+           parent.add(CRule);
+           CRule.setVisible(true);
+        }
+
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void formInternalFrameActivated(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameActivated
+        checkForDialogs();
+    }//GEN-LAST:event_formInternalFrameActivated
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
