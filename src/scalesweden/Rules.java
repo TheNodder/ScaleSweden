@@ -145,6 +145,7 @@ public class Rules extends javax.swing.JInternalFrame {
            NewRule CRule = new NewRule();
            Container parent = this.getParent();
            
+           CRule.setLocation(((int) parent.getBounds().getWidth() / 2) - (CRule.getWidth() / 2), 2); //Try to center on screen
            parent.add(CRule);
            CRule.setVisible(true);
         }
