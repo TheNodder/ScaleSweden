@@ -13,6 +13,6 @@ package scalesweden;
 public interface ScaleClasses {
     
     String[] ListOfClasses = {"F4C", "F4H", "Klubbskala", "Populärskala"};
-    String[] ListOfRuleType ={"Sanktionerad", "Klubbtävling"};
+    String[] ListOfRuleType ={"Klubbtävling", "Sanktionerad"};
     
 }
