@@ -19,9 +19,14 @@ public class NewRule extends javax.swing.JInternalFrame {
     public NewRule() {
         initComponents();
         initDropDowns();
+        initTables();
         
     }
 
+    private void initTables(){
+        
+    }
+    
     private void initDropDowns(){
         DefaultComboBoxModel CompClasses = new DefaultComboBoxModel(ScaleClasses.ListOfClasses);
         jComboBox_SetClass.removeAllItems();
@@ -64,6 +69,8 @@ public class NewRule extends javax.swing.JInternalFrame {
         jSpinner4 = new javax.swing.JSpinner();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        jSpinner5 = new javax.swing.JSpinner();
+        jLabel5 = new javax.swing.JLabel();
 
         setClosable(true);
         setTitle("Ny regel...");
@@ -91,23 +98,20 @@ public class NewRule extends javax.swing.JInternalFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Sektion", "Skalariktighet", "K"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED), "Domare:"));
 
-        jSpinner1.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(3), Integer.valueOf(1), null, Integer.valueOf(1)));
+        jSpinner1.setModel(new javax.swing.SpinnerNumberModel(Byte.valueOf((byte)3), Byte.valueOf((byte)1), null, Byte.valueOf((byte)1)));
         jSpinner1.setToolTipText("Välj antal domare per panel.");
 
-        jSpinner2.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(1), Integer.valueOf(1), null, Integer.valueOf(1)));
+        jSpinner2.setModel(new javax.swing.SpinnerNumberModel(Byte.valueOf((byte)1), Byte.valueOf((byte)1), null, Byte.valueOf((byte)1)));
         jSpinner2.setToolTipText("Välj antal domarpaneler för regeln.");
 
         jLabel1.setText("Antal domare:");
@@ -160,28 +164,25 @@ public class NewRule extends javax.swing.JInternalFrame {
                 .addGap(23, 23, 23))
         );
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Manöver"));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Flygprogram"));
         jPanel2.setPreferredSize(new java.awt.Dimension(285, 469));
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Sektion", "Manöver", "K"
             }
         ));
         jScrollPane2.setViewportView(jTable2);
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED), "Domare:"));
 
-        jSpinner3.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(3), Integer.valueOf(1), null, Integer.valueOf(1)));
+        jSpinner3.setModel(new javax.swing.SpinnerNumberModel(Byte.valueOf((byte)3), Byte.valueOf((byte)1), null, Byte.valueOf((byte)1)));
         jSpinner3.setToolTipText("Välj antal domare per panel.");
 
-        jSpinner4.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(1), Integer.valueOf(1), null, Integer.valueOf(1)));
+        jSpinner4.setModel(new javax.swing.SpinnerNumberModel(Byte.valueOf((byte)1), Byte.valueOf((byte)1), null, Byte.valueOf((byte)1)));
         jSpinner4.setToolTipText("Välj antal domarpaneler för regeln.");
 
         jLabel3.setText("Antal domare:");
@@ -217,19 +218,33 @@ public class NewRule extends javax.swing.JInternalFrame {
                 .addGap(20, 20, 20))
         );
 
+        jSpinner5.setModel(new javax.swing.SpinnerNumberModel(Byte.valueOf((byte)3), Byte.valueOf((byte)1), null, Byte.valueOf((byte)1)));
+
+        jLabel5.setText("Antal flygomgångar:");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
             .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jSpinner5, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(13, 13, 13)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jSpinner5, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -310,6 +325,7 @@ public class NewRule extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel_Class;
     private javax.swing.JLabel jLabel_Name;
     private javax.swing.JLabel jLabel_Type;
@@ -324,6 +340,7 @@ public class NewRule extends javax.swing.JInternalFrame {
     private javax.swing.JSpinner jSpinner2;
     private javax.swing.JSpinner jSpinner3;
     private javax.swing.JSpinner jSpinner4;
+    private javax.swing.JSpinner jSpinner5;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
     private javax.swing.JTextField jTextField_CompName;
