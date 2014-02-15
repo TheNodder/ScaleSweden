@@ -6,8 +6,13 @@ package scalesweden;
 
 import java.awt.Container;
 import java.beans.PropertyVetoException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+// import java.util.logging.Level;
+// import java.util.logging.Logger;
 import javax.swing.JInternalFrame;
 
 /**
@@ -21,6 +26,7 @@ public class Rules extends javax.swing.JInternalFrame {
      */
     public Rules() {
         initComponents();
+        populateRulesTable();
         
     }
 
@@ -35,7 +41,7 @@ public class Rules extends javax.swing.JInternalFrame {
 
         jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTable_Rules = new javax.swing.JTable();
 
         setClosable(true);
         setResizable(true);
@@ -71,27 +77,34 @@ public class Rules extends javax.swing.JInternalFrame {
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTable_Rules.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"Populärskala", "Populärskala", "2013-11-07", "Officiell"},
-                {"F4C - 2013", "F4C", "2013-01-01", "Officiell"},
-                {"F4H - 2013", "F4H", "2013-02-01", "Officell"},
-                {"Klubbskala - 2013", "Klubbskala", "2013-02-03", "Officiell"},
-                {"Gripen Skala", "Egen", "2013-12-24", "Klubbtävling"}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Namn:", "Klass:", "Skapad:", "Typ:"
+                "null", "Title 2", "Title 3", "Title 4", "Title 5"
             }
         ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
             };
 
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jTable_Rules.setToolTipText("");
+        jTable_Rules.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jScrollPane1.setViewportView(jTable_Rules);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -118,7 +131,45 @@ public class Rules extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    private void populateRulesTable(){
+       Connection connection = null;
+        try {
+            // create a database connection
+            connection = DriverManager.getConnection("jdbc:sqlite:db/scale.db");
+            Statement statement = connection.createStatement();
+            //jTable_Rules. //Clear the table
+         //   jTable_Rules.
+            statement.setQueryTimeout(10);  // set timeout to 10 sec.
 
+            ResultSet rs = statement.executeQuery("select * from rules");
+            while (rs.next()) {
+                // read the result set
+    /*            jTextField_Clubnr.setText(rs.getString("clubnr"));
+                jTextField_ClubName.setText(rs.getString("clubname"));
+                jTextField_ProtocolDriver.setText(rs.getString("driver"));
+                jTextField_UserId.setText(rs.getString("userid"));
+                jTextField_Password.setText(rs.getString("password"));
+                jTextField_Location.setText(rs.getString("location"));
+                jTextField_AirField.setText(rs.getString("airfield"));
+                jTextField_CompLeader.setText(rs.getString("compleader"));
+*/
+            }
+        } catch (SQLException e) {
+            // if the error message is "out of memory", 
+            // it probably means no database file is found
+            System.err.println(e.getMessage());
+        } finally {
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                // connection close failed.
+                System.err.println(e);
+            }
+        } 
+    }
+    
     private boolean checkForDialogs() {
         
         boolean retVal = false;
@@ -145,6 +196,7 @@ public class Rules extends javax.swing.JInternalFrame {
            NewRule CRule = new NewRule();
            Container parent = this.getParent();
            
+           CRule.setLocation(((int) parent.getBounds().getWidth() / 2) - (CRule.getWidth() / 2), 2); //Try to center on screen
            parent.add(CRule);
            CRule.setVisible(true);
         }
@@ -159,6 +211,6 @@ public class Rules extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTable_Rules;
     // End of variables declaration//GEN-END:variables
 }
