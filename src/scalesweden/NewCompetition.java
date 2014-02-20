@@ -253,10 +253,10 @@ public class NewCompetition extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void initScaleClasses() {
-        jCheckBox_F4C.setText(ScaleClasses.ListOfClasses[0]);
-        jCheckBox_F4H.setText(ScaleClasses.ListOfClasses[1]);
-        jCheckBox_Klubb.setText(ScaleClasses.ListOfClasses[2]);
-        jCheckBox_POP.setText(ScaleClasses.ListOfClasses[3]);
+        jCheckBox_F4C.setText(ScaleClasses.ListOfClasses[1]);
+        jCheckBox_F4H.setText(ScaleClasses.ListOfClasses[2]);
+        jCheckBox_Klubb.setText(ScaleClasses.ListOfClasses[3]);
+        jCheckBox_POP.setText(ScaleClasses.ListOfClasses[4]);
     }
     private void jButton_CancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CancelActionPerformed
         // TODO add your handling code here:

@@ -8,7 +8,7 @@ package scalesweden;
 
 /**
  *
- * @author niclas
+ * @author Niclas Olsson, Cobton AB
  */
 public interface ScaleClasses {
     
