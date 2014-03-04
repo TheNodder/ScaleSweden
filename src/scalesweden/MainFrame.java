@@ -11,6 +11,10 @@ import java.util.logging.Logger;
 import javax.swing.JInternalFrame;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import java.awt.Desktop;
+import java.io.File;
+import java.io.IOException;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -131,6 +135,8 @@ public class MainFrame extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        jDesktopPane1.getAccessibleContext().setAccessibleName("");
+
         bindingGroup.bind();
 
         pack();
@@ -219,19 +225,26 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void jButtonDocumentsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDocumentsActionPerformed
         
-        //Open documents to print
+        // Open documents to print/view
+        String DocDir = System.getProperty("user.dir")+"/documents/";
         
-        JFileChooser FileOpener = new JFileChooser(System.getProperty("user.dir")+"/documents");
-        System.out.println(System.getProperty("user.dir"));
-        FileNameExtensionFilter filter = new FileNameExtensionFilter("Acrobat filer", "pdf");
-        FileOpener.setFileFilter(filter);
+        JFileChooser FileOpener = new JFileChooser(DocDir);
+       
         
-        int showOpenDialog = FileOpener.showOpenDialog(null);
+        int showOpenDialog = FileOpener.showOpenDialog(jDesktopPane1);
                
         if(showOpenDialog == JFileChooser.APPROVE_OPTION) {
-           System.out.println("You chose to open this file: " + FileOpener.getSelectedFile().getName());
+            String DocPath = DocDir + FileOpener.getSelectedFile().getName();
+            try {
+                if (Desktop.isDesktopSupported()) {
+                    Desktop.getDesktop().open(new File(DocPath)); // Try to open file with associated program
+                }
+            }
+            catch (IOException ioe) {
+                    JOptionPane.showMessageDialog(jDesktopPane1, "Det verkar inte finnas något program som kan hantera " + FileOpener.getSelectedFile().getName(), "Problem...", JOptionPane.ERROR_MESSAGE);
+                }
+             }
            
-    }
     }//GEN-LAST:event_jButtonDocumentsActionPerformed
 
     /**

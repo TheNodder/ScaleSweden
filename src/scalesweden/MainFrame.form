@@ -123,6 +123,9 @@
       </SubComponents>
     </Container>
     <Container class="javax.swing.JDesktopPane" name="jDesktopPane1">
+      <AccessibilityProperties>
+        <Property name="AccessibleContext.accessibleName" type="java.lang.String" value=""/>
+      </AccessibilityProperties>
       <BindingProperties>
         <BindingProperty name="border" source="Form" sourcePath="${maximizedBounds}" target="jDesktopPane1" targetPath="border" updateStrategy="0" immediately="false"/>
       </BindingProperties>
