@@ -12,7 +12,7 @@ package scalesweden;
  */
 public interface ScaleClasses {
     
-    String[] ListOfClasses = {"[Välj i listan]", "F4C", "F4H", "Klubbskala", "Populärskala"};
+    String[] ListOfClasses = {"[Välj i listan]", "F4C", "F4H", "Klubbskala", "FlyOnly"};
     String[] ListOfRuleType = {"[Välj i listan]", "Klubbtävling", "Sanktionerad"};
     String[] ListOfManouvers = { "Approach and Landing", "Chandelle", "Extend and Retract Landing Gear",
                                 "Extend and Retract Flaps", "Dropping of Bombs or Fuel Tanks",

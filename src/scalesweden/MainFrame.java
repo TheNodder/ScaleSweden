@@ -9,6 +9,8 @@ import java.beans.PropertyVetoException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JInternalFrame;
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
@@ -39,11 +41,12 @@ public class MainFrame extends javax.swing.JFrame {
         jToolBar1 = new javax.swing.JToolBar();
         jButtonCompetition = new javax.swing.JButton();
         jButtonRules = new javax.swing.JButton();
+        jButtonDocuments = new javax.swing.JButton();
         jButtonSettings = new javax.swing.JButton();
         jDesktopPane1 = new javax.swing.JDesktopPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Skala Sverige 2013.0");
+        setTitle("Skala Sverige 2014.0");
         setPreferredSize(new java.awt.Dimension(1366, 768));
 
         jToolBar1.setRollover(true);
@@ -76,6 +79,21 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
         jToolBar1.add(jButtonRules);
+
+        jButtonDocuments.setText("Dokument");
+        jButtonDocuments.setToolTipText("");
+        jButtonDocuments.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonDocuments.setFocusable(false);
+        jButtonDocuments.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jButtonDocuments.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButtonDocuments.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        jButtonDocuments.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButtonDocuments.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonDocumentsActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(jButtonDocuments);
 
         jButtonSettings.setText("Inställningar");
         jButtonSettings.setToolTipText("");
@@ -199,6 +217,23 @@ public class MainFrame extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jButtonSettingsActionPerformed
 
+    private void jButtonDocumentsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDocumentsActionPerformed
+        
+        //Open documents to print
+        
+        JFileChooser FileOpener = new JFileChooser(System.getProperty("user.dir")+"/documents");
+        System.out.println(System.getProperty("user.dir"));
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("Acrobat filer", "pdf");
+        FileOpener.setFileFilter(filter);
+        
+        int showOpenDialog = FileOpener.showOpenDialog(null);
+               
+        if(showOpenDialog == JFileChooser.APPROVE_OPTION) {
+           System.out.println("You chose to open this file: " + FileOpener.getSelectedFile().getName());
+           
+    }
+    }//GEN-LAST:event_jButtonDocumentsActionPerformed
+
     /**
      * @param args the command line arguments
      * @throws java.lang.ClassNotFoundException
@@ -238,6 +273,7 @@ public class MainFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonCompetition;
+    private javax.swing.JButton jButtonDocuments;
     private javax.swing.JButton jButtonRules;
     private javax.swing.JButton jButtonSettings;
     private javax.swing.JDesktopPane jDesktopPane1;
