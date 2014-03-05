@@ -225,7 +225,7 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void jButtonDocumentsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDocumentsActionPerformed
         
-        // Open documents to print/view
+        // Open documents to print/view/edit
         String DocDir = System.getProperty("user.dir")+"/documents/";
         
         JFileChooser FileOpener = new JFileChooser(DocDir);
