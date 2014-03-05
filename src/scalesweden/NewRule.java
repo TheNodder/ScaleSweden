@@ -7,6 +7,9 @@
 
 package scalesweden;
 import javax.swing.*;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.TableColumn;
+import static scalesweden.ScaleClasses.ListOfManouvers;
 /**
  *
  * @author niclas
@@ -19,10 +22,23 @@ public class NewRule extends javax.swing.JInternalFrame {
     public NewRule() {
         initComponents();
         initDropDowns();
+        initManouversColumn(jTable_Manouvers.getColumnModel().getColumn(1));
         initTables();
         
     }
 
+     private void initManouversColumn(TableColumn manouverColumn) {
+        //Set up the editor for the manouvers.
+        JComboBox manouverComboBox = new JComboBox(ListOfManouvers);
+        
+        manouverColumn.setCellEditor(new DefaultCellEditor(manouverComboBox));
+ 
+        //Set up tool tips for the manouver cells.
+        DefaultTableCellRenderer renderer =  new DefaultTableCellRenderer();
+        renderer.setToolTipText("Klicka för att välja från listan.");
+        manouverColumn.setCellRenderer(renderer);
+    }
+     
     private void initTables(){
         
         
@@ -64,7 +80,7 @@ public class NewRule extends javax.swing.JInternalFrame {
         jLabel2 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        jTable_Manouvers = new javax.swing.JTable();
         jPanel4 = new javax.swing.JPanel();
         jSpinner3 = new javax.swing.JSpinner();
         jSpinner4 = new javax.swing.JSpinner();
@@ -206,7 +222,7 @@ public class NewRule extends javax.swing.JInternalFrame {
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Flygprogram"));
         jPanel2.setPreferredSize(new java.awt.Dimension(285, 469));
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        jTable_Manouvers.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -232,14 +248,14 @@ public class NewRule extends javax.swing.JInternalFrame {
                 "Sektion", "Manöver", "K"
             }
         ));
-        jTable2.setMaximumSize(new java.awt.Dimension(2147483647, 300));
-        jTable2.setPreferredSize(new java.awt.Dimension(168, 300));
-        jScrollPane2.setViewportView(jTable2);
-        if (jTable2.getColumnModel().getColumnCount() > 0) {
-            jTable2.getColumnModel().getColumn(0).setMinWidth(30);
-            jTable2.getColumnModel().getColumn(0).setMaxWidth(58);
-            jTable2.getColumnModel().getColumn(2).setMinWidth(35);
-            jTable2.getColumnModel().getColumn(2).setMaxWidth(35);
+        jTable_Manouvers.setMaximumSize(new java.awt.Dimension(2147483647, 300));
+        jTable_Manouvers.setPreferredSize(new java.awt.Dimension(168, 300));
+        jScrollPane2.setViewportView(jTable_Manouvers);
+        if (jTable_Manouvers.getColumnModel().getColumnCount() > 0) {
+            jTable_Manouvers.getColumnModel().getColumn(0).setMinWidth(30);
+            jTable_Manouvers.getColumnModel().getColumn(0).setMaxWidth(58);
+            jTable_Manouvers.getColumnModel().getColumn(2).setMinWidth(35);
+            jTable_Manouvers.getColumnModel().getColumn(2).setMaxWidth(35);
         }
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED), "Domare:"));
@@ -332,7 +348,7 @@ public class NewRule extends javax.swing.JInternalFrame {
                 .addGroup(jPanel_PointBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 534, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 534, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -409,7 +425,7 @@ public class NewRule extends javax.swing.JInternalFrame {
     private javax.swing.JSpinner jSpinner4;
     private javax.swing.JSpinner jSpinner5;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
+    private javax.swing.JTable jTable_Manouvers;
     private javax.swing.JTextField jTextField_CompName;
     // End of variables declaration//GEN-END:variables
 }
