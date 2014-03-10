@@ -23,12 +23,15 @@ public interface ScaleClasses {
                                 "Flight in a Straight Line With One Engine Throttled", "Lazy Eight", 
                                 "Wingover", "Take-Off", "Optional"};
     
-    String[] F4C_Manouvers_Sweden = { "" };
+    /* **************************************************************************************************************
+     * Declarations for F4C                                                                                         *
+     * **************************************************************************************************************/
+    Object[][] F4C_Manouvers_Sweden = {{ "" }};
 
-    /**
-     *
-     */
-    String[] F4C_Static_Sweden = { "1", "Konfiguration (Kontur)", "R" };
-    //                               {"1.1","Test" "7.0"};
+    
+    Object[][] F4C_Static_Sweden = {{ "1", "Konfiguration (Kontur)", "R" },
+                                    { "1.1", "","10"},
+                                    {"","",""}};
+    
     
 }
