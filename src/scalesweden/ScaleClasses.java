@@ -15,7 +15,7 @@ public interface ScaleClasses {
     String[] Manouvers_headers = {"Sektion", "Manöver", "K"};
     String[] Empty_Row_Data = { "", "", "" };
     
-    Object[][] Init_Empty_Table = {{ "", "", "" }};
+    Object[][] Init_Empty_Table = {{ "", "", "" }}; //When creating a new model, populate with no data.
     
     String[] ListOfClasses = { "[Välj i listan]", "F4C", "F4H", "Klubbskala", "FlyOnly"};
     
