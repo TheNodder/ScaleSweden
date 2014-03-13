@@ -13,6 +13,9 @@ package scalesweden;
 public interface ScaleClasses {
     String[] Static_headers = {"Sektion", "Skalariktighet (5m)", "K"}; 
     String[] Manouvers_headers = {"Sektion", "Manöver", "K"};
+    String[] Empty_Row_Data = { "", "", "" };
+    
+    Object[][] Init_Empty_Table = {{ "", "", "" }};
     
     String[] ListOfClasses = { "[Välj i listan]", "F4C", "F4H", "Klubbskala", "FlyOnly"};
     

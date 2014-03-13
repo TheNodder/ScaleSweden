@@ -3,15 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
-
 package scalesweden;
+
+import java.util.Vector;
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableModel;
 import javax.swing.table.DefaultTableModel;
-import static scalesweden.ScaleClasses.ListOfManouvers;
+import static scalesweden.ScaleClasses.*;
+
 /**
  *
  * @author niclas
@@ -21,81 +22,89 @@ public class NewRule extends javax.swing.JInternalFrame {
     /**
      * Creates new form NewRule
      */
+    private DefaultTableModel fly_Model;
+    private DefaultTableModel static_Model;
+
     public NewRule() {
         initComponents();
+        fly_Model = new DefaultTableModel(ScaleClasses.Init_Empty_Table, ScaleClasses.Manouvers_headers);
+        jTable_Manouvers.setModel(fly_Model);
+        static_Model = new DefaultTableModel(ScaleClasses.Init_Empty_Table, ScaleClasses.Static_headers);
+        jTable_Static.setModel(static_Model);
+
         initDropDowns(); // Prepare the dropdowns in the title area
     }
 
-     private void initManouversColumn(TableColumn manouverColumn) {
+    private void initManouversColumn(TableColumn manouverColumn) {
         //Set up the editor for the manouvers.
         JComboBox manouverComboBox = new JComboBox(ListOfManouvers);
-        
+
         manouverColumn.setCellEditor(new DefaultCellEditor(manouverComboBox));
- 
+
         //Set up tool tip for the manouver cells.
-        DefaultTableCellRenderer renderer =  new DefaultTableCellRenderer();
+        DefaultTableCellRenderer renderer = new DefaultTableCellRenderer();
         renderer.setToolTipText("Klicka för att välja från listan.");
         manouverColumn.setCellRenderer(renderer);
     }
-     
-    private void popTables(int index){ //Populates the tables with data define i templates in ScaleClasses.java
-        TableModel model;
+
+    private void popTables(int index) { //Populates the tables with data define i templates in ScaleClasses.java
         
-        switch(index){
+        switch (index) {
             case 1: //F4C
                 //Static
-                model = new DefaultTableModel(ScaleClasses.F4C_Static_Sweden,ScaleClasses.Static_headers);
-                jTable_Static.setModel(model);
+                static_Model = new DefaultTableModel(ScaleClasses.F4C_Static_Sweden, ScaleClasses.Static_headers);
+                jTable_Static.setModel(static_Model);
 
                 //Manouvers
-                model = new DefaultTableModel(ScaleClasses.F4C_Manouvers_Sweden,ScaleClasses.Manouvers_headers);
-                jTable_Manouvers.setModel(model);
-               
+                fly_Model = new DefaultTableModel(ScaleClasses.F4C_Manouvers_Sweden, ScaleClasses.Manouvers_headers);
+                jTable_Manouvers.setModel(fly_Model);
+
                 break;
-                
+
             case 2: //F4H
                 //Static
-                model = new DefaultTableModel(ScaleClasses.F4H_Static_Sweden,ScaleClasses.Static_headers);
-                jTable_Static.setModel(model);
+                static_Model = new DefaultTableModel(ScaleClasses.F4H_Static_Sweden, ScaleClasses.Static_headers);
+                jTable_Static.setModel(static_Model);
 
                 //Manouvers
-                model = new DefaultTableModel(ScaleClasses.F4H_Manouvers_Sweden,ScaleClasses.Manouvers_headers);
-                jTable_Manouvers.setModel(model);
-                
+                fly_Model = new DefaultTableModel(ScaleClasses.F4H_Manouvers_Sweden, ScaleClasses.Manouvers_headers);
+                jTable_Manouvers.setModel(fly_Model);
+
                 break;
-                
+
             case 3: //Klubbskala
                 //Static
-                model = new DefaultTableModel();
-                jTable_Static.setModel(model);
+              /*  model = new DefaultTableModel();
+                 jTable_Static.setModel(model);
                 
-                model = new DefaultTableModel();
-                jTable_Manouvers.setModel(model);
-                
+                 fly_Model = new DefaultTableModel();
+                 jTable_Manouvers.setModel(fly_Model);
+                 */
                 break;
-                
+
             case 4: //Fly Only
                 //Static
-                model = new DefaultTableModel();
-                jTable_Static.setModel(model);
-                
-                model = new DefaultTableModel(ScaleClasses.FlyOnly_Manouvers_Sweden,ScaleClasses.Manouvers_headers);
-                jTable_Manouvers.setModel(model);
-                
+                static_Model = new DefaultTableModel();
+                jTable_Static.setModel(static_Model);
+
+                fly_Model = new DefaultTableModel(ScaleClasses.FlyOnly_Manouvers_Sweden, ScaleClasses.Manouvers_headers);
+                jTable_Manouvers.setModel(fly_Model);
+
                 break;
         }
     }
-    
-      private void initDropDowns(){
+
+    private void initDropDowns() {
         DefaultComboBoxModel CompClasses = new DefaultComboBoxModel(ScaleClasses.ListOfClasses);
         jComboBox_SetClass.removeAllItems();
         jComboBox_SetClass.setModel(CompClasses);
-        
-        DefaultComboBoxModel RuleType= new DefaultComboBoxModel(ScaleClasses.ListOfRuleType);
+
+        DefaultComboBoxModel RuleType = new DefaultComboBoxModel(ScaleClasses.ListOfRuleType);
         jComboBox_RuleType.removeAllItems();
         jComboBox_RuleType.setModel(RuleType);
-        
+
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -105,7 +114,16 @@ public class NewRule extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPopupMenu1 = new javax.swing.JPopupMenu();
+        jPopupMenu_Manouvers = new javax.swing.JPopupMenu();
+        jMenuItem_ManAddRow = new javax.swing.JMenuItem();
+        jMenuItem_ManInsertRow = new javax.swing.JMenuItem();
+        jSeparator_Manouvers = new javax.swing.JPopupMenu.Separator();
+        jMenuItem_ManRemoveRow = new javax.swing.JMenuItem();
+        jPopupMenu_Static = new javax.swing.JPopupMenu();
+        jMenuItem_StaticAddRow = new javax.swing.JMenuItem();
+        jMenuItem_StaticInsertRow = new javax.swing.JMenuItem();
+        jSeparator_Static = new javax.swing.JPopupMenu.Separator();
+        jMenuItem_StaticRemoveRow = new javax.swing.JMenuItem();
         jTextField_CompName = new javax.swing.JTextField();
         jComboBox_SetClass = new javax.swing.JComboBox();
         jComboBox_RuleType = new javax.swing.JComboBox();
@@ -121,8 +139,8 @@ public class NewRule extends javax.swing.JInternalFrame {
         jSpinner2 = new javax.swing.JSpinner();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
+        jPanel_Manouvers = new javax.swing.JPanel();
+        jScrollPane_Manouvers = new javax.swing.JScrollPane();
         jTable_Manouvers = new javax.swing.JTable();
         jPanel4 = new javax.swing.JPanel();
         jSpinner3 = new javax.swing.JSpinner();
@@ -131,6 +149,56 @@ public class NewRule extends javax.swing.JInternalFrame {
         jLabel4 = new javax.swing.JLabel();
         jSpinner5 = new javax.swing.JSpinner();
         jLabel5 = new javax.swing.JLabel();
+
+        jMenuItem_ManAddRow.setText("Lägg till en rad");
+        jMenuItem_ManAddRow.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem_ManAddRowActionPerformed(evt);
+            }
+        });
+        jPopupMenu_Manouvers.add(jMenuItem_ManAddRow);
+
+        jMenuItem_ManInsertRow.setText("Infoga ny rad.");
+        jMenuItem_ManInsertRow.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem_ManInsertRowActionPerformed(evt);
+            }
+        });
+        jPopupMenu_Manouvers.add(jMenuItem_ManInsertRow);
+        jPopupMenu_Manouvers.add(jSeparator_Manouvers);
+
+        jMenuItem_ManRemoveRow.setText("Ta bort rad");
+        jMenuItem_ManRemoveRow.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem_ManRemoveRowActionPerformed(evt);
+            }
+        });
+        jPopupMenu_Manouvers.add(jMenuItem_ManRemoveRow);
+
+        jMenuItem_StaticAddRow.setText("Lägg till en rad");
+        jMenuItem_StaticAddRow.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem_StaticAddRowActionPerformed(evt);
+            }
+        });
+        jPopupMenu_Static.add(jMenuItem_StaticAddRow);
+
+        jMenuItem_StaticInsertRow.setText("Infoga ny rad.");
+        jMenuItem_StaticInsertRow.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem_StaticInsertRowActionPerformed(evt);
+            }
+        });
+        jPopupMenu_Static.add(jMenuItem_StaticInsertRow);
+        jPopupMenu_Static.add(jSeparator_Static);
+
+        jMenuItem_StaticRemoveRow.setText("Ta bort rad");
+        jMenuItem_StaticRemoveRow.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem_StaticRemoveRowActionPerformed(evt);
+            }
+        });
+        jPopupMenu_Static.add(jMenuItem_StaticRemoveRow);
 
         setClosable(true);
         setTitle("Ny regel...");
@@ -163,27 +231,6 @@ public class NewRule extends javax.swing.JInternalFrame {
 
         jTable_Static.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
                 {null, null, null}
             },
             new String [] {
@@ -199,6 +246,7 @@ public class NewRule extends javax.swing.JInternalFrame {
             }
         });
         jTable_Static.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
+        jTable_Static.setComponentPopupMenu(jPopupMenu_Static);
         jScrollPane1.setViewportView(jTable_Static);
         if (jTable_Static.getColumnModel().getColumnCount() > 0) {
             jTable_Static.getColumnModel().getColumn(0).setMinWidth(30);
@@ -267,44 +315,30 @@ public class NewRule extends javax.swing.JInternalFrame {
                 .addGap(23, 23, 23))
         );
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Flygprogram"));
-        jPanel2.setPreferredSize(new java.awt.Dimension(285, 469));
+        jPanel_Manouvers.setBorder(javax.swing.BorderFactory.createTitledBorder("Flygprogram"));
+        jPanel_Manouvers.setPreferredSize(new java.awt.Dimension(285, 469));
 
         jTable_Manouvers.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
                 {null, null, null}
             },
             new String [] {
                 "Sektion", "Manöver", "K"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jTable_Manouvers.setToolTipText("Högerklicka för menu.");
+        jTable_Manouvers.setComponentPopupMenu(jPopupMenu_Manouvers);
         jTable_Manouvers.setMaximumSize(new java.awt.Dimension(2147483647, 300));
         jTable_Manouvers.setPreferredSize(new java.awt.Dimension(168, 300));
-        jScrollPane2.setViewportView(jTable_Manouvers);
-        if (jTable_Manouvers.getColumnModel().getColumnCount() > 0) {
-            jTable_Manouvers.getColumnModel().getColumn(0).setMinWidth(30);
-            jTable_Manouvers.getColumnModel().getColumn(0).setMaxWidth(58);
-            jTable_Manouvers.getColumnModel().getColumn(2).setMinWidth(35);
-            jTable_Manouvers.getColumnModel().getColumn(2).setMaxWidth(35);
-        }
+        jScrollPane_Manouvers.setViewportView(jTable_Manouvers);
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED), "Domare:"));
 
@@ -351,31 +385,31 @@ public class NewRule extends javax.swing.JInternalFrame {
 
         jLabel5.setText("Antal flygomgångar:");
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 435, Short.MAX_VALUE)
+        javax.swing.GroupLayout jPanel_ManouversLayout = new javax.swing.GroupLayout(jPanel_Manouvers);
+        jPanel_Manouvers.setLayout(jPanel_ManouversLayout);
+        jPanel_ManouversLayout.setHorizontalGroup(
+            jPanel_ManouversLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane_Manouvers, javax.swing.GroupLayout.DEFAULT_SIZE, 435, Short.MAX_VALUE)
             .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_ManouversLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jSpinner5, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE)
+        jPanel_ManouversLayout.setVerticalGroup(
+            jPanel_ManouversLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_ManouversLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane_Manouvers, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel_ManouversLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jSpinner5, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout jPanel_PointBoardLayout = new javax.swing.GroupLayout(jPanel_PointBoard);
@@ -386,7 +420,7 @@ public class NewRule extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addComponent(jPanel_Static, javax.swing.GroupLayout.DEFAULT_SIZE, 458, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 463, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel_Manouvers, javax.swing.GroupLayout.PREFERRED_SIZE, 463, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel_PointBoardLayout.setVerticalGroup(
@@ -394,7 +428,7 @@ public class NewRule extends javax.swing.JInternalFrame {
             .addGroup(jPanel_PointBoardLayout.createSequentialGroup()
                 .addGap(1, 1, 1)
                 .addGroup(jPanel_PointBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 534, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel_Manouvers, javax.swing.GroupLayout.PREFERRED_SIZE, 534, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel_Static, javax.swing.GroupLayout.PREFERRED_SIZE, 534, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(14, Short.MAX_VALUE))
         );
@@ -449,41 +483,72 @@ public class NewRule extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jComboBox_SetClassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox_SetClassActionPerformed
-        
+
     //Executes when ScaleClases closes and action
-        
         switch (jComboBox_SetClass.getSelectedIndex()) {
-                
-                case 1: //F4C
-                    jTable_Static.setEnabled(true);
-                    jTable_Static.setVisible(true);
-                    popTables(jComboBox_SetClass.getSelectedIndex());
-                    initManouversColumn(jTable_Manouvers.getColumnModel().getColumn(1)); //Create a dropdownlist in the column
-                    break;
-                
-                case 2: //F4H
-                    jTable_Static.setEnabled(true);
-                    jTable_Static.setVisible(true);
-                    popTables(jComboBox_SetClass.getSelectedIndex());
-                    initManouversColumn(jTable_Manouvers.getColumnModel().getColumn(1)); //Create a dropdownlist in the column
-                    break;
-                    
-                case 3: //Klubbskala
-                    jTable_Static.setEnabled(true);
-                    jTable_Static.setVisible(true);
-                    popTables(jComboBox_SetClass.getSelectedIndex());
-                    initManouversColumn(jTable_Manouvers.getColumnModel().getColumn(1)); //Create a dropdownlist in the column
-                    break;
-                    
-                case 4:// Fly Only
-                    jTable_Static.setEnabled(false);
-                    jTable_Static.setVisible(false);
-                    popTables(jComboBox_SetClass.getSelectedIndex());
-                    initManouversColumn(jTable_Manouvers.getColumnModel().getColumn(1)); //Create a dropdownlist in the column
-                    break;
+
+            case 1: //F4C
+                jTable_Static.setEnabled(true);
+                jTable_Static.setVisible(true);
+                popTables(jComboBox_SetClass.getSelectedIndex());
+                initManouversColumn(jTable_Manouvers.getColumnModel().getColumn(1)); //Create a dropdownlist in the column
+                break;
+
+            case 2: //F4H
+                jTable_Static.setEnabled(true);
+                jTable_Static.setVisible(true);
+                popTables(jComboBox_SetClass.getSelectedIndex());
+                initManouversColumn(jTable_Manouvers.getColumnModel().getColumn(1)); //Create a dropdownlist in the column
+                break;
+
+            case 3: //Klubbskala
+                jTable_Static.setEnabled(true);
+                jTable_Static.setVisible(true);
+                popTables(jComboBox_SetClass.getSelectedIndex());
+                initManouversColumn(jTable_Manouvers.getColumnModel().getColumn(1)); //Create a dropdownlist in the column
+                break;
+
+            case 4:// Fly Only
+                jTable_Static.setEnabled(false);
+                jTable_Static.setVisible(false);
+                popTables(jComboBox_SetClass.getSelectedIndex());
+                initManouversColumn(jTable_Manouvers.getColumnModel().getColumn(1)); //Create a dropdownlist in the column
+                break;
         }
     }//GEN-LAST:event_jComboBox_SetClassActionPerformed
 
+    /* ******************************************************************************
+     * popupmenu Manouver table
+      ****************************************************************************** */
+    private void jMenuItem_ManAddRowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_ManAddRowActionPerformed
+        //Add a new empty row in the manouver-table
+        fly_Model.addRow(ScaleClasses.Empty_Row_Data); 
+    }//GEN-LAST:event_jMenuItem_ManAddRowActionPerformed
+
+    private void jMenuItem_ManRemoveRowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_ManRemoveRowActionPerformed
+        // Remove the selected row in the Manouvers table
+        fly_Model.removeRow(jTable_Manouvers.getSelectedRow());
+    }//GEN-LAST:event_jMenuItem_ManRemoveRowActionPerformed
+
+    private void jMenuItem_ManInsertRowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_ManInsertRowActionPerformed
+        // Insert a row at the selected item in the Manouvers table
+        fly_Model.insertRow(jTable_Manouvers.getSelectedRow(), Empty_Row_Data);
+    }//GEN-LAST:event_jMenuItem_ManInsertRowActionPerformed
+
+    /* ******************************************************************************
+     * popupmenu Static table
+      ****************************************************************************** */
+    private void jMenuItem_StaticAddRowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_StaticAddRowActionPerformed
+        static_Model.addRow(ScaleClasses.Empty_Row_Data); 
+    }//GEN-LAST:event_jMenuItem_StaticAddRowActionPerformed
+
+    private void jMenuItem_StaticInsertRowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_StaticInsertRowActionPerformed
+        static_Model.insertRow(jTable_Manouvers.getSelectedRow(), Empty_Row_Data);
+    }//GEN-LAST:event_jMenuItem_StaticInsertRowActionPerformed
+
+    private void jMenuItem_StaticRemoveRowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_StaticRemoveRowActionPerformed
+        static_Model.removeRow(jTable_Manouvers.getSelectedRow());
+    }//GEN-LAST:event_jMenuItem_StaticRemoveRowActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox jComboBox_RuleType;
@@ -496,14 +561,23 @@ public class NewRule extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel_Class;
     private javax.swing.JLabel jLabel_Name;
     private javax.swing.JLabel jLabel_Type;
-    private javax.swing.JPanel jPanel2;
+    private javax.swing.JMenuItem jMenuItem_ManAddRow;
+    private javax.swing.JMenuItem jMenuItem_ManInsertRow;
+    private javax.swing.JMenuItem jMenuItem_ManRemoveRow;
+    private javax.swing.JMenuItem jMenuItem_StaticAddRow;
+    private javax.swing.JMenuItem jMenuItem_StaticInsertRow;
+    private javax.swing.JMenuItem jMenuItem_StaticRemoveRow;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel_Manouvers;
     private javax.swing.JPanel jPanel_PointBoard;
     private javax.swing.JPanel jPanel_Static;
-    private javax.swing.JPopupMenu jPopupMenu1;
+    private javax.swing.JPopupMenu jPopupMenu_Manouvers;
+    private javax.swing.JPopupMenu jPopupMenu_Static;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane_Manouvers;
+    private javax.swing.JPopupMenu.Separator jSeparator_Manouvers;
+    private javax.swing.JPopupMenu.Separator jSeparator_Static;
     private javax.swing.JSpinner jSpinner1;
     private javax.swing.JSpinner jSpinner2;
     private javax.swing.JSpinner jSpinner3;

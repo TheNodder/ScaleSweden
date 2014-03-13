@@ -2,11 +2,73 @@
 
 <Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JInternalFrameFormInfo">
   <NonVisualComponents>
-    <Container class="javax.swing.JPopupMenu" name="jPopupMenu1">
+    <Container class="javax.swing.JPopupMenu" name="jPopupMenu_Manouvers">
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
         <Property name="useNullLayout" type="boolean" value="true"/>
       </Layout>
+      <SubComponents>
+        <MenuItem class="javax.swing.JMenuItem" name="jMenuItem_ManAddRow">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="L&#xe4;gg till en rad"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem_ManAddRowActionPerformed"/>
+          </Events>
+        </MenuItem>
+        <MenuItem class="javax.swing.JMenuItem" name="jMenuItem_ManInsertRow">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Infoga ny rad."/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem_ManInsertRowActionPerformed"/>
+          </Events>
+        </MenuItem>
+        <Component class="javax.swing.JPopupMenu$Separator" name="jSeparator_Manouvers">
+        </Component>
+        <MenuItem class="javax.swing.JMenuItem" name="jMenuItem_ManRemoveRow">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Ta bort rad"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem_ManRemoveRowActionPerformed"/>
+          </Events>
+        </MenuItem>
+      </SubComponents>
+    </Container>
+    <Container class="javax.swing.JPopupMenu" name="jPopupMenu_Static">
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
+        <Property name="useNullLayout" type="boolean" value="true"/>
+      </Layout>
+      <SubComponents>
+        <MenuItem class="javax.swing.JMenuItem" name="jMenuItem_StaticAddRow">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="L&#xe4;gg till en rad"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem_StaticAddRowActionPerformed"/>
+          </Events>
+        </MenuItem>
+        <MenuItem class="javax.swing.JMenuItem" name="jMenuItem_StaticInsertRow">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Infoga ny rad."/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem_StaticInsertRowActionPerformed"/>
+          </Events>
+        </MenuItem>
+        <Component class="javax.swing.JPopupMenu$Separator" name="jSeparator_Static">
+        </Component>
+        <MenuItem class="javax.swing.JMenuItem" name="jMenuItem_StaticRemoveRow">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Ta bort rad"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem_StaticRemoveRowActionPerformed"/>
+          </Events>
+        </MenuItem>
+      </SubComponents>
     </Container>
   </NonVisualComponents>
   <Properties>
@@ -154,7 +216,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jPanel_Static" pref="458" max="32767" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="jPanel2" min="-2" pref="463" max="-2" attributes="0"/>
+                  <Component id="jPanel_Manouvers" min="-2" pref="463" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -164,7 +226,7 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jPanel2" min="-2" pref="534" max="-2" attributes="0"/>
+                      <Component id="jPanel_Manouvers" min="-2" pref="534" max="-2" attributes="0"/>
                       <Component id="jPanel_Static" min="-2" pref="534" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="14" max="32767" attributes="0"/>
@@ -218,7 +280,7 @@
                 <Component class="javax.swing.JTable" name="jTable_Static">
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                      <Table columnCount="3" rowCount="22">
+                      <Table columnCount="3" rowCount="1">
                         <Column editable="true" title="Sektion" type="java.lang.String"/>
                         <Column editable="true" title="Skalariktighet" type="java.lang.String"/>
                         <Column editable="true" title="K" type="java.lang.String"/>
@@ -243,6 +305,9 @@
                           <Renderer/>
                         </Column>
                       </TableColumnModel>
+                    </Property>
+                    <Property name="componentPopupMenu" type="javax.swing.JPopupMenu" editor="org.netbeans.modules.form.ComponentChooserEditor">
+                      <ComponentRef name="jPopupMenu_Static"/>
                     </Property>
                     <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
                       <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
@@ -331,7 +396,7 @@
             </Container>
           </SubComponents>
         </Container>
-        <Container class="javax.swing.JPanel" name="jPanel2">
+        <Container class="javax.swing.JPanel" name="jPanel_Manouvers">
           <Properties>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
@@ -346,7 +411,7 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jScrollPane2" alignment="0" pref="435" max="32767" attributes="0"/>
+                  <Component id="jScrollPane_Manouvers" alignment="0" pref="435" max="32767" attributes="0"/>
                   <Component id="jPanel4" alignment="0" max="32767" attributes="0"/>
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
@@ -359,9 +424,9 @@
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jScrollPane2" min="-2" pref="335" max="-2" attributes="0"/>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="jScrollPane_Manouvers" min="-2" pref="335" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jSpinner5" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
@@ -369,13 +434,13 @@
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="jPanel4" min="-2" pref="94" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Container class="javax.swing.JScrollPane" name="jScrollPane2">
+            <Container class="javax.swing.JScrollPane" name="jScrollPane_Manouvers">
               <AuxValues>
                 <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
               </AuxValues>
@@ -385,15 +450,16 @@
                 <Component class="javax.swing.JTable" name="jTable_Manouvers">
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                      <Table columnCount="3" rowCount="19">
-                        <Column editable="true" title="Sektion" type="java.lang.Object"/>
-                        <Column editable="true" title="Man&#xf6;ver" type="java.lang.Object"/>
-                        <Column editable="true" title="K" type="java.lang.Object"/>
+                      <Table columnCount="3" rowCount="1">
+                        <Column editable="true" title="Sektion" type="java.lang.String"/>
+                        <Column editable="true" title="Man&#xf6;ver" type="java.lang.String"/>
+                        <Column editable="true" title="K" type="java.lang.String"/>
                       </Table>
                     </Property>
+                    <Property name="toolTipText" type="java.lang.String" value="H&#xf6;gerklicka f&#xf6;r menu."/>
                     <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                       <TableColumnModel selectionModel="0">
-                        <Column maxWidth="58" minWidth="30" prefWidth="-1" resizable="true">
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                           <Title/>
                           <Editor/>
                           <Renderer/>
@@ -403,12 +469,15 @@
                           <Editor/>
                           <Renderer/>
                         </Column>
-                        <Column maxWidth="35" minWidth="35" prefWidth="-1" resizable="true">
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                           <Title/>
                           <Editor/>
                           <Renderer/>
                         </Column>
                       </TableColumnModel>
+                    </Property>
+                    <Property name="componentPopupMenu" type="javax.swing.JPopupMenu" editor="org.netbeans.modules.form.ComponentChooserEditor">
+                      <ComponentRef name="jPopupMenu_Manouvers"/>
                     </Property>
                     <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                       <Dimension value="[2147483647, 300]"/>
