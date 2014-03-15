@@ -14,6 +14,8 @@ import java.sql.Statement;
 // import java.util.logging.Level;
 // import java.util.logging.Logger;
 import javax.swing.JInternalFrame;
+import javax.swing.table.DefaultTableModel;
+
 
 /**
  *
@@ -79,24 +81,22 @@ public class Rules extends javax.swing.JInternalFrame {
 
         jTable_Rules.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
                 {null, null, null, null, null}
             },
             new String [] {
-                "null", "Title 2", "Title 3", "Title 4", "Title 5"
+                "Namn", "Tävlingsklass", "Typ av regel", "Skapad", "Redigerbar"
             }
         ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false, false
             };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
@@ -132,27 +132,30 @@ public class Rules extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     private void populateRulesTable(){
+       Object[] columnNames = {"ID:", "Namn:", "Tävlingsklass:", "Typ av regel:", "Skapad:", "Redigerbar:"};
        Connection connection = null;
         try {
             // create a database connection
             connection = DriverManager.getConnection("jdbc:sqlite:db/scale.db");
             Statement statement = connection.createStatement();
-            //jTable_Rules. //Clear the table
-         //   jTable_Rules.
+            
             statement.setQueryTimeout(10);  // set timeout to 10 sec.
 
             ResultSet rs = statement.executeQuery("select * from rules");
+            DefaultTableModel rules_Model  = new DefaultTableModel(columnNames, rs.getFetchSize());            
+            jTable_Rules.setModel(rules_Model);
+            System.out.print(rs.getFetchSize());
+
             while (rs.next()) {
                 // read the result set
-    /*            jTextField_Clubnr.setText(rs.getString("clubnr"));
-                jTextField_ClubName.setText(rs.getString("clubname"));
-                jTextField_ProtocolDriver.setText(rs.getString("driver"));
-                jTextField_UserId.setText(rs.getString("userid"));
-                jTextField_Password.setText(rs.getString("password"));
-                jTextField_Location.setText(rs.getString("location"));
-                jTextField_AirField.setText(rs.getString("airfield"));
-                jTextField_CompLeader.setText(rs.getString("compleader"));
-*/
+                
+                Object[] row = new Object[rs.getMetaData().getColumnCount()];
+                for(int i=0; i<rs.getMetaData().getColumnCount(); i++){
+                    row[i] = rs.getObject(i+1);
+                }
+                
+                rules_Model.addRow(row);
+
             }
         } catch (SQLException e) {
             // if the error message is "out of memory", 
