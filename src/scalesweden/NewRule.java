@@ -47,7 +47,7 @@ public class NewRule extends javax.swing.JInternalFrame {
         manouverColumn.setCellRenderer(renderer);
     }
 
-    private void popTables(int index) { //Populates the tables with data define i templates in ScaleClasses.java
+    private void popTables(int index) { //Populates the tables with data defined i templates in ScaleClasses.java
         
         switch (index) {
             case 1: //F4C
@@ -90,6 +90,9 @@ public class NewRule extends javax.swing.JInternalFrame {
                 fly_Model = new DefaultTableModel(ScaleClasses.FlyOnly_Manouvers_Sweden, ScaleClasses.Manouvers_headers);
                 jTable_Manouvers.setModel(fly_Model);
 
+                break;
+            
+            default:
                 break;
         }
     }
