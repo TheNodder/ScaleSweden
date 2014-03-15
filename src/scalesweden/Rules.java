@@ -28,7 +28,7 @@ public class Rules extends javax.swing.JInternalFrame {
      */
     public Rules() {
         initComponents();
-        populateRulesTable();
+        populateRulesTable();      
         
     }
 
@@ -41,9 +41,14 @@ public class Rules extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPopupMenu_Rules = new javax.swing.JPopupMenu();
+        jMenuItem_EditRule = new javax.swing.JMenuItem();
         jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable_Rules = new javax.swing.JTable();
+
+        jMenuItem_EditRule.setText("Redigera regel");
+        jPopupMenu_Rules.add(jMenuItem_EditRule);
 
         setClosable(true);
         setResizable(true);
@@ -54,23 +59,6 @@ public class Rules extends javax.swing.JInternalFrame {
         } catch (java.beans.PropertyVetoException e1) {
             e1.printStackTrace();
         }
-        addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
-            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
-                formInternalFrameActivated(evt);
-            }
-            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
-            }
-        });
 
         jButton1.setText("Ny regel...");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -102,7 +90,8 @@ public class Rules extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
-        jTable_Rules.setToolTipText("");
+        jTable_Rules.setToolTipText("Högerklicka för meny.");
+        jTable_Rules.setComponentPopupMenu(jPopupMenu_Rules);
         jTable_Rules.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(jTable_Rules);
 
@@ -142,20 +131,18 @@ public class Rules extends javax.swing.JInternalFrame {
             statement.setQueryTimeout(10);  // set timeout to 10 sec.
 
             ResultSet rs = statement.executeQuery("select * from rules");
-            DefaultTableModel rules_Model  = new DefaultTableModel(columnNames, rs.getFetchSize());            
+            
+            DefaultTableModel rules_Model  = new DefaultTableModel(columnNames, 0);            
             jTable_Rules.setModel(rules_Model);
-            System.out.print(rs.getFetchSize());
-
+            
             while (rs.next()) {
-                // read the result set
+                // read the result set and pop into the table
                 
                 Object[] row = new Object[rs.getMetaData().getColumnCount()];
                 for(int i=0; i<rs.getMetaData().getColumnCount(); i++){
                     row[i] = rs.getObject(i+1);
                 }
-                
                 rules_Model.addRow(row);
-
             }
         } catch (SQLException e) {
             // if the error message is "out of memory", 
@@ -206,13 +193,11 @@ public class Rules extends javax.swing.JInternalFrame {
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void formInternalFrameActivated(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameActivated
-        checkForDialogs();
-    }//GEN-LAST:event_formInternalFrameActivated
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JMenuItem jMenuItem_EditRule;
+    private javax.swing.JPopupMenu jPopupMenu_Rules;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable_Rules;
     // End of variables declaration//GEN-END:variables
