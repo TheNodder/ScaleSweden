@@ -15,6 +15,7 @@ import java.sql.Statement;
 // import java.util.logging.Logger;
 import javax.swing.JInternalFrame;
 import javax.swing.table.DefaultTableModel;
+import java.awt.event.MouseEvent;
 
 
 /**
@@ -93,6 +94,11 @@ public class Rules extends javax.swing.JInternalFrame {
         jTable_Rules.setToolTipText("Högerklicka för meny.");
         jTable_Rules.setComponentPopupMenu(jPopupMenu_Rules);
         jTable_Rules.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jTable_Rules.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable_RulesMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable_Rules);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -120,6 +126,7 @@ public class Rules extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    
     private void populateRulesTable(){
        Object[] columnNames = {"ID:", "Namn:", "Tävlingsklass:", "Typ av regel:", "Skapad:", "Redigerbar:"};
        Connection connection = null;
@@ -192,6 +199,13 @@ public class Rules extends javax.swing.JInternalFrame {
         }
 
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jTable_RulesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable_RulesMouseClicked
+        // TODO add your handling code here:
+        //if(evt == MOUSE_CLICKED){
+         System.out.print("Dubbelklick");
+        //}
+    }//GEN-LAST:event_jTable_RulesMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
