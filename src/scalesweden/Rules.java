@@ -15,12 +15,11 @@ import java.sql.Statement;
 // import java.util.logging.Logger;
 import javax.swing.JInternalFrame;
 import javax.swing.table.DefaultTableModel;
-import java.awt.event.MouseEvent;
 
 
 /**
  *
- * @author Niclas
+ * @author Niclas Olsson, Cobton AB
  */
 public class Rules extends javax.swing.JInternalFrame {
 
@@ -29,7 +28,8 @@ public class Rules extends javax.swing.JInternalFrame {
      */
     public Rules() {
         initComponents();
-        populateRulesTable();      
+        populateRulesTable(); 
+       
         
     }
 
@@ -171,7 +171,9 @@ public class Rules extends javax.swing.JInternalFrame {
         
         boolean retVal = false;
         
-        javax.swing.JDesktopPane pane = this.getDesktopPane();
+        javax.swing.JDesktopPane pane;
+        pane = this.getDesktopPane();
+        
         JInternalFrame[] allFrames = pane.getAllFrames();
 
         for (JInternalFrame frame : allFrames) {

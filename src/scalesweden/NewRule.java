@@ -5,11 +5,9 @@
  */
 package scalesweden;
 
-import java.util.Vector;
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableColumn;
-import javax.swing.table.TableModel;
 import javax.swing.table.DefaultTableModel;
 import static scalesweden.ScaleClasses.*;
 
@@ -27,16 +25,20 @@ public class NewRule extends javax.swing.JInternalFrame {
 
     public NewRule() {
         initComponents();
+        initTables();    // Prepare the tables
+        initDropDowns(); // Prepare the dropdowns in the title area
+    }
+
+    private void initTables() {
         fly_Model = new DefaultTableModel(ScaleClasses.Init_Empty_Table, ScaleClasses.Manouvers_headers);
         jTable_Manouvers.setModel(fly_Model);
         static_Model = new DefaultTableModel(ScaleClasses.Init_Empty_Table, ScaleClasses.Static_headers);
         jTable_Static.setModel(static_Model);
 
-        initDropDowns(); // Prepare the dropdowns in the title area
     }
 
     private void initManouversColumn(TableColumn manouverColumn) {
-        //Set up the editor for the manouvers.
+        //Set up the editor for the manouvers-column.
         JComboBox manouverComboBox = new JComboBox(ListOfManouvers);
 
         manouverColumn.setCellEditor(new DefaultCellEditor(manouverComboBox));
@@ -48,8 +50,12 @@ public class NewRule extends javax.swing.JInternalFrame {
     }
 
     private void popTables(int index) { //Populates the tables with data defined i templates in ScaleClasses.java
-        
+
         switch (index) {
+            case 0:
+                initTables();
+                break;
+
             case 1: //F4C
                 //Static
                 static_Model = new DefaultTableModel(ScaleClasses.F4C_Static_Sweden, ScaleClasses.Static_headers);
@@ -73,13 +79,7 @@ public class NewRule extends javax.swing.JInternalFrame {
                 break;
 
             case 3: //Klubbskala
-                //Static
-              /*  model = new DefaultTableModel();
-                 jTable_Static.setModel(model);
-                
-                 fly_Model = new DefaultTableModel();
-                 jTable_Manouvers.setModel(fly_Model);
-                 */
+                initTables();
                 break;
 
             case 4: //Fly Only
@@ -91,7 +91,7 @@ public class NewRule extends javax.swing.JInternalFrame {
                 jTable_Manouvers.setModel(fly_Model);
 
                 break;
-            
+
             default:
                 break;
         }
@@ -392,7 +392,7 @@ public class NewRule extends javax.swing.JInternalFrame {
         jPanel_Manouvers.setLayout(jPanel_ManouversLayout);
         jPanel_ManouversLayout.setHorizontalGroup(
             jPanel_ManouversLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane_Manouvers, javax.swing.GroupLayout.DEFAULT_SIZE, 435, Short.MAX_VALUE)
+            .addComponent(jScrollPane_Manouvers)
             .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_ManouversLayout.createSequentialGroup()
                 .addContainerGap()
@@ -404,7 +404,7 @@ public class NewRule extends javax.swing.JInternalFrame {
         jPanel_ManouversLayout.setVerticalGroup(
             jPanel_ManouversLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_ManouversLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(20, Short.MAX_VALUE)
                 .addComponent(jScrollPane_Manouvers, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel_ManouversLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -485,10 +485,47 @@ public class NewRule extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /* ******************************************************************************
+     * popupmenu Manouver table
+     ****************************************************************************** */
+    private void jMenuItem_ManAddRowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_ManAddRowActionPerformed
+        //Add a new empty row in the manouver-table
+        fly_Model.addRow(ScaleClasses.Empty_Row_Data);
+    }//GEN-LAST:event_jMenuItem_ManAddRowActionPerformed
+
+    private void jMenuItem_ManRemoveRowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_ManRemoveRowActionPerformed
+        // Remove the selected row in the Manouvers table
+        fly_Model.removeRow(jTable_Manouvers.getSelectedRow());
+    }//GEN-LAST:event_jMenuItem_ManRemoveRowActionPerformed
+
+    private void jMenuItem_ManInsertRowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_ManInsertRowActionPerformed
+        // Insert a row at the selected item in the Manouvers table
+        fly_Model.insertRow(jTable_Manouvers.getSelectedRow(), Empty_Row_Data);
+    }//GEN-LAST:event_jMenuItem_ManInsertRowActionPerformed
+
+    /* ******************************************************************************
+     * popupmenu Static table
+     ****************************************************************************** */
+    private void jMenuItem_StaticAddRowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_StaticAddRowActionPerformed
+        static_Model.addRow(ScaleClasses.Empty_Row_Data);
+    }//GEN-LAST:event_jMenuItem_StaticAddRowActionPerformed
+
+    private void jMenuItem_StaticInsertRowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_StaticInsertRowActionPerformed
+        static_Model.insertRow(jTable_Manouvers.getSelectedRow(), Empty_Row_Data);
+    }//GEN-LAST:event_jMenuItem_StaticInsertRowActionPerformed
+
+    private void jMenuItem_StaticRemoveRowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_StaticRemoveRowActionPerformed
+        static_Model.removeRow(jTable_Manouvers.getSelectedRow());
+    }//GEN-LAST:event_jMenuItem_StaticRemoveRowActionPerformed
+
     private void jComboBox_SetClassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox_SetClassActionPerformed
 
-    //Executes when ScaleClases closes and action
+        //Executes when ScaleClases closes and action
         switch (jComboBox_SetClass.getSelectedIndex()) {
+
+            case 0:
+                popTables(jComboBox_SetClass.getSelectedIndex()); //Clear the contents of the tables.
+                break;
 
             case 1: //F4C
                 jTable_Static.setEnabled(true);
@@ -519,39 +556,6 @@ public class NewRule extends javax.swing.JInternalFrame {
                 break;
         }
     }//GEN-LAST:event_jComboBox_SetClassActionPerformed
-
-    /* ******************************************************************************
-     * popupmenu Manouver table
-      ****************************************************************************** */
-    private void jMenuItem_ManAddRowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_ManAddRowActionPerformed
-        //Add a new empty row in the manouver-table
-        fly_Model.addRow(ScaleClasses.Empty_Row_Data); 
-    }//GEN-LAST:event_jMenuItem_ManAddRowActionPerformed
-
-    private void jMenuItem_ManRemoveRowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_ManRemoveRowActionPerformed
-        // Remove the selected row in the Manouvers table
-        fly_Model.removeRow(jTable_Manouvers.getSelectedRow());
-    }//GEN-LAST:event_jMenuItem_ManRemoveRowActionPerformed
-
-    private void jMenuItem_ManInsertRowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_ManInsertRowActionPerformed
-        // Insert a row at the selected item in the Manouvers table
-        fly_Model.insertRow(jTable_Manouvers.getSelectedRow(), Empty_Row_Data);
-    }//GEN-LAST:event_jMenuItem_ManInsertRowActionPerformed
-
-    /* ******************************************************************************
-     * popupmenu Static table
-      ****************************************************************************** */
-    private void jMenuItem_StaticAddRowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_StaticAddRowActionPerformed
-        static_Model.addRow(ScaleClasses.Empty_Row_Data); 
-    }//GEN-LAST:event_jMenuItem_StaticAddRowActionPerformed
-
-    private void jMenuItem_StaticInsertRowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_StaticInsertRowActionPerformed
-        static_Model.insertRow(jTable_Manouvers.getSelectedRow(), Empty_Row_Data);
-    }//GEN-LAST:event_jMenuItem_StaticInsertRowActionPerformed
-
-    private void jMenuItem_StaticRemoveRowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_StaticRemoveRowActionPerformed
-        static_Model.removeRow(jTable_Manouvers.getSelectedRow());
-    }//GEN-LAST:event_jMenuItem_StaticRemoveRowActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox jComboBox_RuleType;
