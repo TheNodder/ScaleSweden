@@ -5,6 +5,10 @@
  */
 package scalesweden;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableColumn;
@@ -23,10 +27,13 @@ public class NewRule extends javax.swing.JInternalFrame {
     private DefaultTableModel fly_Model;
     private DefaultTableModel static_Model;
 
+    private char saveMode;
+
     public NewRule() {
         initComponents();
         initTables();    // Prepare the tables
         initDropDowns(); // Prepare the dropdowns in the title area
+        saveMode = 'N';  // N for new
     }
 
     private void initTables() {
@@ -220,6 +227,11 @@ public class NewRule extends javax.swing.JInternalFrame {
         });
 
         jComboBox_RuleType.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox_RuleType.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox_RuleTypeActionPerformed(evt);
+            }
+        });
 
         jLabel_Name.setText("Namn:");
 
@@ -392,7 +404,7 @@ public class NewRule extends javax.swing.JInternalFrame {
         jPanel_Manouvers.setLayout(jPanel_ManouversLayout);
         jPanel_ManouversLayout.setHorizontalGroup(
             jPanel_ManouversLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane_Manouvers)
+            .addComponent(jScrollPane_Manouvers, javax.swing.GroupLayout.DEFAULT_SIZE, 435, Short.MAX_VALUE)
             .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_ManouversLayout.createSequentialGroup()
                 .addContainerGap()
@@ -404,7 +416,7 @@ public class NewRule extends javax.swing.JInternalFrame {
         jPanel_ManouversLayout.setVerticalGroup(
             jPanel_ManouversLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_ManouversLayout.createSequentialGroup()
-                .addContainerGap(20, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane_Manouvers, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel_ManouversLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -518,6 +530,52 @@ public class NewRule extends javax.swing.JInternalFrame {
         static_Model.removeRow(jTable_Manouvers.getSelectedRow());
     }//GEN-LAST:event_jMenuItem_StaticRemoveRowActionPerformed
 
+    private void checkToSave() {
+        if ((!jTextField_CompName.getText().isEmpty()) && (jComboBox_SetClass.getSelectedIndex() > 0) && (jComboBox_RuleType.getSelectedIndex() > 0)) {
+            //Save the data
+            saveToDB();
+        }
+    }
+
+    private void saveToDB() {
+
+        //Prepare the database
+        Connection connection = null;
+        try {
+            // create a database connection
+            connection = DriverManager.getConnection("jdbc:sqlite:db/scale.db");
+            Statement statement = connection.createStatement();
+            statement.setQueryTimeout(10);
+
+            if (saveMode == 'E') {
+
+            }
+            else if (saveMode == 'N') {
+
+                int rs = statement.executeUpdate("INSERT INTO rules (name, mainclass, type, created_at)"
+                        + "VALUES ('" + jTextField_CompName.getText() + "', '"
+                        + jComboBox_SetClass.getSelectedItem().toString() + "', '"
+                        + jComboBox_RuleType.getSelectedItem().toString() + "', '"
+                        + System.currentTimeMillis() + "');");
+
+                saveMode = 'E';
+            }
+        } catch (SQLException e) {
+            // if the error message is "out of memory", 
+            // it probably means no database file is found
+            System.err.println(e.getMessage());
+        } finally {
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                // connection close failed.
+                System.err.println(e);
+            }
+        }
+    }
+
     private void jComboBox_SetClassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox_SetClassActionPerformed
 
         //Executes when ScaleClases closes and action
@@ -525,6 +583,7 @@ public class NewRule extends javax.swing.JInternalFrame {
 
             case 0:
                 popTables(jComboBox_SetClass.getSelectedIndex()); //Clear the contents of the tables.
+                checkToSave();
                 break;
 
             case 1: //F4C
@@ -532,6 +591,7 @@ public class NewRule extends javax.swing.JInternalFrame {
                 jTable_Static.setVisible(true);
                 popTables(jComboBox_SetClass.getSelectedIndex());
                 initManouversColumn(jTable_Manouvers.getColumnModel().getColumn(1)); //Create a dropdownlist in the column
+                checkToSave();
                 break;
 
             case 2: //F4H
@@ -539,6 +599,7 @@ public class NewRule extends javax.swing.JInternalFrame {
                 jTable_Static.setVisible(true);
                 popTables(jComboBox_SetClass.getSelectedIndex());
                 initManouversColumn(jTable_Manouvers.getColumnModel().getColumn(1)); //Create a dropdownlist in the column
+                checkToSave();
                 break;
 
             case 3: //Klubbskala
@@ -546,6 +607,7 @@ public class NewRule extends javax.swing.JInternalFrame {
                 jTable_Static.setVisible(true);
                 popTables(jComboBox_SetClass.getSelectedIndex());
                 initManouversColumn(jTable_Manouvers.getColumnModel().getColumn(1)); //Create a dropdownlist in the column
+                checkToSave();
                 break;
 
             case 4:// Fly Only
@@ -553,9 +615,15 @@ public class NewRule extends javax.swing.JInternalFrame {
                 jTable_Static.setVisible(false);
                 popTables(jComboBox_SetClass.getSelectedIndex());
                 initManouversColumn(jTable_Manouvers.getColumnModel().getColumn(1)); //Create a dropdownlist in the column
+                checkToSave();
                 break;
         }
     }//GEN-LAST:event_jComboBox_SetClassActionPerformed
+
+    private void jComboBox_RuleTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox_RuleTypeActionPerformed
+
+        checkToSave();
+    }//GEN-LAST:event_jComboBox_RuleTypeActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox jComboBox_RuleType;

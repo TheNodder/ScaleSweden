@@ -28,9 +28,8 @@ public class Rules extends javax.swing.JInternalFrame {
      */
     public Rules() {
         initComponents();
-        populateRulesTable(); 
+        populateRulesTable();      
        
-        
     }
 
     /**
@@ -198,6 +197,7 @@ public class Rules extends javax.swing.JInternalFrame {
            CRule.setLocation(((int) parent.getBounds().getWidth() / 2) - (CRule.getWidth() / 2), 2); //Try to center on screen
            parent.add(CRule);
            CRule.setVisible(true);
+          
         }
 
     }//GEN-LAST:event_jButton1ActionPerformed
