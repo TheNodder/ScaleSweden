@@ -136,7 +136,7 @@ public class Rules extends javax.swing.JInternalFrame {
             
             statement.setQueryTimeout(10);  // set timeout to 10 sec.
 
-            ResultSet rs = statement.executeQuery("select * from rules");
+            ResultSet rs = statement.executeQuery("select * from rules order by created_at desc;");
             
             DefaultTableModel rules_Model  = new DefaultTableModel(columnNames, 0);            
             jTable_Rules.setModel(rules_Model);
