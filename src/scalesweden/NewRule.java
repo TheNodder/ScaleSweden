@@ -558,6 +558,7 @@ public class NewRule extends javax.swing.JInternalFrame {
                         + jComboBox_RuleType.getSelectedItem().toString() + "', '"
                         + System.currentTimeMillis() + "');");
 
+                
                 saveMode = 'E';
             }
         } catch (SQLException e) {
