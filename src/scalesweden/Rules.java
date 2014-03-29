@@ -16,7 +16,6 @@ import java.sql.Statement;
 import javax.swing.JInternalFrame;
 import javax.swing.table.DefaultTableModel;
 
-
 /**
  *
  * @author Niclas Olsson, Cobton AB
@@ -28,8 +27,8 @@ public class Rules extends javax.swing.JInternalFrame {
      */
     public Rules() {
         initComponents();
-        populateRulesTable();      
-       
+        populateRulesTable();
+
     }
 
     /**
@@ -125,28 +124,32 @@ public class Rules extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    
-    private void populateRulesTable(){
-       Object[] columnNames = {"ID:", "Namn:", "Tävlingsklass:", "Typ av regel:", "Skapad:", "Redigerbar:"};
-       Connection connection = null;
+
+    private void populateRulesTable() {
+        Object[] columnNames = {"ID:", "Namn:", "Tävlingsklass:", "Typ av regel:", "Skapad:", "Redigerbar:"};
+        Connection connection = null;
         try {
             // create a database connection
             connection = DriverManager.getConnection("jdbc:sqlite:db/scale.db");
             Statement statement = connection.createStatement();
-            
+
             statement.setQueryTimeout(10);  // set timeout to 10 sec.
 
             ResultSet rs = statement.executeQuery("select * from rules order by created_at desc;");
-            
-            DefaultTableModel rules_Model  = new DefaultTableModel(columnNames, 0);            
+
+            DefaultTableModel rules_Model = new DefaultTableModel(columnNames, 0);
             jTable_Rules.setModel(rules_Model);
-            
+
             while (rs.next()) {
                 // read the result set and pop into the table
-                
+
                 Object[] row = new Object[rs.getMetaData().getColumnCount()];
-                for(int i=0; i<rs.getMetaData().getColumnCount(); i++){
-                    row[i] = rs.getObject(i+1);
+                for (int i = 0; i < rs.getMetaData().getColumnCount(); i++) {
+                    if ("created_at".equals(rs.getMetaData().getColumnName(i + 1))) {
+                        row[i] = rs.getTimestamp(i+1); //Convert timestamp to human readable
+                    } else {
+                        row[i] = rs.getObject(i + 1);
+                    }
                 }
                 rules_Model.addRow(row);
             }
@@ -163,16 +166,16 @@ public class Rules extends javax.swing.JInternalFrame {
                 // connection close failed.
                 System.err.println(e);
             }
-        } 
+        }
     }
-    
+
     private boolean checkForDialogs() {
-        
+
         boolean retVal = false;
-        
+
         javax.swing.JDesktopPane pane;
         pane = this.getDesktopPane();
-        
+
         JInternalFrame[] allFrames = pane.getAllFrames();
 
         for (JInternalFrame frame : allFrames) {
@@ -190,14 +193,14 @@ public class Rules extends javax.swing.JInternalFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
-       if(!checkForDialogs()){
-           NewRule CRule = new NewRule();
-           Container parent = this.getParent();
-           
-           CRule.setLocation(((int) parent.getBounds().getWidth() / 2) - (CRule.getWidth() / 2), 2); //Try to center on screen
-           parent.add(CRule);
-           CRule.setVisible(true);
-          
+        if (!checkForDialogs()) {
+            NewRule CRule = new NewRule();
+            Container parent = this.getParent();
+
+            CRule.setLocation(((int) parent.getBounds().getWidth() / 2) - (CRule.getWidth() / 2), 2); //Try to center on screen
+            parent.add(CRule);
+            CRule.setVisible(true);
+
         }
 
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -205,7 +208,7 @@ public class Rules extends javax.swing.JInternalFrame {
     private void jTable_RulesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable_RulesMouseClicked
         // TODO add your handling code here:
         //if(evt == MOUSE_CLICKED){
-         System.out.print("Dubbelklick");
+        System.out.print("Dubbelklick");
         //}
     }//GEN-LAST:event_jTable_RulesMouseClicked
 
