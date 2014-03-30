@@ -552,14 +552,16 @@ public class NewRule extends javax.swing.JInternalFrame {
 
             }
             else if (saveMode == 'N') {
-                long created_at =  System.currentTimeMillis();
+                long created_at =  System.currentTimeMillis(); //Create timestamp
+                
+                // Update the rules-table in the DB
                 int rs = statement.executeUpdate("INSERT INTO rules (name, mainclass, type, created_at)"
                         + "VALUES ('" + jTextField_CompName.getText() + "', '"
                         + jComboBox_SetClass.getSelectedItem().toString() + "', '"
                         + jComboBox_RuleType.getSelectedItem().toString() + "', '"
                         + created_at + "');");
 
-                
+                // Update the rules_static-table in the DB
                 rs = statement.executeUpdate("INSERT INTO rules_static(created_at, k, description, section)"
                         + "VALUES ('" + created_at + "', 'K', 'DESCRIPTION', 'SECTION');");
                         
