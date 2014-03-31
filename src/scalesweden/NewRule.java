@@ -37,6 +37,18 @@ public class NewRule extends javax.swing.JInternalFrame {
         saveMode = 'N';  // N for new
     }
 
+    public NewRule(long ts) {
+        initComponents();
+        initTables();    // Prepare the tables
+        initDropDowns(); // Prepare the dropdowns in the title area        
+
+        popFromDB(ts); //Get data from DB and populate the frame
+
+        this.setTitle("Redigera regel...");
+        saveMode = 'E';
+
+    }
+
     private void initTables() {
         fly_Model = new DefaultTableModel(ScaleClasses.Init_Empty_Table, ScaleClasses.Manouvers_headers);
         jTable_Manouvers.setModel(fly_Model);
@@ -146,16 +158,16 @@ public class NewRule extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable_Static = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
-        jSpinner1 = new javax.swing.JSpinner();
-        jSpinner2 = new javax.swing.JSpinner();
+        jSpinner_Static_Judges = new javax.swing.JSpinner();
+        jSpinner_Static_Panels = new javax.swing.JSpinner();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jPanel_Manouvers = new javax.swing.JPanel();
         jScrollPane_Manouvers = new javax.swing.JScrollPane();
         jTable_Manouvers = new javax.swing.JTable();
         jPanel4 = new javax.swing.JPanel();
-        jSpinner3 = new javax.swing.JSpinner();
-        jSpinner4 = new javax.swing.JSpinner();
+        jSpinner_Fly_Judges = new javax.swing.JSpinner();
+        jSpinner_Fly_Panels = new javax.swing.JSpinner();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jSpinner5 = new javax.swing.JSpinner();
@@ -273,11 +285,11 @@ public class NewRule extends javax.swing.JInternalFrame {
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED), "Domare:"));
 
-        jSpinner1.setModel(new javax.swing.SpinnerNumberModel(Byte.valueOf((byte)3), Byte.valueOf((byte)1), null, Byte.valueOf((byte)1)));
-        jSpinner1.setToolTipText("Välj antal domare per panel.");
+        jSpinner_Static_Judges.setModel(new javax.swing.SpinnerNumberModel(Byte.valueOf((byte)3), Byte.valueOf((byte)1), null, Byte.valueOf((byte)1)));
+        jSpinner_Static_Judges.setToolTipText("Välj antal domare per panel.");
 
-        jSpinner2.setModel(new javax.swing.SpinnerNumberModel(Byte.valueOf((byte)1), Byte.valueOf((byte)1), null, Byte.valueOf((byte)1)));
-        jSpinner2.setToolTipText("Välj antal domarpaneler för regeln.");
+        jSpinner_Static_Panels.setModel(new javax.swing.SpinnerNumberModel(Byte.valueOf((byte)1), Byte.valueOf((byte)1), null, Byte.valueOf((byte)1)));
+        jSpinner_Static_Panels.setToolTipText("Välj antal domarpaneler för regeln.");
 
         jLabel1.setText("Antal domare:");
 
@@ -291,10 +303,10 @@ public class NewRule extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jSpinner1))
+                    .addComponent(jSpinner_Static_Judges))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 212, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jSpinner2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jSpinner_Static_Panels, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
                 .addContainerGap())
         );
@@ -307,8 +319,8 @@ public class NewRule extends javax.swing.JInternalFrame {
                     .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jSpinner2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jSpinner_Static_Judges, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jSpinner_Static_Panels, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(28, 28, 28))
         );
 
@@ -358,11 +370,11 @@ public class NewRule extends javax.swing.JInternalFrame {
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED), "Domare:"));
 
-        jSpinner3.setModel(new javax.swing.SpinnerNumberModel(Byte.valueOf((byte)3), Byte.valueOf((byte)1), null, Byte.valueOf((byte)1)));
-        jSpinner3.setToolTipText("Välj antal domare per panel.");
+        jSpinner_Fly_Judges.setModel(new javax.swing.SpinnerNumberModel(Byte.valueOf((byte)3), Byte.valueOf((byte)1), null, Byte.valueOf((byte)1)));
+        jSpinner_Fly_Judges.setToolTipText("Välj antal domare per panel.");
 
-        jSpinner4.setModel(new javax.swing.SpinnerNumberModel(Byte.valueOf((byte)1), Byte.valueOf((byte)1), null, Byte.valueOf((byte)1)));
-        jSpinner4.setToolTipText("Välj antal domarpaneler för regeln.");
+        jSpinner_Fly_Panels.setModel(new javax.swing.SpinnerNumberModel(Byte.valueOf((byte)1), Byte.valueOf((byte)1), null, Byte.valueOf((byte)1)));
+        jSpinner_Fly_Panels.setToolTipText("Välj antal domarpaneler för regeln.");
 
         jLabel3.setText("Antal domare:");
 
@@ -376,10 +388,10 @@ public class NewRule extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jSpinner3))
+                    .addComponent(jSpinner_Fly_Judges))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jSpinner4, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jSpinner_Fly_Panels, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
                 .addContainerGap())
         );
@@ -392,8 +404,8 @@ public class NewRule extends javax.swing.JInternalFrame {
                     .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jSpinner3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jSpinner4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jSpinner_Fly_Judges, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jSpinner_Fly_Panels, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20))
         );
 
@@ -538,6 +550,41 @@ public class NewRule extends javax.swing.JInternalFrame {
         }
     }
 
+    private void popFromDB(long ts) {
+        //Prepare the database
+        Connection connection = null;
+        try {
+            // create a database connection
+            connection = DriverManager.getConnection("jdbc:sqlite:db/scale.db");
+            Statement statement = connection.createStatement();
+            statement.setQueryTimeout(10);
+
+            ResultSet rs = statement.executeQuery("select * from rules where created_at = " + ts);
+
+            rs.first();
+            jTextField_CompName.setText(rs.getString("name"));
+            jComboBox_SetClass.getModel().setSelectedItem(rs.getString("mainclass"));
+            jComboBox_RuleType.getModel().setSelectedItem(rs.getString("type"));
+            System.out.print(rs.getString("name"));
+
+            System.out.print(rs.getLong("created_at"));
+        } catch (SQLException e) {
+            // if the error message is "out of memory", 
+            // it probably means no database file is found
+            System.err.println(e.getMessage());
+        } finally {
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                // connection close failed.
+                System.err.println(e);
+            }
+        }
+
+    }
+
     private void saveToDB() {
 
         //Prepare the database
@@ -550,21 +597,35 @@ public class NewRule extends javax.swing.JInternalFrame {
 
             if (saveMode == 'E') {
 
-            }
-            else if (saveMode == 'N') {
-                long created_at =  System.currentTimeMillis(); //Create timestamp
-                
+            } else if (saveMode == 'N') {
+                long created_at = System.currentTimeMillis(); //Create timestamp
+
                 // Update the rules-table in the DB
-                int rs = statement.executeUpdate("INSERT INTO rules (name, mainclass, type, created_at)"
+                int rs = statement.executeUpdate("INSERT INTO rules (name, mainclass, type, created_at, staticpanels, staticjudges, flypanels, flyjudges)"
                         + "VALUES ('" + jTextField_CompName.getText() + "', '"
                         + jComboBox_SetClass.getSelectedItem().toString() + "', '"
                         + jComboBox_RuleType.getSelectedItem().toString() + "', '"
-                        + created_at + "');");
+                        + created_at + "', '"
+                        + jSpinner_Static_Panels.getModel().getValue() + "', '"
+                        + jSpinner_Static_Judges.getModel().getValue() + "', '"
+                        + jSpinner_Fly_Panels.getModel().getValue() + "', '"
+                        + jSpinner_Fly_Judges.getModel().getValue() + "');");
 
                 // Update the rules_static-table in the DB
-                rs = statement.executeUpdate("INSERT INTO rules_static(created_at, k, description, section)"
-                        + "VALUES ('" + created_at + "', 'K', 'DESCRIPTION', 'SECTION');");
-                        
+                for (int i = 0; i < static_Model.getRowCount(); i++) {
+                    rs = statement.executeUpdate("INSERT INTO rules_static(created_at, k, description, section)"
+                            + "VALUES ('" + created_at + "', '" + static_Model.getValueAt(i, 2) + "', '"
+                            + static_Model.getValueAt(i, 1) + "', '"
+                            + static_Model.getValueAt(i, 0) + "');");
+                }
+
+                // Update the rules_manouvers-table in the DB
+                for (int i = 0; i < fly_Model.getRowCount(); i++) {
+                    rs = statement.executeUpdate("INSERT INTO rules_manouvers(created_at, k, description, section)"
+                            + "VALUES ('" + created_at + "', '" + fly_Model.getValueAt(i, 2) + "', '"
+                            + fly_Model.getValueAt(i, 1) + "', '"
+                            + fly_Model.getValueAt(i, 0) + "');");
+                }
                 saveMode = 'E';
             }
         } catch (SQLException e) {
@@ -618,6 +679,8 @@ public class NewRule extends javax.swing.JInternalFrame {
                 break;
 
             case 4:// Fly Only
+                jSpinner_Static_Panels.getModel().setValue(0);
+                jSpinner_Static_Judges.getModel().setValue(0);
                 jTable_Static.setEnabled(false);
                 jTable_Static.setVisible(false);
                 popTables(jComboBox_SetClass.getSelectedIndex());
@@ -660,11 +723,11 @@ public class NewRule extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane_Manouvers;
     private javax.swing.JPopupMenu.Separator jSeparator_Manouvers;
     private javax.swing.JPopupMenu.Separator jSeparator_Static;
-    private javax.swing.JSpinner jSpinner1;
-    private javax.swing.JSpinner jSpinner2;
-    private javax.swing.JSpinner jSpinner3;
-    private javax.swing.JSpinner jSpinner4;
     private javax.swing.JSpinner jSpinner5;
+    private javax.swing.JSpinner jSpinner_Fly_Judges;
+    private javax.swing.JSpinner jSpinner_Fly_Panels;
+    private javax.swing.JSpinner jSpinner_Static_Judges;
+    private javax.swing.JSpinner jSpinner_Static_Panels;
     private javax.swing.JTable jTable_Manouvers;
     private javax.swing.JTable jTable_Static;
     private javax.swing.JTextField jTextField_CompName;

@@ -46,7 +46,12 @@ public class Rules extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable_Rules = new javax.swing.JTable();
 
-        jMenuItem_EditRule.setText("Redigera regel");
+        jMenuItem_EditRule.setText("Redigera/visa regel");
+        jMenuItem_EditRule.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem_EditRuleActionPerformed(evt);
+            }
+        });
         jPopupMenu_Rules.add(jMenuItem_EditRule);
 
         setClosable(true);
@@ -126,7 +131,7 @@ public class Rules extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void populateRulesTable() {
-        Object[] columnNames = {"ID:", "Namn:", "Tävlingsklass:", "Typ av regel:", "Skapad:", "Redigerbar:"};
+        Object[] columnNames = {"Namn:", "Tävlingsklass:", "Typ av regel:", "Skapad:", "Redigerbar:"};
         Connection connection = null;
         try {
             // create a database connection
@@ -146,7 +151,7 @@ public class Rules extends javax.swing.JInternalFrame {
                 Object[] row = new Object[rs.getMetaData().getColumnCount()];
                 for (int i = 0; i < rs.getMetaData().getColumnCount(); i++) {
                     if ("created_at".equals(rs.getMetaData().getColumnName(i + 1))) {
-                        row[i] = rs.getTimestamp(i+1); //Convert timestamp to human readable
+                        row[i] = rs.getTimestamp(i + 1); //Convert timestamp to human readable
                     } else {
                         row[i] = rs.getObject(i + 1);
                     }
@@ -211,6 +216,18 @@ public class Rules extends javax.swing.JInternalFrame {
         System.out.print("Dubbelklick");
         //}
     }//GEN-LAST:event_jTable_RulesMouseClicked
+
+    private void jMenuItem_EditRuleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_EditRuleActionPerformed
+        // TODO add your handling code here:
+        java.lang.Long ts = Long.decode("1396262745916");
+        NewRule ERule = new NewRule(ts);
+        Container Eparent = this.getParent();
+
+        ERule.setLocation(((int) Eparent.getBounds().getWidth() / 2) - (ERule.getWidth() / 2), 2); //Try to center on screen
+        Eparent.add(ERule);
+        ERule.setVisible(true);
+
+    }//GEN-LAST:event_jMenuItem_EditRuleActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

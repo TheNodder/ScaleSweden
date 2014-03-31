@@ -10,8 +10,11 @@
       <SubComponents>
         <MenuItem class="javax.swing.JMenuItem" name="jMenuItem_EditRule">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Redigera regel"/>
+            <Property name="text" type="java.lang.String" value="Redigera/visa regel"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem_EditRuleActionPerformed"/>
+          </Events>
         </MenuItem>
       </SubComponents>
     </Container>
