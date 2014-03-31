@@ -39,13 +39,15 @@ public class NewRule extends javax.swing.JInternalFrame {
 
     public NewRule(long ts) {
         initComponents();
+        saveMode = 'E';
         initTables();    // Prepare the tables
-        initDropDowns(); // Prepare the dropdowns in the title area        
+           
+        jComboBox_SetClass.setEnabled(false);
+        jComboBox_RuleType.setEnabled(false);
 
         popFromDB(ts); //Get data from DB and populate the frame
 
         this.setTitle("Redigera regel...");
-        saveMode = 'E';
 
     }
 
@@ -558,16 +560,20 @@ public class NewRule extends javax.swing.JInternalFrame {
             connection = DriverManager.getConnection("jdbc:sqlite:db/scale.db");
             Statement statement = connection.createStatement();
             statement.setQueryTimeout(10);
-
+            System.out.print("Ba: " + ts);
             ResultSet rs = statement.executeQuery("select * from rules where created_at = " + ts);
 
-            rs.first();
             jTextField_CompName.setText(rs.getString("name"));
             jComboBox_SetClass.getModel().setSelectedItem(rs.getString("mainclass"));
             jComboBox_RuleType.getModel().setSelectedItem(rs.getString("type"));
-            System.out.print(rs.getString("name"));
 
-            System.out.print(rs.getLong("created_at"));
+            //System.out.print(rs.getLong("created_at"));
+            rs = statement.executeQuery("select * from rules_static where created_at = " + ts);
+            
+             while (rs.next()) {
+                 
+             }
+            
         } catch (SQLException e) {
             // if the error message is "out of memory", 
             // it probably means no database file is found
@@ -646,47 +652,50 @@ public class NewRule extends javax.swing.JInternalFrame {
 
     private void jComboBox_SetClassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox_SetClassActionPerformed
 
-        //Executes when ScaleClases closes and action
-        switch (jComboBox_SetClass.getSelectedIndex()) {
+        if (saveMode == 'N') { //Only if new rule
 
-            case 0:
-                popTables(jComboBox_SetClass.getSelectedIndex()); //Clear the contents of the tables.
-                checkToSave();
-                break;
+//Executes when ScaleClases closes and action
+            switch (jComboBox_SetClass.getSelectedIndex()) {
 
-            case 1: //F4C
-                jTable_Static.setEnabled(true);
-                jTable_Static.setVisible(true);
-                popTables(jComboBox_SetClass.getSelectedIndex());
-                initManouversColumn(jTable_Manouvers.getColumnModel().getColumn(1)); //Create a dropdownlist in the column
-                checkToSave();
-                break;
+                case 0:
+                    popTables(jComboBox_SetClass.getSelectedIndex()); //Clear the contents of the tables.
+                    checkToSave();
+                    break;
 
-            case 2: //F4H
-                jTable_Static.setEnabled(true);
-                jTable_Static.setVisible(true);
-                popTables(jComboBox_SetClass.getSelectedIndex());
-                initManouversColumn(jTable_Manouvers.getColumnModel().getColumn(1)); //Create a dropdownlist in the column
-                checkToSave();
-                break;
+                case 1: //F4C
+                    jTable_Static.setEnabled(true);
+                    jTable_Static.setVisible(true);
+                    popTables(jComboBox_SetClass.getSelectedIndex());
+                    initManouversColumn(jTable_Manouvers.getColumnModel().getColumn(1)); //Create a dropdownlist in the column
+                    checkToSave();
+                    break;
 
-            case 3: //Klubbskala
-                jTable_Static.setEnabled(true);
-                jTable_Static.setVisible(true);
-                popTables(jComboBox_SetClass.getSelectedIndex());
-                initManouversColumn(jTable_Manouvers.getColumnModel().getColumn(1)); //Create a dropdownlist in the column
-                checkToSave();
-                break;
+                case 2: //F4H
+                    jTable_Static.setEnabled(true);
+                    jTable_Static.setVisible(true);
+                    popTables(jComboBox_SetClass.getSelectedIndex());
+                    initManouversColumn(jTable_Manouvers.getColumnModel().getColumn(1)); //Create a dropdownlist in the column
+                    checkToSave();
+                    break;
 
-            case 4:// Fly Only
-                jSpinner_Static_Panels.getModel().setValue(0);
-                jSpinner_Static_Judges.getModel().setValue(0);
-                jTable_Static.setEnabled(false);
-                jTable_Static.setVisible(false);
-                popTables(jComboBox_SetClass.getSelectedIndex());
-                initManouversColumn(jTable_Manouvers.getColumnModel().getColumn(1)); //Create a dropdownlist in the column
-                checkToSave();
-                break;
+                case 3: //Klubbskala
+                    jTable_Static.setEnabled(true);
+                    jTable_Static.setVisible(true);
+                    popTables(jComboBox_SetClass.getSelectedIndex());
+                    initManouversColumn(jTable_Manouvers.getColumnModel().getColumn(1)); //Create a dropdownlist in the column
+                    checkToSave();
+                    break;
+
+                case 4:// Fly Only
+                    jSpinner_Static_Panels.getModel().setValue(0);
+                    jSpinner_Static_Judges.getModel().setValue(0);
+                    jTable_Static.setEnabled(false);
+                    jTable_Static.setVisible(false);
+                    popTables(jComboBox_SetClass.getSelectedIndex());
+                    initManouversColumn(jTable_Manouvers.getColumnModel().getColumn(1)); //Create a dropdownlist in the column
+                    checkToSave();
+                    break;
+            }
         }
     }//GEN-LAST:event_jComboBox_SetClassActionPerformed
 
