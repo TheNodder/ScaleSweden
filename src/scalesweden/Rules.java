@@ -22,11 +22,15 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Rules extends javax.swing.JInternalFrame {
 
+    Object[] columnNames = {"Namn:", "Tävlingsklass:", "Typ av regel:", "Skapad:", "Redigerbar:"};
+    private DefaultTableModel rules_Model;
     /**
      * Creates new form Rules
      */
     public Rules() {
         initComponents();
+        rules_Model = new DefaultTableModel(columnNames, 0);
+        jTable_Rules.setModel(rules_Model);
         populateRulesTable();
 
     }
@@ -131,7 +135,7 @@ public class Rules extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void populateRulesTable() {
-        Object[] columnNames = {"Namn:", "Tävlingsklass:", "Typ av regel:", "Skapad:", "Redigerbar:"};
+        
         Connection connection = null;
         try {
             // create a database connection
@@ -141,9 +145,6 @@ public class Rules extends javax.swing.JInternalFrame {
             statement.setQueryTimeout(10);  // set timeout to 10 sec.
 
             ResultSet rs = statement.executeQuery("select * from rules order by created_at desc;");
-
-            DefaultTableModel rules_Model = new DefaultTableModel(columnNames, 0);
-            jTable_Rules.setModel(rules_Model);
 
             while (rs.next()) {
                 // read the result set and pop into the table
@@ -219,9 +220,15 @@ public class Rules extends javax.swing.JInternalFrame {
 
     private void jMenuItem_EditRuleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_EditRuleActionPerformed
         // TODO add your handling code here:
-        java.lang.Long ts;
-        ts = Long.decode("1396380676788");
-        NewRule ERule = new NewRule(ts);
+         
+        //java.lang.Long ts;
+       // ts = Long.decode((String)rules_Model.getValueAt(jTable_Rules.getSelectedRow(), 3));
+        java.sql.Timestamp ts;
+        
+        ts = (java.sql.Timestamp) rules_Model.getValueAt(jTable_Rules.getSelectedRow(), 3);
+       
+//ts = Long.decode("1396380676788");
+        NewRule ERule = new NewRule(ts.getTime());
         Container Eparent = this.getParent();
 
         ERule.setLocation(((int) Eparent.getBounds().getWidth() / 2) - (ERule.getWidth() / 2), 2); //Try to center on screen
