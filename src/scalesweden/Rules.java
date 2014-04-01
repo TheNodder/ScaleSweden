@@ -219,7 +219,8 @@ public class Rules extends javax.swing.JInternalFrame {
 
     private void jMenuItem_EditRuleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_EditRuleActionPerformed
         // TODO add your handling code here:
-        java.lang.Long ts = Long.decode("1396262745916");
+        java.lang.Long ts;
+        ts = Long.decode("1396380676788");
         NewRule ERule = new NewRule(ts);
         Container Eparent = this.getParent();
 
