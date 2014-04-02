@@ -43,7 +43,7 @@ public class NewRule extends javax.swing.JInternalFrame {
         initComponents();
         saveMode = 'E';
         created_at = ts;  // set a "class global"
-        initDropDowns(); // Prepare the dropdowns in the title area
+       // initDropDowns(); // Prepare the dropdowns in the title area
         initTables();    // Prepare the tables
         initManouversColumn(jTable_Manouvers.getColumnModel().getColumn(1)); //Create a dropdownlist in the column
         this.setTitle("Redigera regel...");
@@ -578,7 +578,7 @@ public class NewRule extends javax.swing.JInternalFrame {
             // create a database connection
             connection = DriverManager.getConnection("jdbc:sqlite:db/scale.db");
             Statement statement = connection.createStatement();
-            statement.setQueryTimeout(10);
+            statement.setQueryTimeout(2);
 
             ResultSet rs = statement.executeQuery("select * from rules where created_at = " + created_at);
 
@@ -656,7 +656,7 @@ public class NewRule extends javax.swing.JInternalFrame {
             // create a database connection
             connection = DriverManager.getConnection("jdbc:sqlite:db/scale.db");
             Statement statement = connection.createStatement();
-            statement.setQueryTimeout(10);
+            statement.setQueryTimeout(2);
 
             if (saveMode == 'E') {
                 // Update the rules-table in the DB
@@ -795,8 +795,8 @@ public class NewRule extends javax.swing.JInternalFrame {
 
     private void formInternalFrameClosing(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameClosing
         // TODO add your handling code here:
-        saveToDB();
-        // checkToSave();
+        //saveToDB();
+        checkToSave();
     }//GEN-LAST:event_formInternalFrameClosing
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
