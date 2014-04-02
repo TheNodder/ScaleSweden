@@ -16,6 +16,26 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem_EditRuleActionPerformed"/>
           </Events>
         </MenuItem>
+        <MenuItem class="javax.swing.JMenuItem" name="jMenuItem_CopyRule">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Kopiera regel."/>
+            <Property name="toolTipText" type="java.lang.String" value="Kopiera markerad regel till en ny regel."/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem_CopyRuleActionPerformed"/>
+          </Events>
+        </MenuItem>
+        <Component class="javax.swing.JPopupMenu$Separator" name="jSeparator_Popmenu">
+        </Component>
+        <MenuItem class="javax.swing.JMenuItem" name="jMenuItem_DeleteRule">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Radera regel"/>
+            <Property name="toolTipText" type="java.lang.String" value="Ta bort regel fr&#xe5;n systemet."/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem_DeleteRuleActionPerformed"/>
+          </Events>
+        </MenuItem>
       </SubComponents>
     </Container>
   </NonVisualComponents>

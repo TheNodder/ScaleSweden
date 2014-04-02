@@ -11,9 +11,8 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-// import java.util.logging.Level;
-// import java.util.logging.Logger;
 import javax.swing.JInternalFrame;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -24,13 +23,12 @@ public class Rules extends javax.swing.JInternalFrame {
 
     Object[] columnNames = {"Namn:", "Tävlingsklass:", "Typ av regel:", "Skapad:", "Redigerbar:"};
     private DefaultTableModel rules_Model;
+
     /**
      * Creates new form Rules
      */
     public Rules() {
         initComponents();
-        rules_Model = new DefaultTableModel(columnNames, 0);
-        jTable_Rules.setModel(rules_Model);
         populateRulesTable();
 
     }
@@ -46,6 +44,9 @@ public class Rules extends javax.swing.JInternalFrame {
 
         jPopupMenu_Rules = new javax.swing.JPopupMenu();
         jMenuItem_EditRule = new javax.swing.JMenuItem();
+        jMenuItem_CopyRule = new javax.swing.JMenuItem();
+        jSeparator_Popmenu = new javax.swing.JPopupMenu.Separator();
+        jMenuItem_DeleteRule = new javax.swing.JMenuItem();
         jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable_Rules = new javax.swing.JTable();
@@ -57,6 +58,25 @@ public class Rules extends javax.swing.JInternalFrame {
             }
         });
         jPopupMenu_Rules.add(jMenuItem_EditRule);
+
+        jMenuItem_CopyRule.setText("Kopiera regel.");
+        jMenuItem_CopyRule.setToolTipText("Kopiera markerad regel till en ny regel.");
+        jMenuItem_CopyRule.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem_CopyRuleActionPerformed(evt);
+            }
+        });
+        jPopupMenu_Rules.add(jMenuItem_CopyRule);
+        jPopupMenu_Rules.add(jSeparator_Popmenu);
+
+        jMenuItem_DeleteRule.setText("Radera regel");
+        jMenuItem_DeleteRule.setToolTipText("Ta bort regel från systemet.");
+        jMenuItem_DeleteRule.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem_DeleteRuleActionPerformed(evt);
+            }
+        });
+        jPopupMenu_Rules.add(jMenuItem_DeleteRule);
 
         setClosable(true);
         setResizable(true);
@@ -135,6 +155,9 @@ public class Rules extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void populateRulesTable() {
+
+        rules_Model = new DefaultTableModel(columnNames, 0);
+        jTable_Rules.setModel(rules_Model);
         
         Connection connection = null;
         try {
@@ -142,7 +165,7 @@ public class Rules extends javax.swing.JInternalFrame {
             connection = DriverManager.getConnection("jdbc:sqlite:db/scale.db");
             Statement statement = connection.createStatement();
 
-            statement.setQueryTimeout(10);  // set timeout to 10 sec.
+            statement.setQueryTimeout(2);  // set timeout to 10 sec.
 
             ResultSet rs = statement.executeQuery("select * from rules order by created_at desc;");
 
@@ -219,30 +242,85 @@ public class Rules extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jTable_RulesMouseClicked
 
     private void jMenuItem_EditRuleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_EditRuleActionPerformed
-        // TODO add your handling code here:
-         
-        //java.lang.Long ts;
-       // ts = Long.decode((String)rules_Model.getValueAt(jTable_Rules.getSelectedRow(), 3));
-        java.sql.Timestamp ts;
-        
-        ts = (java.sql.Timestamp) rules_Model.getValueAt(jTable_Rules.getSelectedRow(), 3);
-       
-//ts = Long.decode("1396380676788");
-        NewRule ERule = new NewRule(ts.getTime());
-        Container Eparent = this.getParent();
 
-        ERule.setLocation(((int) Eparent.getBounds().getWidth() / 2) - (ERule.getWidth() / 2), 2); //Try to center on screen
-        Eparent.add(ERule);
-        ERule.setVisible(true);
+        if (!checkForDialogs()) {
+            java.sql.Timestamp ts;
+
+            ts = (java.sql.Timestamp) rules_Model.getValueAt(jTable_Rules.getSelectedRow(), 3);
+
+            NewRule ERule = new NewRule(ts.getTime());
+            Container Eparent = this.getParent();
+
+            ERule.setLocation(((int) Eparent.getBounds().getWidth() / 2) - (ERule.getWidth() / 2), 2); //Try to center on screen
+            Eparent.add(ERule);
+            ERule.setVisible(true);
+        }
 
     }//GEN-LAST:event_jMenuItem_EditRuleActionPerformed
+
+    private void jMenuItem_DeleteRuleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_DeleteRuleActionPerformed
+
+        if ("Nej".equals(rules_Model.getValueAt(jTable_Rules.getSelectedRow(), 4))) {
+
+            JOptionPane.showMessageDialog(this.getDesktopPane(),
+                    "Det är inte tillåtet att radera denna regel!",
+                    "Regel är inte raderbar!",
+                    JOptionPane.WARNING_MESSAGE);
+        } else {
+
+            java.sql.Timestamp ts;
+
+            ts = (java.sql.Timestamp) rules_Model.getValueAt(jTable_Rules.getSelectedRow(), 3);
+
+            Connection connection = null;
+            try {
+                // create a database connection
+                connection = DriverManager.getConnection("jdbc:sqlite:db/scale.db");
+                Statement statement = connection.createStatement();
+
+                statement.setQueryTimeout(2);  // set timeout to 2 sec.
+
+                int rs = statement.executeUpdate("DELETE FROM rules_static WHERE created_at = '" + ts.getTime() + "';");
+                rs = statement.executeUpdate("DELETE FROM rules_manouvers WHERE created_at = '" + ts.getTime() + "';");
+                rs = statement.executeUpdate("DELETE FROM rules WHERE created_at = '" + ts.getTime() + "';");
+
+            } catch (SQLException e) {
+                // if the error message is "out of memory", 
+                // it probably means no database file is found
+                System.err.println(e.getMessage());
+            } finally {
+                try {
+                    if (connection != null) {
+                        connection.close();
+                    }
+                } catch (SQLException e) {
+
+                    System.err.println(e);
+                }
+            }
+            populateRulesTable();
+        }
+
+    }//GEN-LAST:event_jMenuItem_DeleteRuleActionPerformed
+
+    private void jMenuItem_CopyRuleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_CopyRuleActionPerformed
+        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(this.getDesktopPane(),
+                "Jobba på Niclas! Sluta sov på kvällar å nätter!",
+                "Jag ska impa in kod!",
+                JOptionPane.INFORMATION_MESSAGE);
+
+    }//GEN-LAST:event_jMenuItem_CopyRuleActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JMenuItem jMenuItem_CopyRule;
+    private javax.swing.JMenuItem jMenuItem_DeleteRule;
     private javax.swing.JMenuItem jMenuItem_EditRule;
     private javax.swing.JPopupMenu jPopupMenu_Rules;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JPopupMenu.Separator jSeparator_Popmenu;
     private javax.swing.JTable jTable_Rules;
     // End of variables declaration//GEN-END:variables
 }

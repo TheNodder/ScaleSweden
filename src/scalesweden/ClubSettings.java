@@ -261,7 +261,7 @@ public class ClubSettings extends javax.swing.JInternalFrame {
             // create a database connection
             connection = DriverManager.getConnection("jdbc:sqlite:db/scale.db");
             Statement statement = connection.createStatement();
-            statement.setQueryTimeout(30);  // set timeout to 30 sec.
+            statement.setQueryTimeout(2);  // set timeout to 30 sec.
 
             ResultSet rs = statement.executeQuery("select * from clubsettings");
             while (rs.next()) { // Should only contain 1 row of data !
