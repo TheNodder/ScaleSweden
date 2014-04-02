@@ -5,6 +5,7 @@
  */
 package scalesweden;
 
+import java.beans.PropertyVetoException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -797,8 +798,10 @@ public class NewRule extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         //saveToDB();
         checkToSave();
+        
     }//GEN-LAST:event_formInternalFrameClosing
 
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox jComboBox_RuleType;
     private javax.swing.JComboBox jComboBox_SetClass;

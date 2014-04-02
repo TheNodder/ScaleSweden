@@ -29,7 +29,7 @@ public class Rules extends javax.swing.JInternalFrame {
      */
     public Rules() {
         initComponents();
-        populateRulesTable();
+        //populateRulesTable();
 
     }
 
@@ -87,6 +87,23 @@ public class Rules extends javax.swing.JInternalFrame {
         } catch (java.beans.PropertyVetoException e1) {
             e1.printStackTrace();
         }
+        addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+                formInternalFrameActivated(evt);
+            }
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+            }
+        });
 
         jButton1.setText("Ny regel...");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -154,7 +171,7 @@ public class Rules extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void populateRulesTable() {
+    public void populateRulesTable() {
 
         rules_Model = new DefaultTableModel(columnNames, 0);
         jTable_Rules.setModel(rules_Model);
@@ -311,6 +328,11 @@ public class Rules extends javax.swing.JInternalFrame {
                 JOptionPane.INFORMATION_MESSAGE);
 
     }//GEN-LAST:event_jMenuItem_CopyRuleActionPerformed
+
+    private void formInternalFrameActivated(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameActivated
+        // Refresh the table
+        populateRulesTable();
+    }//GEN-LAST:event_formInternalFrameActivated
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
