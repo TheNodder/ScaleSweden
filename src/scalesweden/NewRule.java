@@ -5,7 +5,6 @@
  */
 package scalesweden;
 
-import java.beans.PropertyVetoException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -44,7 +43,6 @@ public class NewRule extends javax.swing.JInternalFrame {
         initComponents();
         saveMode = 'E';
         created_at = ts;  // set a "class global"
-       // initDropDowns(); // Prepare the dropdowns in the title area
         initTables();    // Prepare the tables
         initManouversColumn(jTable_Manouvers.getColumnModel().getColumn(1)); //Create a dropdownlist in the column
         this.setTitle("Redigera regel...");
@@ -796,9 +794,12 @@ public class NewRule extends javax.swing.JInternalFrame {
 
     private void formInternalFrameClosing(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameClosing
         // TODO add your handling code here:
-        //saveToDB();
-        checkToSave();
-        
+        if(saveMode == 'E'){
+            saveToDB();
+        }
+        else if(saveMode == 'N') {
+            checkToSave();
+        }
     }//GEN-LAST:event_formInternalFrameClosing
 
     
