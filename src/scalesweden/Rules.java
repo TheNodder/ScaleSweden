@@ -175,7 +175,7 @@ public class Rules extends javax.swing.JInternalFrame {
 
         rules_Model = new DefaultTableModel(columnNames, 0);
         jTable_Rules.setModel(rules_Model);
-        
+
         Connection connection = null;
         try {
             // create a database connection
@@ -253,9 +253,10 @@ public class Rules extends javax.swing.JInternalFrame {
 
     private void jTable_RulesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable_RulesMouseClicked
         // TODO add your handling code here:
-        //if(evt == MOUSE_CLICKED){
-        System.out.print("Dubbelklick");
-        //}
+        
+        if (evt.getClickCount() == 2) {
+            System.out.println("Dubbelklick");
+        }
     }//GEN-LAST:event_jTable_RulesMouseClicked
 
     private void jMenuItem_EditRuleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_EditRuleActionPerformed
