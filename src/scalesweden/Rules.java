@@ -324,7 +324,7 @@ public class Rules extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         JOptionPane.showMessageDialog(this.getDesktopPane(),
                 "Jobba på Niclas! Sluta sov på kvällar å nätter!",
-                "Jag ska impa in kod!",
+                "Jag ska ympa in kod!",
                 JOptionPane.INFORMATION_MESSAGE);
 
     }//GEN-LAST:event_jMenuItem_CopyRuleActionPerformed
