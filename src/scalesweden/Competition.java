@@ -43,21 +43,21 @@ public class Competition extends javax.swing.JInternalFrame {
         setName("compDlg"); // NOI18N
         setVisible(false);
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
-            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
-                formInternalFrameActivated(evt);
-            }
-            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
             }
             public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
                 formInternalFrameClosing(evt);
             }
-            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
             }
             public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
             }
-            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+                formInternalFrameActivated(evt);
+            }
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
             }
         });
         addFocusListener(new java.awt.event.FocusAdapter() {
@@ -77,6 +77,7 @@ public class Competition extends javax.swing.JInternalFrame {
             new Object [][] {
                 {"Simmelsberga Scale Trophy - 2013", "2013-06-15", "2013-06-16", "Kenneth Lodnert", "Simmelsberga, Kågeröd"},
                 {"Skala SM", "2013-07-06", "2013-07-07", "Sune Mangs", "Hökafältet, Halmstad"},
+                {"Simmelsberga Scale Trophy 2014", "2014-07-13", "2014-07-15", "Kenneth Lodnert", "Simmelsberga"},
                 {null, null, null, null, null},
                 {null, null, null, null, null},
                 {null, null, null, null, null}
@@ -88,20 +89,18 @@ public class Competition extends javax.swing.JInternalFrame {
             Class[] types = new Class [] {
                 java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class
             };
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
-            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
         });
         jTable1.setToolTipText("Dubbelklicka på raden för att se tävlingen.");
         jTable1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(jTable1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -153,6 +152,22 @@ public class Competition extends javax.swing.JInternalFrame {
     private void formFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_formFocusGained
  
     }//GEN-LAST:event_formFocusGained
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+       
+        javax.swing.JDesktopPane pane;
+        pane = this.getDesktopPane();
+        RunCompetition DoIt = new RunCompetition();
+
+        pane.add(DoIt);
+        try {
+            DoIt.setMaximum(true);
+        } catch (PropertyVetoException ex) {
+            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        DoIt.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jTable1MouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

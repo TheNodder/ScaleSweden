@@ -80,38 +80,43 @@
         <Component class="javax.swing.JTable" name="jTable1">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="5" rowCount="5">
-                <Column editable="false" title="T&#xe4;vling:" type="java.lang.String">
+              <Table columnCount="5" rowCount="6">
+                <Column editable="true" title="T&#xe4;vling:" type="java.lang.String">
                   <Data value="Simmelsberga Scale Trophy - 2013"/>
                   <Data value="Skala SM"/>
+                  <Data value="Simmelsberga Scale Trophy 2014"/>
                   <Data value="null"/>
                   <Data value="null"/>
                   <Data value="null"/>
                 </Column>
-                <Column editable="false" title="Fr&#xe5;n:" type="java.lang.String">
+                <Column editable="true" title="Fr&#xe5;n:" type="java.lang.String">
                   <Data value="2013-06-15"/>
                   <Data value="2013-07-06"/>
+                  <Data value="2014-07-13"/>
                   <Data value="null"/>
                   <Data value="null"/>
                   <Data value="null"/>
                 </Column>
-                <Column editable="false" title="Till:" type="java.lang.String">
+                <Column editable="true" title="Till:" type="java.lang.String">
                   <Data value="2013-06-16"/>
                   <Data value="2013-07-07"/>
+                  <Data value="2014-07-15"/>
                   <Data value="null"/>
                   <Data value="null"/>
                   <Data value="null"/>
                 </Column>
-                <Column editable="false" title="T&#xe4;vlingsledare:" type="java.lang.String">
+                <Column editable="true" title="T&#xe4;vlingsledare:" type="java.lang.String">
                   <Data value="Kenneth Lodnert"/>
                   <Data value="Sune Mangs"/>
+                  <Data value="Kenneth Lodnert"/>
                   <Data value="null"/>
                   <Data value="null"/>
                   <Data value="null"/>
                 </Column>
-                <Column editable="false" title="Ort:" type="java.lang.Object">
+                <Column editable="true" title="Ort:" type="java.lang.Object">
                   <Data value="Simmelsberga, K&#xe5;ger&#xf6;d"/>
                   <Data value="H&#xf6;kaf&#xe4;ltet, Halmstad"/>
+                  <Data value="Simmelsberga"/>
                   <Data value="null"/>
                   <Data value="null"/>
                   <Data value="null"/>
@@ -155,6 +160,9 @@
               <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jTable1MouseClicked"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

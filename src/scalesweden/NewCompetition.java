@@ -4,6 +4,10 @@
  */
 package scalesweden;
 
+import java.beans.PropertyVetoException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Niclas Olsson, Cobton AB
@@ -16,7 +20,7 @@ public class NewCompetition extends javax.swing.JInternalFrame {
     public NewCompetition() {
         initComponents();
         initScaleClasses();
-        
+
     }
 
     /**
@@ -160,6 +164,11 @@ public class NewCompetition extends javax.swing.JInternalFrame {
         });
 
         jButton_Save.setText("Spara");
+        jButton_Save.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_SaveActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -266,6 +275,22 @@ public class NewCompetition extends javax.swing.JInternalFrame {
     private void jCheckBox_F4CActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox_F4CActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jCheckBox_F4CActionPerformed
+
+    private void jButton_SaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_SaveActionPerformed
+        // TODO add your handling code here:
+        javax.swing.JDesktopPane pane;
+        pane = this.getDesktopPane();
+        RunCompetition DoIt = new RunCompetition();
+
+        pane.add(DoIt);
+        try {
+            DoIt.setMaximum(true);
+        } catch (PropertyVetoException ex) {
+            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        DoIt.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton_SaveActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton_Cancel;
