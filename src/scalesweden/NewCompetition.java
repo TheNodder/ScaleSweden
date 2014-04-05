@@ -106,7 +106,7 @@ public class NewCompetition extends javax.swing.JInternalFrame {
 
         jCheckBox_POP.setText("4");
 
-        jComboBox_Pop.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "POP 2013", "POP 2012", "POP 2011", "POP 2010" }));
+        jComboBox_Pop.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Fly Only 2014", "Fly Only Test", "Fly Only", "Just Fly" }));
         jComboBox_Pop.setToolTipText("Välj regelverk för klassen här.");
         jComboBox_Pop.setMinimumSize(new java.awt.Dimension(93, 26));
         jComboBox_Pop.setName(""); // NOI18N
