@@ -45,6 +45,8 @@ public class MainFrame extends javax.swing.JFrame {
         jButtonCompetition = new javax.swing.JButton();
         jButtonRules = new javax.swing.JButton();
         jButtonDocuments = new javax.swing.JButton();
+        jButtonJudges = new javax.swing.JButton();
+        jButtonPilotes = new javax.swing.JButton();
         jButtonSettings = new javax.swing.JButton();
         jDesktopPane1 = new javax.swing.JDesktopPane();
 
@@ -97,6 +99,36 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
         jToolBar1.add(jButtonDocuments);
+
+        jButtonJudges.setText("Domare");
+        jButtonJudges.setToolTipText("");
+        jButtonJudges.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonJudges.setFocusable(false);
+        jButtonJudges.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jButtonJudges.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButtonJudges.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        jButtonJudges.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButtonJudges.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonJudgesActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(jButtonJudges);
+
+        jButtonPilotes.setText("Piloter");
+        jButtonPilotes.setToolTipText("");
+        jButtonPilotes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonPilotes.setFocusable(false);
+        jButtonPilotes.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jButtonPilotes.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButtonPilotes.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        jButtonPilotes.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButtonPilotes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonPilotesActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(jButtonPilotes);
 
         jButtonSettings.setText("Inställningar");
         jButtonSettings.setToolTipText("");
@@ -246,6 +278,14 @@ public class MainFrame extends javax.swing.JFrame {
            
     }//GEN-LAST:event_jButtonDocumentsActionPerformed
 
+    private void jButtonJudgesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonJudgesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonJudgesActionPerformed
+
+    private void jButtonPilotesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPilotesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonPilotesActionPerformed
+
     /**
      * @param args the command line arguments
      * @throws java.lang.ClassNotFoundException
@@ -286,6 +326,8 @@ public class MainFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonCompetition;
     private javax.swing.JButton jButtonDocuments;
+    private javax.swing.JButton jButtonJudges;
+    private javax.swing.JButton jButtonPilotes;
     private javax.swing.JButton jButtonRules;
     private javax.swing.JButton jButtonSettings;
     private javax.swing.JDesktopPane jDesktopPane1;
