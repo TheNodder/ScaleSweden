@@ -15,21 +15,40 @@ public interface ScaleClasses {
     String[] Manouvers_headers = {"Sektion", "Manöver", "K"};
     String[] Empty_Row_Data = { "", "", "" };
     
-    Object[][] Init_Empty_Table = {{ "", "", "" }}; //When creating a new model, populate with no data.
+    Object[][] Init_Empty_Table = {{ "", "", "" }}; //When creating a new model, populate with void data.
     
     String[] ListOfClasses = { "[Välj i listan]", "F4C", "F4H", "Klubbskala", "FlyOnly"};
     
     String[] ListOfRuleType = { "[Välj i listan]", "Klubbregel", "Officiell"};
     
-    String[] ListOfManouvers = { "Approach and Landing", "Chandelle", "Extend and Retract Landing Gear",
-                                "Extend and Retract Flaps", "Dropping of Bombs or Fuel Tanks",
-                                "Stall Turn", "Immelmann Turn", "Loop", "Cuban Eight",
-                                "Split S", "Spin Three Turns", "Roll", "Parachute",
-                                "Touch and Go", "Overshoot", "Side Slip", "Flight in Triangular Circuit",
-                                "Flight in Rectangular Circuit", "Flight in a Straight Line at Constant Height",
-                                "Flight in a Straight Line With One Engine Throttled", "Lazy Eight", 
-                                "Wingover", "Take-Off", "Optional",
-                                "Realism", "Sound(Timbre & rpm)", "Scalespeed", "Harmony in flight - trim"};
+    String[] ListOfManouvers = {"Approach and Landing",
+                                "Chandelle",
+                                "Extend and Retract Landing Gear",
+                                "Extend and Retract Flaps",
+                                "Dropping of Bombs or Fuel Tanks",
+                                "Stall Turn",
+                                "Immelmann Turn",
+                                "Loop",
+                                "Cuban Eight",
+                                "Split S",
+                                "Spin Three Turns",
+                                "Roll",
+                                "Parachute",
+                                "Touch and Go",
+                                "Overshoot",
+                                "Side Slip",
+                                "Flight in Triangular Circuit",
+                                "Flight in Rectangular Circuit",
+                                "Flight in a Straight Line at Constant Height",
+                                "Flight in a Straight Line With One Engine Throttled",
+                                "Lazy Eight", 
+                                "Wingover",
+                                "Take-Off",
+                                "Optional",
+                                "Realism",
+                                "Sound(Timbre & rpm)",
+                                "Scalespeed",
+                                "Harmony in flight - trim"};
     
     /* **************************************************************************************************************
      * Declarations for F4C                                                                                         *

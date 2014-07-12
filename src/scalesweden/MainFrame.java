@@ -28,6 +28,7 @@ public class MainFrame extends javax.swing.JFrame {
      */
     public MainFrame() {
         initComponents();
+        
 
     }
 
@@ -215,7 +216,7 @@ public class MainFrame extends javax.swing.JFrame {
 
            Competition CompList = new Competition();
 
-           Component add = jDesktopPane1.add(CompList);
+           jDesktopPane1.add(CompList);
            CompList.setTitle("Tävlingar");
 
            try {
@@ -263,7 +264,7 @@ public class MainFrame extends javax.swing.JFrame {
        
         
         int showOpenDialog = FileOpener.showOpenDialog(jDesktopPane1);
-               
+              
         if(showOpenDialog == JFileChooser.APPROVE_OPTION) {
             String DocPath = DocDir + FileOpener.getSelectedFile().getName();
             try {
