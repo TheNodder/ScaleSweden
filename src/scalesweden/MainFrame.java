@@ -28,7 +28,6 @@ public class MainFrame extends javax.swing.JFrame {
      */
     public MainFrame() {
         initComponents();
-        
 
     }
 
@@ -58,7 +57,7 @@ public class MainFrame extends javax.swing.JFrame {
         jToolBar1.setRollover(true);
 
         jButtonCompetition.setText("Tävlingar");
-        jButtonCompetition.setToolTipText("");
+        jButtonCompetition.setToolTipText("Här administrerar Du tävlingar.");
         jButtonCompetition.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButtonCompetition.setFocusable(false);
         jButtonCompetition.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -72,7 +71,7 @@ public class MainFrame extends javax.swing.JFrame {
         jToolBar1.add(jButtonCompetition);
 
         jButtonRules.setText("Regler");
-        jButtonRules.setToolTipText("");
+        jButtonRules.setToolTipText("Här hanterar Du regler.");
         jButtonRules.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButtonRules.setFocusable(false);
         jButtonRules.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -87,7 +86,7 @@ public class MainFrame extends javax.swing.JFrame {
         jToolBar1.add(jButtonRules);
 
         jButtonDocuments.setText("Dokument");
-        jButtonDocuments.setToolTipText("");
+        jButtonDocuments.setToolTipText("Här kan Du leta efter dokumnet och regler.");
         jButtonDocuments.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButtonDocuments.setFocusable(false);
         jButtonDocuments.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -102,7 +101,7 @@ public class MainFrame extends javax.swing.JFrame {
         jToolBar1.add(jButtonDocuments);
 
         jButtonJudges.setText("Domare");
-        jButtonJudges.setToolTipText("");
+        jButtonJudges.setToolTipText("Här registrerar Du domare.");
         jButtonJudges.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButtonJudges.setFocusable(false);
         jButtonJudges.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -117,7 +116,7 @@ public class MainFrame extends javax.swing.JFrame {
         jToolBar1.add(jButtonJudges);
 
         jButtonPilotes.setText("Piloter");
-        jButtonPilotes.setToolTipText("");
+        jButtonPilotes.setToolTipText("Här redigerar och lägger till piloter.");
         jButtonPilotes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButtonPilotes.setFocusable(false);
         jButtonPilotes.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -132,7 +131,7 @@ public class MainFrame extends javax.swing.JFrame {
         jToolBar1.add(jButtonPilotes);
 
         jButtonSettings.setText("Inställningar");
-        jButtonSettings.setToolTipText("");
+        jButtonSettings.setToolTipText("Här ställer Du in grundläggande information.");
         jButtonSettings.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButtonSettings.setFocusable(false);
         jButtonSettings.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -192,7 +191,7 @@ public class MainFrame extends javax.swing.JFrame {
                 try {
 
                     allFrame.moveToFront();
-                                      
+
                     if (!dialogName.equals("setDlg")) { //Don't maximize the settingsdialog
                         allFrame.setMaximum(true);
                     }
@@ -212,20 +211,20 @@ public class MainFrame extends javax.swing.JFrame {
     @SuppressWarnings("empty-statement")
     private void jButtonCompetitionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCompetitionActionPerformed
 
-       if (!setModal("compDlg")) {
+        if (!setModal("compDlg")) {
 
-           Competition CompList = new Competition();
+            Competition CompList = new Competition();
 
-           jDesktopPane1.add(CompList);
-           CompList.setTitle("Tävlingar");
+            jDesktopPane1.add(CompList);
+            CompList.setTitle("Tävlingar");
 
-           try {
-               CompList.setMaximum(true);
-           } catch (PropertyVetoException ex) {
-               Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
-           }
-           CompList.setVisible(true);
-       }
+            try {
+                CompList.setMaximum(true);
+            } catch (PropertyVetoException ex) {
+                Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            CompList.setVisible(true);
+        }
 
 
     }//GEN-LAST:event_jButtonCompetitionActionPerformed
@@ -256,27 +255,25 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonSettingsActionPerformed
 
     private void jButtonDocumentsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDocumentsActionPerformed
-        
+
         // Open documents to print/view/edit
-        String DocDir = System.getProperty("user.dir")+"/documents/";
-        
+        String DocDir = System.getProperty("user.dir") + "/documents/";
+
         JFileChooser FileOpener = new JFileChooser(DocDir);
-       
-        
+
         int showOpenDialog = FileOpener.showOpenDialog(jDesktopPane1);
-              
-        if(showOpenDialog == JFileChooser.APPROVE_OPTION) {
+
+        if (showOpenDialog == JFileChooser.APPROVE_OPTION) {
             String DocPath = DocDir + FileOpener.getSelectedFile().getName();
             try {
                 if (Desktop.isDesktopSupported()) {
                     Desktop.getDesktop().open(new File(DocPath)); // Try to open file with associated program
                 }
+            } catch (IOException ioe) {
+                JOptionPane.showMessageDialog(jDesktopPane1, "Det verkar inte finnas något program som kan hantera " + FileOpener.getSelectedFile().getName(), "Problem...", JOptionPane.ERROR_MESSAGE);
             }
-            catch (IOException ioe) {
-                    JOptionPane.showMessageDialog(jDesktopPane1, "Det verkar inte finnas något program som kan hantera " + FileOpener.getSelectedFile().getName(), "Problem...", JOptionPane.ERROR_MESSAGE);
-                }
-             }
-           
+        }
+
     }//GEN-LAST:event_jButtonDocumentsActionPerformed
 
     private void jButtonJudgesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonJudgesActionPerformed
@@ -285,6 +282,12 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void jButtonPilotesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPilotesActionPerformed
         // TODO add your handling code here:
+        Pilots_Edit EditPilot = new Pilots_Edit();
+
+        jDesktopPane1.add(EditPilot);
+        EditPilot.setLocation(((int) jDesktopPane1.getBounds().getWidth() / 2) - (EditPilot.getWidth() / 2), 2); //Try to center on screen
+        EditPilot.setVisible(true);
+
     }//GEN-LAST:event_jButtonPilotesActionPerformed
 
     /**
@@ -295,7 +298,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         /* Invoke the SQLite driver     */
         Class.forName("org.sqlite.JDBC");
-              
+
         /* Set the Nimbus look and feel 
          //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
          /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.

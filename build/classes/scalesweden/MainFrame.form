@@ -57,7 +57,7 @@
         <Component class="javax.swing.JButton" name="jButtonCompetition">
           <Properties>
             <Property name="text" type="java.lang.String" value="T&#xe4;vlingar"/>
-            <Property name="toolTipText" type="java.lang.String" value=""/>
+            <Property name="toolTipText" type="java.lang.String" value="H&#xe4;r administrerar Du t&#xe4;vlingar."/>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
               <Color id="Handmark&#xf6;r"/>
             </Property>
@@ -73,7 +73,7 @@
         <Component class="javax.swing.JButton" name="jButtonRules">
           <Properties>
             <Property name="text" type="java.lang.String" value="Regler"/>
-            <Property name="toolTipText" type="java.lang.String" value=""/>
+            <Property name="toolTipText" type="java.lang.String" value="H&#xe4;r hanterar Du regler."/>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
               <Color id="Handmark&#xf6;r"/>
             </Property>
@@ -90,7 +90,7 @@
         <Component class="javax.swing.JButton" name="jButtonDocuments">
           <Properties>
             <Property name="text" type="java.lang.String" value="Dokument"/>
-            <Property name="toolTipText" type="java.lang.String" value=""/>
+            <Property name="toolTipText" type="java.lang.String" value="H&#xe4;r kan Du leta efter dokumnet och regler."/>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
               <Color id="Handmark&#xf6;r"/>
             </Property>
@@ -107,7 +107,7 @@
         <Component class="javax.swing.JButton" name="jButtonJudges">
           <Properties>
             <Property name="text" type="java.lang.String" value="Domare"/>
-            <Property name="toolTipText" type="java.lang.String" value=""/>
+            <Property name="toolTipText" type="java.lang.String" value="H&#xe4;r registrerar Du domare."/>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
               <Color id="Handmark&#xf6;r"/>
             </Property>
@@ -124,7 +124,7 @@
         <Component class="javax.swing.JButton" name="jButtonPilotes">
           <Properties>
             <Property name="text" type="java.lang.String" value="Piloter"/>
-            <Property name="toolTipText" type="java.lang.String" value=""/>
+            <Property name="toolTipText" type="java.lang.String" value="H&#xe4;r redigerar och l&#xe4;gger till piloter."/>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
               <Color id="Handmark&#xf6;r"/>
             </Property>
@@ -141,7 +141,7 @@
         <Component class="javax.swing.JButton" name="jButtonSettings">
           <Properties>
             <Property name="text" type="java.lang.String" value="Inst&#xe4;llningar"/>
-            <Property name="toolTipText" type="java.lang.String" value=""/>
+            <Property name="toolTipText" type="java.lang.String" value="H&#xe4;r st&#xe4;ller Du in grundl&#xe4;ggande information."/>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
               <Color id="Handmark&#xf6;r"/>
             </Property>
