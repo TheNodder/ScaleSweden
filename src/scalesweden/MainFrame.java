@@ -45,7 +45,6 @@ public class MainFrame extends javax.swing.JFrame {
         jButtonCompetition = new javax.swing.JButton();
         jButtonRules = new javax.swing.JButton();
         jButtonDocuments = new javax.swing.JButton();
-        jButtonJudges = new javax.swing.JButton();
         jButtonPilotes = new javax.swing.JButton();
         jButtonSettings = new javax.swing.JButton();
         jDesktopPane1 = new javax.swing.JDesktopPane();
@@ -100,22 +99,7 @@ public class MainFrame extends javax.swing.JFrame {
         });
         jToolBar1.add(jButtonDocuments);
 
-        jButtonJudges.setText("Domare");
-        jButtonJudges.setToolTipText("Här registrerar Du domare.");
-        jButtonJudges.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButtonJudges.setFocusable(false);
-        jButtonJudges.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jButtonJudges.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButtonJudges.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        jButtonJudges.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButtonJudges.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonJudgesActionPerformed(evt);
-            }
-        });
-        jToolBar1.add(jButtonJudges);
-
-        jButtonPilotes.setText("Piloter");
+        jButtonPilotes.setText("Aktiva");
         jButtonPilotes.setToolTipText("Här redigerar och lägger till piloter.");
         jButtonPilotes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButtonPilotes.setFocusable(false);
@@ -276,13 +260,9 @@ public class MainFrame extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jButtonDocumentsActionPerformed
 
-    private void jButtonJudgesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonJudgesActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonJudgesActionPerformed
-
     private void jButtonPilotesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPilotesActionPerformed
         // TODO add your handling code here:
-        Pilots_Edit EditPilot = new Pilots_Edit();
+        People_Edit EditPilot = new People_Edit();
 
         jDesktopPane1.add(EditPilot);
         EditPilot.setLocation(((int) jDesktopPane1.getBounds().getWidth() / 2) - (EditPilot.getWidth() / 2), 2); //Try to center on screen
@@ -330,7 +310,6 @@ public class MainFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonCompetition;
     private javax.swing.JButton jButtonDocuments;
-    private javax.swing.JButton jButtonJudges;
     private javax.swing.JButton jButtonPilotes;
     private javax.swing.JButton jButtonRules;
     private javax.swing.JButton jButtonSettings;
