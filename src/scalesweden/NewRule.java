@@ -655,7 +655,7 @@ public class NewRule extends javax.swing.JInternalFrame {
             // create a database connection
             connection = DriverManager.getConnection("jdbc:sqlite:db/scale.db");
             Statement statement = connection.createStatement();
-            statement.setQueryTimeout(2);
+            statement.setQueryTimeout(15);
 
             if (saveMode == 'E') {
                 // Update the rules-table in the DB

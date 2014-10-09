@@ -417,7 +417,7 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jScrollPane_Manouvers" alignment="0" pref="435" max="32767" attributes="0"/>
+                  <Component id="jScrollPane_Manouvers" alignment="0" pref="451" max="32767" attributes="0"/>
                   <Component id="jPanelManouvers_judges" alignment="0" max="32767" attributes="0"/>
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>

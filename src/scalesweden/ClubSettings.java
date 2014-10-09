@@ -177,6 +177,7 @@ public class ClubSettings extends javax.swing.JInternalFrame {
         });
         getContentPane().add(jTextField_AirField, new org.netbeans.lib.awtextra.AbsoluteConstraints(159, 79, 160, -1));
 
+        jLabel_Saved.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel_Saved.setForeground(new java.awt.Color(51, 255, 0));
         jLabel_Saved.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel_Saved.setLabelFor(this);
