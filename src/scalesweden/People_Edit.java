@@ -39,12 +39,12 @@ public class People_Edit extends javax.swing.JInternalFrame {
     /**
      * Creates new form Pilots_Edit
      */
-    char SaveMode; //SaveMode=0 for a new record. SaveMode=1 for edit record
+    char SaveMode; //SaveMode='N' for a new record. SaveMode='E' for edit record
     
     public People_Edit() { //Add new pilot
         initComponents();
         jTable_Planes.setEnabled(false);
-        SaveMode = 0;
+        SaveMode = 'N';
         
         initClassesColumn(jTable_Planes.getColumnModel().getColumn(1)); //Create a dropdownlist in the column
     }
@@ -505,7 +505,7 @@ public class People_Edit extends javax.swing.JInternalFrame {
                 Thread.sleep(200);
             } catch (InterruptedException e) {
             }
-            if(SaveMode==0){ //Add new record
+            if(SaveMode=='N'){ //Add new record
                 rs = statement.executeUpdate("INSERT INTO people (nationalnbr, prefix, clubname, clubnr, name, lastname, postadress, streetadress, zipcode, town, phonenbr, cellphone, judge, F4C, F4H, FlyOnly, pilot) "
                         + "VALUES ('" + jTextField_nationalnbr.getText() + "', '" + jTextField_prefix.getText() + "', '"
                         + jTextField_clubname.getText() + "', '" + jTextField_clubnbr.getText() + "', '"
@@ -516,7 +516,7 @@ public class People_Edit extends javax.swing.JInternalFrame {
                         + jCheckBox_Judge.isSelected() + "', '" + jToggleButton_F4C.isSelected() + "', '"
                         + jToggleButton_F4H.isSelected() + "', '" + jToggleButton_FlyOnly.isSelected() + "', '" + jCheckBox_Pilot.isSelected() + "');" );
                 if(rs > 0){
-                    SaveMode=1; // Change to edit mode
+                    SaveMode = 'E'; // Change to edit mode
                     for (int i = 0; i < jTable_Planes.getRowCount(); i++) {
                         rs = statement.executeUpdate("INSERT INTO people_aeroplanes (nationalnbr,prefix, model, class, aerobatic, scale, multipleEngines)"
                                 + "VALUES ('" + jTextField_nationalnbr.getText() + "', '" + jTextField_prefix.getText() + "', '"
