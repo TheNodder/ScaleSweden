@@ -15,7 +15,6 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
-
 package scalesweden;
 
 import java.awt.Color;
@@ -40,16 +39,17 @@ public class People_Edit extends javax.swing.JInternalFrame {
      * Creates new form Pilots_Edit
      */
     char SaveMode; //SaveMode='N' for a new record. SaveMode='E' for edit record
-    
+    String nationnbr;
+
     public People_Edit() { //Add new pilot
         initComponents();
         jTable_Planes.setEnabled(false);
         SaveMode = 'N';
-        
+
         initClassesColumn(jTable_Planes.getColumnModel().getColumn(1)); //Create a dropdownlist in the column
     }
 
-     private void initClassesColumn(TableColumn classesColumn) {
+    private void initClassesColumn(TableColumn classesColumn) {
         //Set up the editor for the classes-column.
         JComboBox classesComboBox = new JComboBox(ListOfClasses);
 
@@ -60,6 +60,7 @@ public class People_Edit extends javax.swing.JInternalFrame {
         renderer.setToolTipText("Klicka för att välja från listan.");
         classesColumn.setCellRenderer(renderer);
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -451,72 +452,73 @@ public class People_Edit extends javax.swing.JInternalFrame {
 
     private void jCheckBox_JudgeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox_JudgeActionPerformed
         // TODO add your handling code here:
-        if(jCheckBox_Judge.isSelected()){
+        if (jCheckBox_Judge.isSelected()) {
             jToggleButton_F4C.setEnabled(true);
             jToggleButton_F4H.setEnabled(true);
             jToggleButton_FlyOnly.setEnabled(true);
-        }
-        else {
+        } else {
             jToggleButton_F4C.setEnabled(false);
             jToggleButton_F4H.setEnabled(false);
             jToggleButton_FlyOnly.setEnabled(false);
         }
-            
+
     }//GEN-LAST:event_jCheckBox_JudgeActionPerformed
 
     private void jButton_closeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_closeActionPerformed
-        
+
         this.dispose();
     }//GEN-LAST:event_jButton_closeActionPerformed
 
     private void jCheckBox_PilotActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox_PilotActionPerformed
-        
-        if(jCheckBox_Pilot.isSelected()){
+
+        if (jCheckBox_Pilot.isSelected()) {
             jTable_Planes.setEnabled(true);
-        }
-        else {
+        } else {
             jTable_Planes.setEnabled(false);
         }
-            
+
     }//GEN-LAST:event_jCheckBox_PilotActionPerformed
 
     private void jButton_saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_saveActionPerformed
-        
-        if(jTextField_nationalnbr.getText().equals("")){
+
+        if (jTextField_nationalnbr.getText().equals("")) {
             jTextField_nationalnbr.setBackground(Color.red);
-            JOptionPane.showMessageDialog(this, "Du måste ange personens medlemsnummer i SMFF", "SWE-?????", JOptionPane.ERROR_MESSAGE);            
+            JOptionPane.showMessageDialog(this, "Du måste ange personens medlemsnummer i SMFF", "SWE-?????", JOptionPane.ERROR_MESSAGE);
         } else {
             saveToDB();
         }
     }//GEN-LAST:event_jButton_saveActionPerformed
 
-    private void saveToDB(){
-          Connection connection = null;
+    private void saveToDB() {
+        Connection connection = null;
         try {
             // create a database connection
             connection = DriverManager.getConnection("jdbc:sqlite:db/scale.db");
             Statement statement = connection.createStatement();
             statement.setQueryTimeout(15);  // set timeout to 15 sec.
 
-            // Insert new record
             int rs;
-            
+
             try {
                 Thread.sleep(200);
             } catch (InterruptedException e) {
             }
-            if(SaveMode=='N'){ //Add new record
+            if (SaveMode == 'E') { //Edit the Active Person
+                /* Why just not update the record? Well, cause there might be typo when entering the Nationalnbr */
+
+                rs = statement.executeUpdate("delete from people where prefix='SWE' and nationalnbr='" + nationnbr + "';");
                 rs = statement.executeUpdate("INSERT INTO people (nationalnbr, prefix, clubname, clubnr, name, lastname, postadress, streetadress, zipcode, town, phonenbr, cellphone, judge, F4C, F4H, FlyOnly, pilot) "
                         + "VALUES ('" + jTextField_nationalnbr.getText() + "', '" + jTextField_prefix.getText() + "', '"
                         + jTextField_clubname.getText() + "', '" + jTextField_clubnbr.getText() + "', '"
                         + jTextField_name.getText() + "', '" + jTextField_lastname.getText() + "', '"
                         + jTextField_postadress.getText() + "', '" + jTextField_streetadress.getText() + "', '"
-                        + jTextField_zipcode.getText() + "', '" + jTextField_town.getText() + "', '" 
-                        + jTextField_phonenbr.getText() + "', '" +  jTextField_cellphone.getText() + "', '" 
+                        + jTextField_zipcode.getText() + "', '" + jTextField_town.getText() + "', '"
+                        + jTextField_phonenbr.getText() + "', '" + jTextField_cellphone.getText() + "', '"
                         + jCheckBox_Judge.isSelected() + "', '" + jToggleButton_F4C.isSelected() + "', '"
-                        + jToggleButton_F4H.isSelected() + "', '" + jToggleButton_FlyOnly.isSelected() + "', '" + jCheckBox_Pilot.isSelected() + "');" );
-                if(rs > 0){
-                    SaveMode = 'E'; // Change to edit mode
+                        + jToggleButton_F4H.isSelected() + "', '" + jToggleButton_FlyOnly.isSelected() + "', '" + jCheckBox_Pilot.isSelected() + "');");
+                if (rs > 0) {
+                    rs = statement.executeUpdate("delete from people_aeroplanes where prefix='SWE' and nationalnbr='" + nationnbr + "';");
+                    
                     for (int i = 0; i < jTable_Planes.getRowCount(); i++) {
                         rs = statement.executeUpdate("INSERT INTO people_aeroplanes (nationalnbr,prefix, model, class, aerobatic, scale, multipleEngines)"
                                 + "VALUES ('" + jTextField_nationalnbr.getText() + "', '" + jTextField_prefix.getText() + "', '"
@@ -525,19 +527,51 @@ public class People_Edit extends javax.swing.JInternalFrame {
                                 + jTable_Planes.getValueAt(i, 2) + "', '"
                                 + jTable_Planes.getValueAt(i, 3) + "', '"
                                 + jTable_Planes.getValueAt(i, 4) + "');");
-                        if(rs>0){
-                            System.err.println("Howdy");   
+                        if (rs > 0) {
+                            System.err.println("New Active Person added");
                         }
                     }
-                    
+                    //SaveMode = 'E'; // Change to edit mode
+                    //jTextField_nationalnbr.setEnabled(false);
+                    nationnbr = jTextField_nationalnbr.getText(); //Update for local use
                 }
-            } else { // Edit record
-                
+
+            } else if (SaveMode == 'N') { //Add new Active Person
+                rs = statement.executeUpdate("INSERT INTO people (nationalnbr, prefix, clubname, clubnr, name, lastname, postadress, streetadress, zipcode, town, phonenbr, cellphone, judge, F4C, F4H, FlyOnly, pilot) "
+                        + "VALUES ('" + jTextField_nationalnbr.getText() + "', '" + jTextField_prefix.getText() + "', '"
+                        + jTextField_clubname.getText() + "', '" + jTextField_clubnbr.getText() + "', '"
+                        + jTextField_name.getText() + "', '" + jTextField_lastname.getText() + "', '"
+                        + jTextField_postadress.getText() + "', '" + jTextField_streetadress.getText() + "', '"
+                        + jTextField_zipcode.getText() + "', '" + jTextField_town.getText() + "', '"
+                        + jTextField_phonenbr.getText() + "', '" + jTextField_cellphone.getText() + "', '"
+                        + jCheckBox_Judge.isSelected() + "', '" + jToggleButton_F4C.isSelected() + "', '"
+                        + jToggleButton_F4H.isSelected() + "', '" + jToggleButton_FlyOnly.isSelected() + "', '" + jCheckBox_Pilot.isSelected() + "');");
+                if (rs > 0) {
+                    
+                    for (int i = 0; i < jTable_Planes.getRowCount(); i++) {
+                        rs = statement.executeUpdate("INSERT INTO people_aeroplanes (nationalnbr,prefix, model, class, aerobatic, scale, multipleEngines)"
+                                + "VALUES ('" + jTextField_nationalnbr.getText() + "', '" + jTextField_prefix.getText() + "', '"
+                                + jTable_Planes.getValueAt(i, 0) + "', '"
+                                + jTable_Planes.getValueAt(i, 1) + "', '"
+                                + jTable_Planes.getValueAt(i, 2) + "', '"
+                                + jTable_Planes.getValueAt(i, 3) + "', '"
+                                + jTable_Planes.getValueAt(i, 4) + "');");
+                        if (rs > 0) {
+                            System.err.println("New Active Person added");
+                        }
+                    }
+                    SaveMode = 'E'; // Change to edit mode
+                    //jTextField_nationalnbr.setEnabled(false);       
+                    nationnbr = jTextField_nationalnbr.getText(); //Update for local use
+                }
+
+            } else { // Not a valid mode
+                System.err.println("Unknown mode when saving Active Person. Mode:" + SaveMode);
             }
         } catch (SQLException e) {
             // if the error message is "out of memory", 
             // it probably means no database file is found
-            System.err.println(e.getMessage() + ": " + e.getErrorCode() +":" + e.getSQLState());
+            System.err.println(e.getMessage() + ": " + e.getErrorCode() + ":" + e.getSQLState());
         } finally {
             try {
                 if (connection != null) {
