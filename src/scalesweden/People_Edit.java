@@ -49,16 +49,30 @@ public class People_Edit extends javax.swing.JInternalFrame {
         initClassesColumn(jTable_Planes.getColumnModel().getColumn(1)); //Create a dropdownlist in the column
     }
 
+    public People_Edit(String nation, String nbr){ //Edit a pilot
+        initComponents();
+        jTable_Planes.setEnabled(false);
+        SaveMode = 'E';
+        initClassesColumn(jTable_Planes.getColumnModel().getColumn(1)); //Create a dropdownlist in the column
+        populatePeople();
+    }
+    
+    private void populatePeople(){
+        
+    }
+    
     private void initClassesColumn(TableColumn classesColumn) {
         //Set up the editor for the classes-column.
         JComboBox classesComboBox = new JComboBox(ListOfClasses);
 
         classesColumn.setCellEditor(new DefaultCellEditor(classesComboBox));
 
-        //Set up tool tip for the manouver cells.
+        //Set up tool tip for the class cells.
         DefaultTableCellRenderer renderer = new DefaultTableCellRenderer();
         renderer.setToolTipText("Klicka för att välja från listan.");
         classesColumn.setCellRenderer(renderer);
+        classesColumn.setModelIndex(1);
+                
     }
 
     /**
@@ -110,6 +124,7 @@ public class People_Edit extends javax.swing.JInternalFrame {
         setClosable(true);
         setTitle("Aktiva - Redigera/Visa");
         setToolTipText("");
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jLabel1.setText("SMFF-nr:");
         jLabel1.setToolTipText("");
@@ -314,54 +329,6 @@ public class People_Edit extends javax.swing.JInternalFrame {
                             .addComponent(jTextField_town)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(2, 2, 2)
-                                .addComponent(jLabel11))
-                            .addComponent(jTextField_phonenbr, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(9, 9, 9)
-                                .addComponent(jLabel12))
-                            .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField_cellphone, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(2, 2, 2)
-                                        .addComponent(jLabel2))
-                                    .addComponent(jTextField_prefix, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1)
-                                    .addComponent(jTextField_nationalnbr, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel5)
-                                        .addGap(0, 0, Short.MAX_VALUE))
-                                    .addComponent(jTextField_clubname))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(2, 2, 2)
-                                        .addComponent(jLabel6))
-                                    .addComponent(jTextField_clubnbr, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jTextField_name, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel4)
-                                        .addGap(177, 209, Short.MAX_VALUE))
-                                    .addComponent(jTextField_lastname))))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel7)
                             .addComponent(jTextField_postadress, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -374,7 +341,56 @@ public class People_Edit extends javax.swing.JInternalFrame {
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jButton_save)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton_close)))
+                        .addComponent(jButton_close))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(2, 2, 2)
+                                        .addComponent(jLabel11))
+                                    .addComponent(jTextField_phonenbr, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(9, 9, 9)
+                                        .addComponent(jLabel12))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jTextField_cellphone, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addGap(2, 2, 2)
+                                            .addComponent(jLabel2))
+                                        .addComponent(jTextField_prefix, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel1)
+                                        .addComponent(jTextField_nationalnbr, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(jLabel5)
+                                            .addGap(0, 0, Short.MAX_VALUE))
+                                        .addComponent(jTextField_clubname))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addGap(2, 2, 2)
+                                            .addComponent(jLabel6))
+                                        .addComponent(jTextField_clubnbr, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel3)
+                                        .addComponent(jTextField_name, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(jLabel4)
+                                            .addGap(177, 209, Short.MAX_VALUE))
+                                        .addComponent(jTextField_lastname)))))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -484,8 +500,11 @@ public class People_Edit extends javax.swing.JInternalFrame {
         if (jTextField_nationalnbr.getText().equals("")) {
             jTextField_nationalnbr.setBackground(Color.red);
             JOptionPane.showMessageDialog(this, "Du måste ange personens medlemsnummer i SMFF", "SWE-?????", JOptionPane.ERROR_MESSAGE);
-        } else {
+        } 
+        
+        else {
             saveToDB();
+            jTextField_nationalnbr.setBackground(Color.white);
         }
     }//GEN-LAST:event_jButton_saveActionPerformed
 
@@ -527,9 +546,9 @@ public class People_Edit extends javax.swing.JInternalFrame {
                                 + jTable_Planes.getValueAt(i, 2) + "', '"
                                 + jTable_Planes.getValueAt(i, 3) + "', '"
                                 + jTable_Planes.getValueAt(i, 4) + "');");
-                        if (rs > 0) {
+                      /*  if (rs > 0) {
                             System.err.println("New Active Person added");
-                        }
+                        }*/
                     }
                     //SaveMode = 'E'; // Change to edit mode
                     //jTextField_nationalnbr.setEnabled(false);
@@ -556,9 +575,9 @@ public class People_Edit extends javax.swing.JInternalFrame {
                                 + jTable_Planes.getValueAt(i, 2) + "', '"
                                 + jTable_Planes.getValueAt(i, 3) + "', '"
                                 + jTable_Planes.getValueAt(i, 4) + "');");
-                        if (rs > 0) {
+                    /*    if (rs > 0) {
                             System.err.println("New Active Person added");
-                        }
+                        }*/
                     }
                     SaveMode = 'E'; // Change to edit mode
                     //jTextField_nationalnbr.setEnabled(false);       

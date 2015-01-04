@@ -182,7 +182,7 @@ public class Rules extends javax.swing.JInternalFrame {
             connection = DriverManager.getConnection("jdbc:sqlite:db/scale.db");
             Statement statement = connection.createStatement();
 
-            statement.setQueryTimeout(2);  // set timeout to 10 sec.
+            statement.setQueryTimeout(15);  // set timeout to 15 sec.
 
             ResultSet rs = statement.executeQuery("select * from rules order by created_at desc;");
 
@@ -193,6 +193,7 @@ public class Rules extends javax.swing.JInternalFrame {
                 for (int i = 0; i < rs.getMetaData().getColumnCount(); i++) {
                     if ("created_at".equals(rs.getMetaData().getColumnName(i + 1))) {
                         row[i] = rs.getTimestamp(i + 1); //Convert timestamp to human readable
+                        //row[i] = rs.getObject(i + 1);
                     } else {
                         row[i] = rs.getObject(i + 1);
                     }
@@ -203,6 +204,7 @@ public class Rules extends javax.swing.JInternalFrame {
             // if the error message is "out of memory", 
             // it probably means no database file is found
             System.err.println(e.getMessage());
+           // JOptionPane.showMessageDialog(this, "Problem: " + System.err.(e.getMessage()) "Problem...", JOptionPane.ERROR_MESSAGE);
         } finally {
             try {
                 if (connection != null) {
