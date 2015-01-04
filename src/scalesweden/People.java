@@ -35,8 +35,7 @@ public class People extends javax.swing.JInternalFrame {
 
     Object[] columnNames = {"Förnamn:", "Efternamn:", "Prefix:", "Nationellt nr:", "Klubb:"};
     private DefaultTableModel people_Model;
-    static int clack = 0;
-    static int selectedRow = 0;
+    
 
     /**
      * Creates new form People
@@ -111,6 +110,9 @@ public class People extends javax.swing.JInternalFrame {
         jTable_People.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTable_PeopleMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jTable_PeopleMousePressed(evt);
             }
         });
         jScrollPane1.setViewportView(jTable_People);
@@ -205,14 +207,15 @@ public class People extends javax.swing.JInternalFrame {
         }
         return retVal; //We didn't find any dialog so maybe we should allow a creation ?
     }
-    
-   private void showEditDialog() {
+
+    private void showEditDialog() {
         if (!checkForDialogs()) {
-            java.sql.Timestamp ts;
+            // java.sql.Timestamp ts;
 
-            ts = (java.sql.Timestamp) jTable_People.getValueAt(jTable_People.getSelectedRow(), 3);
+            String nation = (String) jTable_People.getValueAt(jTable_People.getSelectedRow(), 2);
+            String nbr = (String) jTable_People.getValueAt(jTable_People.getSelectedRow(), 3);
 
-            People_Edit EditPilot = new People_Edit();
+            People_Edit EditPilot = new People_Edit(nation, nbr);
             Container parent = this.getParent();
 
             EditPilot.setLocation(((int) parent.getBounds().getWidth() / 2) - (EditPilot.getWidth() / 2), 2); //Try to center on screen
@@ -220,11 +223,18 @@ public class People extends javax.swing.JInternalFrame {
             EditPilot.setVisible(true);
         }
     }
-   
+
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
-        showEditDialog();
+        if (!checkForDialogs()) {
+            
+            People_Edit EditPilot = new People_Edit();
+            Container parent = this.getParent();
 
+            EditPilot.setLocation(((int) parent.getBounds().getWidth() / 2) - (EditPilot.getWidth() / 2), 2); //Try to center on screen
+            parent.add(EditPilot);
+            EditPilot.setVisible(true);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void formInternalFrameActivated(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameActivated
@@ -234,17 +244,16 @@ public class People extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_formInternalFrameActivated
 
     private void jTable_PeopleMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable_PeopleMouseClicked
-        // TODO add your handling code here:
-        clack += 1;
-
-        if (clack >= 2 && selectedRow == jTable_People.getSelectedRow()) {
-
-            System.out.println("Dubbelklick" + evt.getClickCount());
-            clack = 0;
-            showEditDialog();
-        }
-        selectedRow = jTable_People.getSelectedRow();
+       
     }//GEN-LAST:event_jTable_PeopleMouseClicked
+
+    private void jTable_PeopleMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable_PeopleMousePressed
+        // TODO add your handling code here:
+        if (evt.getClickCount() == 2){
+            showEditDialog();
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTable_PeopleMousePressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

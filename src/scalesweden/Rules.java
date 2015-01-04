@@ -23,9 +23,7 @@ public class Rules extends javax.swing.JInternalFrame {
 
     Object[] columnNames = {"Namn:", "Tävlingsklass:", "Typ av regel:", "Skapad:", "Redigerbar:"};
     private DefaultTableModel rules_Model;
-    static int clack = 0;
-    static int selectedRow = 0;
-
+    
     /**
      * Creates new form Rules
      */
@@ -143,6 +141,9 @@ public class Rules extends javax.swing.JInternalFrame {
         jTable_Rules.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTable_RulesMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jTable_RulesMousePressed(evt);
             }
         });
         jScrollPane1.setViewportView(jTable_Rules);
@@ -276,17 +277,7 @@ public class Rules extends javax.swing.JInternalFrame {
     
     private void jTable_RulesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable_RulesMouseClicked
         
-        clack += 1;
-        
-        if (clack >= 2 && selectedRow == jTable_Rules.getSelectedRow()) {
-
-            System.out.println("Dubbelklick" + evt.getClickCount());
-            clack = 0;
-            showEditDialog();
-        } 
-        selectedRow = jTable_Rules.getSelectedRow();
-      //  System.out.println("SelectedRow " + selectedRow);
-      //  System.out.println("Klickad " + clack);
+    
     }//GEN-LAST:event_jTable_RulesMouseClicked
 
     private void jMenuItem_EditRuleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_EditRuleActionPerformed
@@ -353,6 +344,14 @@ public class Rules extends javax.swing.JInternalFrame {
         populateRulesTable();
         checkForDialogs();
     }//GEN-LAST:event_formInternalFrameActivated
+
+    private void jTable_RulesMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable_RulesMousePressed
+        // TODO add your handling code here:
+        if (evt.getClickCount() == 2){
+            showEditDialog();
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTable_RulesMousePressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
