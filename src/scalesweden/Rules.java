@@ -23,6 +23,8 @@ public class Rules extends javax.swing.JInternalFrame {
 
     Object[] columnNames = {"Namn:", "Tävlingsklass:", "Typ av regel:", "Skapad:", "Redigerbar:"};
     private DefaultTableModel rules_Model;
+    static int clack = 0;
+    static int selectedRow = 0;
 
     /**
      * Creates new form Rules
@@ -174,8 +176,9 @@ public class Rules extends javax.swing.JInternalFrame {
     public void populateRulesTable() {
 
         rules_Model = new DefaultTableModel(columnNames, 0);
+                
         jTable_Rules.setModel(rules_Model);
-
+       
         Connection connection = null;
         try {
             // create a database connection
@@ -193,18 +196,21 @@ public class Rules extends javax.swing.JInternalFrame {
                 for (int i = 0; i < rs.getMetaData().getColumnCount(); i++) {
                     if ("created_at".equals(rs.getMetaData().getColumnName(i + 1))) {
                         row[i] = rs.getTimestamp(i + 1); //Convert timestamp to human readable
-                        //row[i] = rs.getObject(i + 1);
+                        
                     } else {
                         row[i] = rs.getObject(i + 1);
+                        
                     }
+                    
                 }
                 rules_Model.addRow(row);
+                
             }
         } catch (SQLException e) {
             // if the error message is "out of memory", 
             // it probably means no database file is found
             System.err.println(e.getMessage());
-           // JOptionPane.showMessageDialog(this, "Problem: " + System.err.(e.getMessage()) "Problem...", JOptionPane.ERROR_MESSAGE);
+            // JOptionPane.showMessageDialog(this, "Problem: " + System.err.(e.getMessage()) "Problem...", JOptionPane.ERROR_MESSAGE);
         } finally {
             try {
                 if (connection != null) {
@@ -253,16 +259,7 @@ public class Rules extends javax.swing.JInternalFrame {
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jTable_RulesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable_RulesMouseClicked
-        // TODO add your handling code here:
-        
-        if (evt.getClickCount() == 2) {
-            System.out.println("Dubbelklick");
-        }
-    }//GEN-LAST:event_jTable_RulesMouseClicked
-
-    private void jMenuItem_EditRuleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_EditRuleActionPerformed
-
+    private void showEditDialog() {
         if (!checkForDialogs()) {
             java.sql.Timestamp ts;
 
@@ -275,7 +272,26 @@ public class Rules extends javax.swing.JInternalFrame {
             Eparent.add(ERule);
             ERule.setVisible(true);
         }
+    }
+    
+    private void jTable_RulesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable_RulesMouseClicked
+        
+        clack += 1;
+        
+        if (clack >= 2 && selectedRow == jTable_Rules.getSelectedRow()) {
 
+            System.out.println("Dubbelklick" + evt.getClickCount());
+            clack = 0;
+            showEditDialog();
+        } 
+        selectedRow = jTable_Rules.getSelectedRow();
+      //  System.out.println("SelectedRow " + selectedRow);
+      //  System.out.println("Klickad " + clack);
+    }//GEN-LAST:event_jTable_RulesMouseClicked
+
+    private void jMenuItem_EditRuleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_EditRuleActionPerformed
+
+        showEditDialog();
     }//GEN-LAST:event_jMenuItem_EditRuleActionPerformed
 
     private void jMenuItem_DeleteRuleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_DeleteRuleActionPerformed
@@ -335,6 +351,7 @@ public class Rules extends javax.swing.JInternalFrame {
     private void formInternalFrameActivated(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameActivated
         // Refresh the table
         populateRulesTable();
+        checkForDialogs();
     }//GEN-LAST:event_formInternalFrameActivated
 
 

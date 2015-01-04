@@ -262,12 +262,23 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void jButtonPilotesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPilotesActionPerformed
         // TODO add your handling code here:
-        People_Edit EditPilot = new People_Edit();
-
-        jDesktopPane1.add(EditPilot);
-        EditPilot.setLocation(((int) jDesktopPane1.getBounds().getWidth() / 2) - (EditPilot.getWidth() / 2), 2); //Try to center on screen
-        EditPilot.setVisible(true);
-
+        
+        
+       if (!setModal("peopleDlg")) {
+            People PeopleList = new People();
+            jDesktopPane1.add(PeopleList);
+             try {
+                PeopleList.setMaximum(true);
+            } catch (PropertyVetoException ex) {
+                Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            PeopleList.setVisible(true);
+        } 
+        
+       
+        
+        
     }//GEN-LAST:event_jButtonPilotesActionPerformed
 
     /**

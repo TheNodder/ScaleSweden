@@ -31,7 +31,7 @@ import static scalesweden.ScaleClasses.ListOfClasses;
 
 /**
  *
- * @author Niclas
+ * @author Niclas Olsson, Cobton AB
  */
 public class People_Edit extends javax.swing.JInternalFrame {
 
@@ -125,6 +125,7 @@ public class People_Edit extends javax.swing.JInternalFrame {
         setTitle("Aktiva - Redigera/Visa");
         setToolTipText("");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        setName("peopleEdit"); // NOI18N
 
         jLabel1.setText("SMFF-nr:");
         jLabel1.setToolTipText("");
