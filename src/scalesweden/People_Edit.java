@@ -20,12 +20,15 @@ package scalesweden;
 import java.awt.Color;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.DefaultCellEditor;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import static scalesweden.ScaleClasses.ListOfClasses;
 
@@ -38,6 +41,7 @@ public class People_Edit extends javax.swing.JInternalFrame {
     /**
      * Creates new form Pilots_Edit
      */
+    Object[] columnNames = {"Modell:", "Klass:", "Aerobatic:", "Skala:", "Flermotorigt:"};
     char SaveMode; //SaveMode='N' for a new record. SaveMode='E' for edit record
     String nationnbr;
 
@@ -45,22 +49,106 @@ public class People_Edit extends javax.swing.JInternalFrame {
         initComponents();
         jTable_Planes.setEnabled(false);
         SaveMode = 'N';
-
         initClassesColumn(jTable_Planes.getColumnModel().getColumn(1)); //Create a dropdownlist in the column
     }
 
-    public People_Edit(String nation, String nbr){ //Edit a pilot
+    public People_Edit(String prefix, String nbr) { //Edit a pilot
         initComponents();
         jTable_Planes.setEnabled(false);
         SaveMode = 'E';
-        initClassesColumn(jTable_Planes.getColumnModel().getColumn(1)); //Create a dropdownlist in the column
-        populatePeople();
+       // initClassesColumn(jTable_Planes.getColumnModel().getColumn(1)); //Create a dropdownlist in the column
+        populatePeople(prefix, nbr);
     }
-    
-    private void populatePeople(){
-        
+
+    private void populatePeople(String prefix, String nbr) {
+
+        //Prepare the database
+        Connection connection = null;
+        try {
+            // create a database connection
+            connection = DriverManager.getConnection("jdbc:sqlite:db/scale.db");
+            PreparedStatement ps = connection.prepareStatement("select * from people where prefix = ? and nationalnbr = ?");
+            ps.setString(1, prefix);
+            ps.setString(2, nbr);
+            ps.setQueryTimeout(5);
+
+            ResultSet rs = ps.executeQuery();
+
+            jTextField_prefix.setText(rs.getString("prefix"));
+            jTextField_cellphone.setText(rs.getString("cellphone"));
+            jTextField_clubname.setText(rs.getString("clubname"));
+            jTextField_clubnbr.setText(rs.getString("clubnr"));
+            jTextField_lastname.setText(rs.getString("lastname"));
+            jTextField_name.setText(rs.getString("name"));
+            jTextField_nationalnbr.setText(rs.getString("nationalnbr"));
+            jTextField_phonenbr.setText(rs.getString("phonenbr"));
+            jTextField_postadress.setText(rs.getString("postadress"));
+            jTextField_streetadress.setText(rs.getString("streetadress"));
+            jTextField_town.setText(rs.getString("town"));
+            jTextField_zipcode.setText(rs.getString("zipcode"));
+
+            if (rs.getString("judge").matches("true")) { //Workaround caused by the sqlite3 jdbc-driver: getBoolean should be used...
+                jCheckBox_Judge.setSelected(rs.getString("judge").matches("true"));
+                jToggleButton_F4C.setEnabled(true);
+                jToggleButton_F4C.setSelected(rs.getString("F4C").matches("true"));
+                jToggleButton_F4H.setEnabled(true);
+                jToggleButton_F4H.setSelected(rs.getString("F4H").matches("true"));
+                jToggleButton_FlyOnly.setEnabled(true);
+                jToggleButton_FlyOnly.setSelected(rs.getString("FlyOnly").matches("true"));
+            }
+            jCheckBox_Pilot.setSelected(rs.getString("pilot").matches("true"));
+            
+            if(rs.getString("pilot").matches("true")){
+                jTable_Planes.setEnabled(true);
+            }
+            
+            ps.clearBatch();
+            ps = connection.prepareStatement("select * from people_aeroplanes where prefix = ? and nationalnbr = ?");
+            ps.setString(1, prefix);
+            ps.setString(2, nbr);
+            rs = ps.executeQuery();
+
+            DefaultTableModel peopleAeroplanes_Model = new DefaultTableModel(columnNames, 0);
+            jTable_Planes.setModel(peopleAeroplanes_Model); 
+            initClassesColumn(jTable_Planes.getColumnModel().getColumn(1)); //Create a dropdownlist in the column
+            
+            while (rs.next()) {
+                // read the result set and pop into the table
+
+                Object[] row = new Object[rs.getMetaData().getColumnCount()];
+                for (int i = 2; i < rs.getMetaData().getColumnCount(); i++) {
+                    if(i == 6){
+                        if(rs.getString(i+1).matches("true")){
+                            row[i-2] = true;    
+                        }
+                        else {
+                            row[i-2] = false;
+                        }
+                    }
+                    else {
+                        row[i-2] = rs.getObject(i + 1);
+                    }
+                }
+                peopleAeroplanes_Model.addRow(row);
+            }
+
+        } catch (SQLException e) {
+            // if the error message is "out of memory", 
+            // it probably means no database file is found
+            System.err.println(e.getMessage());
+        } finally {
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                // connection close failed.
+                System.err.println(e);
+            }
+        }
+
     }
-    
+
     private void initClassesColumn(TableColumn classesColumn) {
         //Set up the editor for the classes-column.
         JComboBox classesComboBox = new JComboBox(ListOfClasses);
@@ -72,7 +160,7 @@ public class People_Edit extends javax.swing.JInternalFrame {
         renderer.setToolTipText("Klicka för att välja från listan.");
         classesColumn.setCellRenderer(renderer);
         classesColumn.setModelIndex(1);
-                
+
     }
 
     /**
@@ -294,7 +382,7 @@ public class People_Edit extends javax.swing.JInternalFrame {
         );
 
         jButton_save.setText("Spara");
-        jButton_save.setToolTipText("Klicka här för att spara piloten.");
+        jButton_save.setToolTipText("Klicka här för att spara personen.");
         jButton_save.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_saveActionPerformed(evt);
@@ -500,10 +588,8 @@ public class People_Edit extends javax.swing.JInternalFrame {
 
         if (jTextField_nationalnbr.getText().equals("")) {
             jTextField_nationalnbr.setBackground(Color.red);
-            JOptionPane.showMessageDialog(this, "Du måste ange personens medlemsnummer i SMFF", "SWE-?????", JOptionPane.ERROR_MESSAGE);
-        } 
-        
-        else {
+            JOptionPane.showMessageDialog(this, "Du måste ange personens medlemsnummer i den tävlandes nations riksorganisation!", "SWE-?????", JOptionPane.ERROR_MESSAGE);
+        } else {
             saveToDB();
             jTextField_nationalnbr.setBackground(Color.white);
         }
@@ -538,7 +624,7 @@ public class People_Edit extends javax.swing.JInternalFrame {
                         + jToggleButton_F4H.isSelected() + "', '" + jToggleButton_FlyOnly.isSelected() + "', '" + jCheckBox_Pilot.isSelected() + "');");
                 if (rs > 0) {
                     rs = statement.executeUpdate("delete from people_aeroplanes where prefix='SWE' and nationalnbr='" + nationnbr + "';");
-                    
+
                     for (int i = 0; i < jTable_Planes.getRowCount(); i++) {
                         rs = statement.executeUpdate("INSERT INTO people_aeroplanes (nationalnbr,prefix, model, class, aerobatic, scale, multipleEngines)"
                                 + "VALUES ('" + jTextField_nationalnbr.getText() + "', '" + jTextField_prefix.getText() + "', '"
@@ -547,9 +633,9 @@ public class People_Edit extends javax.swing.JInternalFrame {
                                 + jTable_Planes.getValueAt(i, 2) + "', '"
                                 + jTable_Planes.getValueAt(i, 3) + "', '"
                                 + jTable_Planes.getValueAt(i, 4) + "');");
-                      /*  if (rs > 0) {
-                            System.err.println("New Active Person added");
-                        }*/
+                        /*  if (rs > 0) {
+                         System.err.println("New Active Person added");
+                         }*/
                     }
                     //SaveMode = 'E'; // Change to edit mode
                     //jTextField_nationalnbr.setEnabled(false);
@@ -567,7 +653,7 @@ public class People_Edit extends javax.swing.JInternalFrame {
                         + jCheckBox_Judge.isSelected() + "', '" + jToggleButton_F4C.isSelected() + "', '"
                         + jToggleButton_F4H.isSelected() + "', '" + jToggleButton_FlyOnly.isSelected() + "', '" + jCheckBox_Pilot.isSelected() + "');");
                 if (rs > 0) {
-                    
+
                     for (int i = 0; i < jTable_Planes.getRowCount(); i++) {
                         rs = statement.executeUpdate("INSERT INTO people_aeroplanes (nationalnbr,prefix, model, class, aerobatic, scale, multipleEngines)"
                                 + "VALUES ('" + jTextField_nationalnbr.getText() + "', '" + jTextField_prefix.getText() + "', '"
@@ -576,9 +662,9 @@ public class People_Edit extends javax.swing.JInternalFrame {
                                 + jTable_Planes.getValueAt(i, 2) + "', '"
                                 + jTable_Planes.getValueAt(i, 3) + "', '"
                                 + jTable_Planes.getValueAt(i, 4) + "');");
-                    /*    if (rs > 0) {
-                            System.err.println("New Active Person added");
-                        }*/
+                        /*    if (rs > 0) {
+                         System.err.println("New Active Person added");
+                         }*/
                     }
                     SaveMode = 'E'; // Change to edit mode
                     //jTextField_nationalnbr.setEnabled(false);       
