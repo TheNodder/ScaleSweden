@@ -25,6 +25,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JInternalFrame;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -54,10 +55,35 @@ public class People extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPopupMenu1 = new javax.swing.JPopupMenu();
+        jPopupMenu_Active = new javax.swing.JPopupMenu();
+        jMenuActive_Edit = new javax.swing.JMenuItem();
+        jMenuIActive_Copy = new javax.swing.JMenuItem();
+        jSeparator1 = new javax.swing.JPopupMenu.Separator();
+        jMenuActive_Delete = new javax.swing.JMenuItem();
         jButton_NewActive = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable_People = new javax.swing.JTable();
+
+        jMenuActive_Edit.setText("Redigera/Visa aktiv");
+        jMenuActive_Edit.setToolTipText("");
+        jMenuActive_Edit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuActive_EditActionPerformed(evt);
+            }
+        });
+        jPopupMenu_Active.add(jMenuActive_Edit);
+
+        jMenuIActive_Copy.setText("Kopiera vald Aktiv");
+        jMenuIActive_Copy.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuIActive_CopyActionPerformed(evt);
+            }
+        });
+        jPopupMenu_Active.add(jMenuIActive_Copy);
+        jPopupMenu_Active.add(jSeparator1);
+
+        jMenuActive_Delete.setText("Radera vald Aktiv.");
+        jPopupMenu_Active.add(jMenuActive_Delete);
 
         setClosable(true);
         setName("peopleDlg"); // NOI18N
@@ -109,6 +135,7 @@ public class People extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
+        jTable_People.setComponentPopupMenu(jPopupMenu_Active);
         jTable_People.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTable_PeopleMouseClicked(evt);
@@ -257,11 +284,28 @@ public class People extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jTable_PeopleMousePressed
 
+    private void jMenuActive_EditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuActive_EditActionPerformed
+        // TODO add your handling code here:
+        showEditDialog();
+    }//GEN-LAST:event_jMenuActive_EditActionPerformed
+
+    private void jMenuIActive_CopyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuIActive_CopyActionPerformed
+        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(this.getDesktopPane(),
+                "Jobba på Niclas! Sluta sov på kvällar å nätter!",
+                "Jag ska ympa in kod!",
+                JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_jMenuIActive_CopyActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton_NewActive;
-    private javax.swing.JPopupMenu jPopupMenu1;
+    private javax.swing.JMenuItem jMenuActive_Delete;
+    private javax.swing.JMenuItem jMenuActive_Edit;
+    private javax.swing.JMenuItem jMenuIActive_Copy;
+    private javax.swing.JPopupMenu jPopupMenu_Active;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JTable jTable_People;
     // End of variables declaration//GEN-END:variables
 }
