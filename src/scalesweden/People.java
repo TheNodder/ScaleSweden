@@ -54,6 +54,7 @@ public class People extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPopupMenu1 = new javax.swing.JPopupMenu();
         jButton_NewActive = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable_People = new javax.swing.JTable();
@@ -259,6 +260,7 @@ public class People extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton_NewActive;
+    private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable_People;
     // End of variables declaration//GEN-END:variables

@@ -111,6 +111,7 @@ public class People_Edit extends javax.swing.JInternalFrame {
             DefaultTableModel peopleAeroplanes_Model = new DefaultTableModel(columnNames, 0);
             jTable_Planes.setModel(peopleAeroplanes_Model); 
             initClassesColumn(jTable_Planes.getColumnModel().getColumn(1)); //Create a dropdownlist in the column
+            // Skapa tickboxes för sant / falskt
             
             while (rs.next()) {
                 // read the result set and pop into the table
@@ -118,12 +119,7 @@ public class People_Edit extends javax.swing.JInternalFrame {
                 Object[] row = new Object[rs.getMetaData().getColumnCount()];
                 for (int i = 2; i < rs.getMetaData().getColumnCount(); i++) {
                     if(i == 6){
-                        if(rs.getString(i+1).matches("true")){
-                            row[i-2] = true;    
-                        }
-                        else {
-                            row[i-2] = false;
-                        }
+                        row[i-2] = rs.getString(i+1).matches("true");
                     }
                     else {
                         row[i-2] = rs.getObject(i + 1);
