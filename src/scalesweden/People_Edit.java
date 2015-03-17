@@ -59,6 +59,18 @@ public class People_Edit extends javax.swing.JInternalFrame {
        // initClassesColumn(jTable_Planes.getColumnModel().getColumn(1)); //Create a dropdownlist in the column
         populatePeople(prefix, nbr);
     }
+    
+    public People_Edit(String prefix, String nbr, boolean Copy) { //Copy a pilot to a new one
+        initComponents();
+        jTable_Planes.setEnabled(false);
+        SaveMode = 'N';
+       // initClassesColumn(jTable_Planes.getColumnModel().getColumn(1)); //Create a dropdownlist in the column
+        populatePeople(prefix, nbr);
+        if (Copy){
+            jTextField_nationalnbr.setText("");
+        }
+    }
+    
 
     private void populatePeople(String prefix, String nbr) {
 

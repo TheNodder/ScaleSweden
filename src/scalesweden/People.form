@@ -31,12 +31,17 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Radera vald Aktiv."/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuActive_DeleteActionPerformed"/>
+          </Events>
         </MenuItem>
       </SubComponents>
     </Container>
   </NonVisualComponents>
   <Properties>
     <Property name="closable" type="boolean" value="true"/>
+    <Property name="title" type="java.lang.String" value="Aktiva"/>
+    <Property name="toolTipText" type="java.lang.String" value=""/>
     <Property name="name" type="java.lang.String" value="peopleDlg" noResource="true"/>
   </Properties>
   <SyntheticProperties>

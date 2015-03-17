@@ -83,9 +83,16 @@ public class People extends javax.swing.JInternalFrame {
         jPopupMenu_Active.add(jSeparator1);
 
         jMenuActive_Delete.setText("Radera vald Aktiv.");
+        jMenuActive_Delete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuActive_DeleteActionPerformed(evt);
+            }
+        });
         jPopupMenu_Active.add(jMenuActive_Delete);
 
         setClosable(true);
+        setTitle("Aktiva");
+        setToolTipText("");
         setName("peopleDlg"); // NOI18N
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
             public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
@@ -237,14 +244,23 @@ public class People extends javax.swing.JInternalFrame {
         return retVal; //We didn't find any dialog so maybe we should allow a creation ?
     }
 
-    private void showEditDialog() {
+    private void showEditDialog(boolean Copy) {
+        
+        People_Edit EditPilot;
+        
         if (!checkForDialogs()) {
            
 
             String nation = (String) jTable_People.getValueAt(jTable_People.getSelectedRow(), 2);
             String nbr = (String) jTable_People.getValueAt(jTable_People.getSelectedRow(), 3);
-
-            People_Edit EditPilot = new People_Edit(nation, nbr);
+            
+            
+            if(Copy){
+                EditPilot = new People_Edit(nation, nbr, Copy);
+            }
+            else{
+                EditPilot = new People_Edit(nation, nbr);
+            }
             Container parent = this.getParent();
 
             EditPilot.setLocation(((int) parent.getBounds().getWidth() / 2) - (EditPilot.getWidth() / 2), 2); //Try to center on screen
@@ -279,23 +295,34 @@ public class People extends javax.swing.JInternalFrame {
     private void jTable_PeopleMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable_PeopleMousePressed
         // TODO add your handling code here:
         if (evt.getClickCount() == 2){
-            showEditDialog();
+            showEditDialog(false);
             evt.consume();
         }
     }//GEN-LAST:event_jTable_PeopleMousePressed
 
     private void jMenuActive_EditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuActive_EditActionPerformed
         // TODO add your handling code here:
-        showEditDialog();
+        showEditDialog(false);
     }//GEN-LAST:event_jMenuActive_EditActionPerformed
 
     private void jMenuIActive_CopyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuIActive_CopyActionPerformed
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(this.getDesktopPane(),
-                "Jobba på Niclas! Sluta sov på kvällar å nätter!",
-                "Jag ska ympa in kod!",
-                JOptionPane.INFORMATION_MESSAGE);
+       showEditDialog(true);
+        
     }//GEN-LAST:event_jMenuIActive_CopyActionPerformed
+
+    private void jMenuActive_DeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuActive_DeleteActionPerformed
+        
+        int answer = JOptionPane.showInternalConfirmDialog(this, "Vill Du verkligen radera vald Aktiv?");
+        
+        if (answer == 0){
+            System.out.println("JAAAAA");
+        }
+        else {
+            System.out.println("Nej eller avbryt");
+        }
+        
+    }//GEN-LAST:event_jMenuActive_DeleteActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
