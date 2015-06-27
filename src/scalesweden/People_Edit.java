@@ -25,6 +25,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.DefaultCellEditor;
+import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -56,21 +57,20 @@ public class People_Edit extends javax.swing.JInternalFrame {
         initComponents();
         jTable_Planes.setEnabled(false);
         SaveMode = 'E';
-       // initClassesColumn(jTable_Planes.getColumnModel().getColumn(1)); //Create a dropdownlist in the column
+        // initClassesColumn(jTable_Planes.getColumnModel().getColumn(1)); //Create a dropdownlist in the column
         populatePeople(prefix, nbr);
     }
-    
+
     public People_Edit(String prefix, String nbr, boolean Copy) { //Copy a pilot to a new one
         initComponents();
         jTable_Planes.setEnabled(false);
         SaveMode = 'N';
-       // initClassesColumn(jTable_Planes.getColumnModel().getColumn(1)); //Create a dropdownlist in the column
+        // initClassesColumn(jTable_Planes.getColumnModel().getColumn(1)); //Create a dropdownlist in the column
         populatePeople(prefix, nbr);
-        if (Copy){
+        if (Copy) {
             jTextField_nationalnbr.setText("");
         }
     }
-    
 
     private void populatePeople(String prefix, String nbr) {
 
@@ -109,31 +109,38 @@ public class People_Edit extends javax.swing.JInternalFrame {
                 jToggleButton_FlyOnly.setSelected(rs.getString("FlyOnly").matches("true"));
             }
             jCheckBox_Pilot.setSelected(rs.getString("pilot").matches("true"));
-            
-            if(rs.getString("pilot").matches("true")){
+
+            if (rs.getString("pilot").matches("true")) {
                 jTable_Planes.setEnabled(true);
             }
-            
+
             ps.clearBatch();
             ps = connection.prepareStatement("select * from people_aeroplanes where prefix = ? and nationalnbr = ?");
             ps.setString(1, prefix);
             ps.setString(2, nbr);
             rs = ps.executeQuery();
 
-            DefaultTableModel peopleAeroplanes_Model = new DefaultTableModel(columnNames, 0);
-            jTable_Planes.setModel(peopleAeroplanes_Model); 
-            initClassesColumn(jTable_Planes.getColumnModel().getColumn(1)); //Create a dropdownlist in the column
-            // Skapa tickboxes för sant / falskt
-            
+            //DefaultTableModel peopleAeroplanes_Model = new DefaultTableModel(columnNames, 0);
+            DefaultTableModel peopleAeroplanes_Model = (DefaultTableModel) jTable_Planes.getModel();
+            jTable_Planes.setModel(peopleAeroplanes_Model);
+            peopleAeroplanes_Model.setRowCount(0);                                  //Clear the contents of the table
+            initClassesColumn(jTable_Planes.getColumnModel().getColumn(1));         //Create a dropdownlist in the column
+
+            //initClassesColumnTickBox(jTable_Planes.getColumnModel().getColumn(2)); // Create tickbox for'Aerobatic'
+            //initClassesColumnTickBox(jTable_Planes.getColumnModel().getColumn(4)); // Create tickbox for'Multiple engines'
             while (rs.next()) {
                 // read the result set and pop into the table
 
                 Object[] row = new Object[rs.getMetaData().getColumnCount()];
                 for (int i = 2; i < rs.getMetaData().getColumnCount(); i++) {
-                    if(i == 6){
-                        row[i-2] = rs.getString(i+1).matches("true");
-                    }
-                    else {
+                    if (i == 4 || i == 6) {  //Tick CheckBox
+                        if (rs.getString(i + 1).matches("true")) {
+                            row[i-2] = true;
+                        } else {
+                            row[i-2] = false;
+                        }
+                    } else { //Just text
+
                         row[i-2] = rs.getObject(i + 1);
                     }
                 }
@@ -168,6 +175,21 @@ public class People_Edit extends javax.swing.JInternalFrame {
         renderer.setToolTipText("Klicka för att välja från listan.");
         classesColumn.setCellRenderer(renderer);
         classesColumn.setModelIndex(1);
+
+    }
+
+    private void initClassesColumnTickBox(TableColumn classesColumn) {
+        //Set up the editor for the classes-column.
+
+        JCheckBox classesCheckBox = new JCheckBox("", true);
+        classesColumn.setCellEditor(new DefaultCellEditor(classesCheckBox));
+
+        //Set up tool tip for the class cells.
+        DefaultTableCellRenderer renderer = new DefaultTableCellRenderer();
+        renderer.setToolTipText("Klicka för att aktivera.");
+        renderer.setVisible(true);
+        classesColumn.setCellRenderer(renderer);
+        classesColumn.setModelIndex(classesColumn.getModelIndex());
 
     }
 
@@ -621,6 +643,7 @@ public class People_Edit extends javax.swing.JInternalFrame {
                 /* Why just not update the record? Well, cause there might be typo when entering the Nationalnbr */
 
                 rs = statement.executeUpdate("delete from people where prefix='SWE' and nationalnbr='" + nationnbr + "';");
+                System.out.println("PE#1 Antal poster raderade: " + rs);
                 rs = statement.executeUpdate("INSERT INTO people (nationalnbr, prefix, clubname, clubnr, name, lastname, postadress, streetadress, zipcode, town, phonenbr, cellphone, judge, F4C, F4H, FlyOnly, pilot) "
                         + "VALUES ('" + jTextField_nationalnbr.getText() + "', '" + jTextField_prefix.getText() + "', '"
                         + jTextField_clubname.getText() + "', '" + jTextField_clubnbr.getText() + "', '"
@@ -680,7 +703,7 @@ public class People_Edit extends javax.swing.JInternalFrame {
                 }
 
             } else { // Not a valid mode
-                System.err.println("Unknown mode when saving Active Person. Mode:" + SaveMode);
+                System.err.println("PE#2 Unknown mode when saving Active Person. Mode:" + SaveMode);
             }
         } catch (SQLException e) {
             // if the error message is "out of memory", 
