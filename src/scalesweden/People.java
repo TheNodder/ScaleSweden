@@ -21,9 +21,12 @@ import java.awt.Container;
 import java.beans.PropertyVetoException;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -36,14 +39,13 @@ public class People extends javax.swing.JInternalFrame {
 
     Object[] columnNames = {"Förnamn:", "Efternamn:", "Prefix:", "Nationellt nr:", "Klubb:"};
     private DefaultTableModel people_Model;
-    
 
     /**
      * Creates new form People
      */
     public People() {
         initComponents();
-        
+
     }
 
     /**
@@ -245,20 +247,17 @@ public class People extends javax.swing.JInternalFrame {
     }
 
     private void showEditDialog(boolean Copy) {
-        
+
         People_Edit EditPilot;
-        
+
         if (!checkForDialogs()) {
-           
 
             String nation = (String) jTable_People.getValueAt(jTable_People.getSelectedRow(), 2);
             String nbr = (String) jTable_People.getValueAt(jTable_People.getSelectedRow(), 3);
-            
-            
-            if(Copy){
+
+            if (Copy) {
                 EditPilot = new People_Edit(nation, nbr, Copy);
-            }
-            else{
+            } else {
                 EditPilot = new People_Edit(nation, nbr);
             }
             Container parent = this.getParent();
@@ -267,12 +266,13 @@ public class People extends javax.swing.JInternalFrame {
             parent.add(EditPilot);
             EditPilot.setVisible(true);
         }
+        
     }
 
     private void jButton_NewActiveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_NewActiveActionPerformed
 
         if (!checkForDialogs()) {
-            
+
             People_Edit EditPilot = new People_Edit();
             Container parent = this.getParent();
 
@@ -283,45 +283,65 @@ public class People extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton_NewActiveActionPerformed
 
     private void formInternalFrameActivated(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameActivated
-        // TODO add your handling code here:
+
         populatePeopleTable();
         checkForDialogs();
     }//GEN-LAST:event_formInternalFrameActivated
 
     private void jTable_PeopleMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable_PeopleMouseClicked
-       
+
     }//GEN-LAST:event_jTable_PeopleMouseClicked
 
     private void jTable_PeopleMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable_PeopleMousePressed
-        // TODO add your handling code here:
-        if (evt.getClickCount() == 2){
+
+        if (evt.getClickCount() == 2) {
             showEditDialog(false);
             evt.consume();
         }
     }//GEN-LAST:event_jTable_PeopleMousePressed
 
     private void jMenuActive_EditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuActive_EditActionPerformed
-        // TODO add your handling code here:
+
         showEditDialog(false);
+
     }//GEN-LAST:event_jMenuActive_EditActionPerformed
 
     private void jMenuIActive_CopyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuIActive_CopyActionPerformed
-        // TODO add your handling code here:
-       showEditDialog(true);
-        
+
+        showEditDialog(true);
+
     }//GEN-LAST:event_jMenuIActive_CopyActionPerformed
 
+    @SuppressWarnings("empty-statement")
     private void jMenuActive_DeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuActive_DeleteActionPerformed
-        
-        int answer = JOptionPane.showInternalConfirmDialog(this, "Vill Du verkligen radera vald Aktiv?");
-        
-        if (answer == 0){
-            System.out.println("JAAAAA");
+
+        String nation = (String) jTable_People.getValueAt(jTable_People.getSelectedRow(), 2);
+        String nbr = (String) jTable_People.getValueAt(jTable_People.getSelectedRow(), 3);
+
+        int answer = JOptionPane.showInternalConfirmDialog(this, "Vill Du verkligen radera vald Aktiv?", "Radera?", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+
+        if (answer == 0) {
+            System.out.println("P#2: User selected to delete the marked 'Active' in the list.");
+            try {
+
+                Connection connection = null;
+                connection = DriverManager.getConnection("jdbc:sqlite:db/scale.db");
+                PreparedStatement ps = connection.prepareStatement("delete from people where prefix = ? and nationalnbr = ?");
+
+                ps.setString(1, nation);
+                ps.setString(2, nbr);
+                ps.setQueryTimeout(5);
+
+                ps.executeUpdate();
+            } catch (SQLException e) {
+                System.err.println(e);
+            }
+            this.populatePeopleTable();
+
+        } else {
+            System.out.println("P#1: User selected not to delete the 'Active' in the list.");
         }
-        else {
-            System.out.println("Nej eller avbryt");
-        }
-        
+
     }//GEN-LAST:event_jMenuActive_DeleteActionPerformed
 
 

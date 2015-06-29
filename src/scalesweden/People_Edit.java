@@ -59,6 +59,8 @@ public class People_Edit extends javax.swing.JInternalFrame {
         SaveMode = 'E';
         // initClassesColumn(jTable_Planes.getColumnModel().getColumn(1)); //Create a dropdownlist in the column
         populatePeople(prefix, nbr);
+        nationnbr=nbr;
+
     }
 
     public People_Edit(String prefix, String nbr, boolean Copy) { //Copy a pilot to a new one
@@ -120,14 +122,11 @@ public class People_Edit extends javax.swing.JInternalFrame {
             ps.setString(2, nbr);
             rs = ps.executeQuery();
 
-            //DefaultTableModel peopleAeroplanes_Model = new DefaultTableModel(columnNames, 0);
             DefaultTableModel peopleAeroplanes_Model = (DefaultTableModel) jTable_Planes.getModel();
             jTable_Planes.setModel(peopleAeroplanes_Model);
             peopleAeroplanes_Model.setRowCount(0);                                  //Clear the contents of the table
             initClassesColumn(jTable_Planes.getColumnModel().getColumn(1));         //Create a dropdownlist in the column
 
-            //initClassesColumnTickBox(jTable_Planes.getColumnModel().getColumn(2)); // Create tickbox for'Aerobatic'
-            //initClassesColumnTickBox(jTable_Planes.getColumnModel().getColumn(4)); // Create tickbox for'Multiple engines'
             while (rs.next()) {
                 // read the result set and pop into the table
 
@@ -178,7 +177,7 @@ public class People_Edit extends javax.swing.JInternalFrame {
 
     }
 
-    private void initClassesColumnTickBox(TableColumn classesColumn) {
+   /* private void initClassesColumnTickBox(TableColumn classesColumn) {
         //Set up the editor for the classes-column.
 
         JCheckBox classesCheckBox = new JCheckBox("", true);
@@ -192,7 +191,7 @@ public class People_Edit extends javax.swing.JInternalFrame {
         classesColumn.setModelIndex(classesColumn.getModelIndex());
 
     }
-
+*/
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
