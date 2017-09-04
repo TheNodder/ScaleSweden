@@ -36,7 +36,6 @@ public class ClubSettings extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jDialog1 = new javax.swing.JDialog();
         jLabel1 = new javax.swing.JLabel();
         jTextField_Clubnr = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
@@ -57,27 +56,16 @@ public class ClubSettings extends javax.swing.JInternalFrame {
         jTextField_AirField = new javax.swing.JTextField();
         jLabel_Saved = new javax.swing.JLabel();
 
-        jDialog1.setModal(true);
-
-        javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
-        jDialog1.getContentPane().setLayout(jDialog1Layout);
-        jDialog1Layout.setHorizontalGroup(
-            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        jDialog1Layout.setVerticalGroup(
-            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
-
         setClosable(true);
-        setTitle("Inställningar - Klubb");
+        setTitle("Settings - Club");
+        setToolTipText("");
         setMaximumSize(new java.awt.Dimension(431, 387));
         setName("setDlg"); // NOI18N
         setPreferredSize(new java.awt.Dimension(350, 387));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setText("Klubbnr:");
+        jLabel1.setText("Clubnumber:");
+        jLabel1.setToolTipText("");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 12, -1, -1));
 
         jTextField_Clubnr.setColumns(4);
@@ -89,7 +77,7 @@ public class ClubSettings extends javax.swing.JInternalFrame {
         });
         getContentPane().add(jTextField_Clubnr, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 30, 90, -1));
 
-        jLabel2.setText("Klubbens namn:");
+        jLabel2.setText("Clubnamn:");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(109, 12, -1, -1));
 
         jTextField_ClubName.setToolTipText("Här anger Du klubbens namn.");
@@ -100,7 +88,7 @@ public class ClubSettings extends javax.swing.JInternalFrame {
         });
         getContentPane().add(jTextField_ClubName, new org.netbeans.lib.awtextra.AbsoluteConstraints(109, 30, 210, -1));
 
-        jLabel3.setText("Ordinarie protokollförare:");
+        jLabel3.setText("Secretary:");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 162, -1, -1));
 
         jTextField_ProtocolDriver.setToolTipText("Ansvarig protokollförare.");
@@ -111,7 +99,8 @@ public class ClubSettings extends javax.swing.JInternalFrame {
         });
         getContentPane().add(jTextField_ProtocolDriver, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 183, 309, -1));
 
-        jLabel4.setText("Lösenord för skalaflyg.org:");
+        jLabel4.setText("Password:");
+        jLabel4.setToolTipText("");
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 266, -1, -1));
 
         jTextField_Password.setToolTipText("Lösenordet för skala webben.");
@@ -131,7 +120,7 @@ public class ClubSettings extends javax.swing.JInternalFrame {
         });
         getContentPane().add(jButton_Save, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 320, 80, -1));
 
-        jLabel5.setText("Användarid för skalaflyg.org:");
+        jLabel5.setText("User id:");
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 214, -1, -1));
 
         jTextField_UserId.setToolTipText("Användarid för skala-webben.");
@@ -143,7 +132,7 @@ public class ClubSettings extends javax.swing.JInternalFrame {
         getContentPane().add(jTextField_UserId, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 235, 309, -1));
         getContentPane().add(filler1, new org.netbeans.lib.awtextra.AbsoluteConstraints(339, 297, -1, -1));
 
-        jLabel6.setText("Ordinarie tävlingsledare:");
+        jLabel6.setText("Competition Director:");
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 110, -1, -1));
 
         jTextField_CompLeader.setToolTipText("Ansvarig protokollförare.");
@@ -154,10 +143,10 @@ public class ClubSettings extends javax.swing.JInternalFrame {
         });
         getContentPane().add(jTextField_CompLeader, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 131, 309, -1));
 
-        jLabel7.setText("Ort:");
+        jLabel7.setText("Place:");
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 61, -1, -1));
 
-        jLabel8.setText("Flygfält:");
+        jLabel8.setText("Airfield:");
         getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(159, 61, -1, -1));
 
         jTextField_Location.setColumns(4);
@@ -341,7 +330,6 @@ public class ClubSettings extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.Box.Filler filler1;
     private javax.swing.JButton jButton_Save;
-    private javax.swing.JDialog jDialog1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

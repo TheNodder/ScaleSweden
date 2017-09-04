@@ -4,7 +4,6 @@
  */
 package scalesweden;
 
-import java.awt.Component;
 import java.beans.PropertyVetoException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -28,7 +27,7 @@ public class MainFrame extends javax.swing.JFrame {
      */
     public MainFrame() {
         initComponents();
-        
+
     }
 
     /**
@@ -55,7 +54,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         jToolBar1.setRollover(true);
 
-        jButtonCompetition.setText("Tävlingar");
+        jButtonCompetition.setText("Competitions");
         jButtonCompetition.setToolTipText("Här administrerar Du tävlingar.");
         jButtonCompetition.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButtonCompetition.setFocusable(false);
@@ -69,7 +68,7 @@ public class MainFrame extends javax.swing.JFrame {
         });
         jToolBar1.add(jButtonCompetition);
 
-        jButtonRules.setText("Regler");
+        jButtonRules.setText("Rules");
         jButtonRules.setToolTipText("Här hanterar Du regler.");
         jButtonRules.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButtonRules.setFocusable(false);
@@ -84,7 +83,7 @@ public class MainFrame extends javax.swing.JFrame {
         });
         jToolBar1.add(jButtonRules);
 
-        jButtonDocuments.setText("Dokument");
+        jButtonDocuments.setText("Documents");
         jButtonDocuments.setToolTipText("Här kan Du leta efter dokumnet och regler.");
         jButtonDocuments.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButtonDocuments.setFocusable(false);
@@ -99,7 +98,7 @@ public class MainFrame extends javax.swing.JFrame {
         });
         jToolBar1.add(jButtonDocuments);
 
-        jButtonPilotes.setText("Aktiva");
+        jButtonPilotes.setText("Performers");
         jButtonPilotes.setToolTipText("Här redigerar och lägger till piloter.");
         jButtonPilotes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButtonPilotes.setFocusable(false);
@@ -114,7 +113,7 @@ public class MainFrame extends javax.swing.JFrame {
         });
         jToolBar1.add(jButtonPilotes);
 
-        jButtonSettings.setText("Inställningar");
+        jButtonSettings.setText("Settings");
         jButtonSettings.setToolTipText("Här ställer Du in grundläggande information.");
         jButtonSettings.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButtonSettings.setFocusable(false);
@@ -200,7 +199,7 @@ public class MainFrame extends javax.swing.JFrame {
             Competition CompList = new Competition();
 
             jDesktopPane1.add(CompList);
-            CompList.setTitle("Tävlingar");
+            CompList.setTitle("Competitions");
 
             try {
                 CompList.setMaximum(true);
@@ -248,7 +247,8 @@ public class MainFrame extends javax.swing.JFrame {
         int showOpenDialog = FileOpener.showOpenDialog(jDesktopPane1);
 
         if (showOpenDialog == JFileChooser.APPROVE_OPTION) {
-            String DocPath = DocDir + FileOpener.getSelectedFile().getName();
+            String DocPath = FileOpener.getCurrentDirectory() + "/" + FileOpener.getSelectedFile().getName();
+            //String DocPath = DocDir + FileOpener.getSelectedFile().getName();
             try {
                 if (Desktop.isDesktopSupported()) {
                     Desktop.getDesktop().open(new File(DocPath)); // Try to open file with associated program
@@ -262,23 +262,20 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void jButtonPilotesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPilotesActionPerformed
         // TODO add your handling code here:
-        
-        
-       if (!setModal("peopleDlg")) {
+
+        if (!setModal("peopleDlg")) {
             People PeopleList = new People();
             jDesktopPane1.add(PeopleList);
-             try {
+            try {
                 PeopleList.setMaximum(true);
             } catch (PropertyVetoException ex) {
                 Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
+
             PeopleList.setVisible(true);
-        } 
-        
-       
-        
-        
+        }
+
+
     }//GEN-LAST:event_jButtonPilotesActionPerformed
 
     /**
@@ -298,6 +295,7 @@ public class MainFrame extends javax.swing.JFrame {
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
+
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }

@@ -11,17 +11,17 @@ package scalesweden;
  * @author Niclas Olsson, Cobton AB
  */
 public interface ScaleClasses {
-    String[] Static_headers = {"Sektion", "Skalariktighet (5m)", "K"}; 
-    String[] Manouvers_headers = {"Sektion", "Manöver", "K"};
-    String[] Empty_Row_Data = { "", "", "" };
+    static String[] Static_headers = {"Sektion", "Skalariktighet (5m)", "K"}; 
+    static String[] Manouvers_headers = {"Sektion", "Manöver", "K"};
+    static String[] Empty_Row_Data = { "", "", "" };
     
-    Object[][] Init_Empty_Table = {{ "", "", "" }}; //When creating a new model, populate with void data.
+    static Object[][] Init_Empty_Table = {{ "", "", "" }}; //When creating a new model, populate with void data.
     
-    String[] ListOfClasses = { "[Välj i listan]", "F4C", "F4H", "Klubbskala", "FlyOnly"};
+    static String[] ListOfClasses = { "[Välj i listan]", "F4C", "F4H", "Klubbskala", "FlyOnly"};
     
-    String[] ListOfRuleType = { "[Välj i listan]", "Klubbregel", "Officiell"};
+    static String[] ListOfRuleType = { "[Välj i listan]", "Klubbregel", "Officiell"};
     
-    String[] ListOfManouvers = {"Approach and Landing",
+    static String[] ListOfManouvers = {"Approach and Landing",
                                 "Chandelle",
                                 "Extend and Retract Landing Gear",
                                 "Extend and Retract Flaps",

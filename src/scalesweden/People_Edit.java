@@ -42,7 +42,7 @@ public class People_Edit extends javax.swing.JInternalFrame {
     /**
      * Creates new form Pilots_Edit
      */
-    Object[] columnNames = {"Modell:", "Klass:", "Aerobatic:", "Skala:", "Flermotorigt:"};
+    Object[] columnNames = {java.util.ResourceBundle.getBundle("scalesweden/Languages").getString("MODELL:"), java.util.ResourceBundle.getBundle("scalesweden/Languages").getString("KLASS:"), java.util.ResourceBundle.getBundle("scalesweden/Languages").getString("AEROBATIC:"), java.util.ResourceBundle.getBundle("scalesweden/Languages").getString("SKALA:"), java.util.ResourceBundle.getBundle("scalesweden/Languages").getString("FLERMOTORIGT:")};
     char SaveMode; //SaveMode='N' for a new record. SaveMode='E' for edit record
     String nationnbr;
 
@@ -171,7 +171,7 @@ public class People_Edit extends javax.swing.JInternalFrame {
 
         //Set up tool tip for the class cells.
         DefaultTableCellRenderer renderer = new DefaultTableCellRenderer();
-        renderer.setToolTipText("Klicka för att välja från listan.");
+        renderer.setToolTipText(java.util.ResourceBundle.getBundle("scalesweden/Languages").getString("KLICKA FÖR ATT VÄLJA FRÅN LISTAN."));
         classesColumn.setCellRenderer(renderer);
         classesColumn.setModelIndex(1);
 
@@ -239,12 +239,13 @@ public class People_Edit extends javax.swing.JInternalFrame {
         jButton_close = new javax.swing.JButton();
 
         setClosable(true);
-        setTitle("Aktiva - Redigera/Visa");
+        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("scalesweden/Languages"); // NOI18N
+        setTitle(bundle.getString("AKTIVA - REDIGERA/VISA")); // NOI18N
         setToolTipText("");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setName("peopleEdit"); // NOI18N
 
-        jLabel1.setText("SMFF-nr:");
+        jLabel1.setText(bundle.getString("SMFF-NR:")); // NOI18N
         jLabel1.setToolTipText("");
 
         jLabel2.setText("Prefix:");
@@ -254,34 +255,34 @@ public class People_Edit extends javax.swing.JInternalFrame {
         jTextField_prefix.setText("SWE");
         jTextField_prefix.setEnabled(false);
 
-        jLabel3.setText("Förnamn:");
+        jLabel3.setText(bundle.getString("FÖRNAMN:")); // NOI18N
         jLabel3.setToolTipText("");
 
-        jLabel4.setText("Efternamn:");
+        jLabel4.setText(bundle.getString("EFTERNAMN:")); // NOI18N
         jLabel4.setToolTipText("");
 
-        jLabel5.setText("Klubb:");
+        jLabel5.setText(bundle.getString("KLUBB:")); // NOI18N
         jLabel5.setToolTipText("");
 
-        jLabel6.setText("Klubbnr:");
+        jLabel6.setText(bundle.getString("KLUBBNR:")); // NOI18N
         jLabel6.setToolTipText("");
 
-        jLabel7.setText("Postadress:");
+        jLabel7.setText(bundle.getString("POSTADRESS:")); // NOI18N
         jLabel7.setToolTipText("");
 
-        jLabel8.setText("Gatudadress:");
+        jLabel8.setText(bundle.getString("GATUDADRESS:")); // NOI18N
         jLabel8.setToolTipText("");
 
-        jLabel9.setText("Postnr:");
+        jLabel9.setText(bundle.getString("POSTNR:")); // NOI18N
         jLabel9.setToolTipText("");
 
-        jLabel10.setText("Postort:");
+        jLabel10.setText(bundle.getString("POSTORT:")); // NOI18N
         jLabel10.setToolTipText("");
 
-        jLabel11.setText("Hemnr:");
+        jLabel11.setText(bundle.getString("HEMNR:")); // NOI18N
         jLabel11.setToolTipText("");
 
-        jLabel12.setText("Mobilnr:");
+        jLabel12.setText(bundle.getString("MOBILNR:")); // NOI18N
         jLabel12.setToolTipText("");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -297,7 +298,7 @@ public class People_Edit extends javax.swing.JInternalFrame {
         jToggleButton_FlyOnly.setText("FlyOnly");
         jToggleButton_FlyOnly.setEnabled(false);
 
-        jCheckBox_Judge.setText("Domare");
+        jCheckBox_Judge.setText(bundle.getString("DOMARE")); // NOI18N
         jCheckBox_Judge.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCheckBox_JudgeActionPerformed(evt);
@@ -410,15 +411,15 @@ public class People_Edit extends javax.swing.JInternalFrame {
                 .addContainerGap())
         );
 
-        jButton_save.setText("Spara");
-        jButton_save.setToolTipText("Klicka här för att spara personen.");
+        jButton_save.setText(bundle.getString("SPARA")); // NOI18N
+        jButton_save.setToolTipText(bundle.getString("KLICKA HÄR FÖR ATT SPARA PERSONEN.")); // NOI18N
         jButton_save.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_saveActionPerformed(evt);
             }
         });
 
-        jButton_close.setText("Stäng");
+        jButton_close.setText(bundle.getString("STÄNG")); // NOI18N
         jButton_close.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_closeActionPerformed(evt);

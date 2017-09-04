@@ -37,7 +37,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class People extends javax.swing.JInternalFrame {
 
-    Object[] columnNames = {"Förnamn:", "Efternamn:", "Prefix:", "Nationellt nr:", "Klubb:"};
+    Object[] columnNames = {"Surname:", "Lastname:", "Prefix:", "National nr:", "Club:"};
     private DefaultTableModel people_Model;
 
     /**
@@ -66,7 +66,7 @@ public class People extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable_People = new javax.swing.JTable();
 
-        jMenuActive_Edit.setText("Redigera/Visa aktiv");
+        jMenuActive_Edit.setText("Edit/show the performer");
         jMenuActive_Edit.setToolTipText("");
         jMenuActive_Edit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -75,7 +75,7 @@ public class People extends javax.swing.JInternalFrame {
         });
         jPopupMenu_Active.add(jMenuActive_Edit);
 
-        jMenuIActive_Copy.setText("Kopiera vald Aktiv");
+        jMenuIActive_Copy.setText("Copy the Performer");
         jMenuIActive_Copy.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuIActive_CopyActionPerformed(evt);
@@ -84,7 +84,7 @@ public class People extends javax.swing.JInternalFrame {
         jPopupMenu_Active.add(jMenuIActive_Copy);
         jPopupMenu_Active.add(jSeparator1);
 
-        jMenuActive_Delete.setText("Radera vald Aktiv.");
+        jMenuActive_Delete.setText("Delete the Performer");
         jMenuActive_Delete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuActive_DeleteActionPerformed(evt);
@@ -93,7 +93,7 @@ public class People extends javax.swing.JInternalFrame {
         jPopupMenu_Active.add(jMenuActive_Delete);
 
         setClosable(true);
-        setTitle("Aktiva");
+        setTitle("Performers");
         setToolTipText("");
         setName("peopleDlg"); // NOI18N
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
@@ -114,7 +114,7 @@ public class People extends javax.swing.JInternalFrame {
             }
         });
 
-        jButton_NewActive.setText("Ny aktiv");
+        jButton_NewActive.setText("New performer");
         jButton_NewActive.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_NewActiveActionPerformed(evt);
@@ -126,7 +126,7 @@ public class People extends javax.swing.JInternalFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "Förnamn:", "Efternamn:", "SMFF nr:", "Klubb:"
+                "Surname:", "Lastname:", "SMFF nr:", "Club:"
             }
         ) {
             Class[] types = new Class [] {
@@ -318,7 +318,7 @@ public class People extends javax.swing.JInternalFrame {
         String nation = (String) jTable_People.getValueAt(jTable_People.getSelectedRow(), 2);
         String nbr = (String) jTable_People.getValueAt(jTable_People.getSelectedRow(), 3);
 
-        int answer = JOptionPane.showInternalConfirmDialog(this, "Vill Du verkligen radera vald Aktiv?", "Radera?", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        int answer = JOptionPane.showInternalConfirmDialog(this, "Do you really want to delete the Performer?", "Delete?", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 
         if (answer == 0) {
             System.out.println("P#2: User selected to delete the marked 'Active' in the list.");
