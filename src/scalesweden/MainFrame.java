@@ -285,7 +285,8 @@ public class MainFrame extends javax.swing.JFrame {
     public static void main(String args[]) throws ClassNotFoundException {
 
         /* Invoke the SQLite driver     */
-        Class.forName("org.sqlite.JDBC");
+      //  Class.forName("org.sqlite.JDBC");
+        Class.forName("org.apache.derby.jdbc.ClientDriver");
 
         /* Set the Nimbus look and feel 
          //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

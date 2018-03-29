@@ -11,6 +11,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Properties;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -183,25 +184,23 @@ public class Rules extends javax.swing.JInternalFrame {
         Connection connection = null;
         try {
             // create a database connection
-            connection = DriverManager.getConnection("jdbc:sqlite:db/scale.db");
+            Properties connectionProps = new Properties();
+            connectionProps.put("user", "root");
+            connectionProps.put("password", "Pascal");
+        
+            connection = DriverManager.getConnection("jdbc:derby://localhost:1527/F4", connectionProps);
             Statement statement = connection.createStatement();
 
             statement.setQueryTimeout(15);  // set timeout to 15 sec.
 
-            ResultSet rs = statement.executeQuery("select * from rules order by created_at desc;");
+            ResultSet rs = statement.executeQuery("select * from rules order by created_at desc");
 
             while (rs.next()) {
                 // read the result set and pop into the table
 
                 Object[] row = new Object[rs.getMetaData().getColumnCount()];
                 for (int i = 0; i < rs.getMetaData().getColumnCount(); i++) {
-                    if ("created_at".equals(rs.getMetaData().getColumnName(i + 1))) {
-                        row[i] = rs.getTimestamp(i + 1); //Convert timestamp to human readable
-                        
-                    } else {
-                        row[i] = rs.getObject(i + 1);
-                        
-                    }
+                    row[i] = rs.getObject(i + 1);
                     
                 }
                 rules_Model.addRow(row);
@@ -211,7 +210,7 @@ public class Rules extends javax.swing.JInternalFrame {
             // if the error message is "out of memory", 
             // it probably means no database file is found
             System.err.println(e.getMessage());
-            // JOptionPane.showMessageDialog(this, "Problem: " + System.err.(e.getMessage()) "Problem...", JOptionPane.ERROR_MESSAGE);
+            // JOptionPane.showMessageDialog(this, "Problem: " + System.err.(e.getMessage())+ "Problem...", JOptionPane.ERROR_MESSAGE);
         } finally {
             try {
                 if (connection != null) {
@@ -297,12 +296,13 @@ public class Rules extends javax.swing.JInternalFrame {
 
             java.sql.Timestamp ts;
 
-            ts = (java.sql.Timestamp) rules_Model.getValueAt(jTable_Rules.getSelectedRow(), 3);
+            ts = (java.sql.Timestamp) rules_Model.getValueAt(jTable_Rules.getSelectedRow(), 4);
 
             Connection connection = null;
             try {
                 // create a database connection
-                connection = DriverManager.getConnection("jdbc:sqlite:db/scale.db");
+                //connection = DriverManager.getConnection("jdbc:sqlite:db/scale.db");
+                connection = DriverManager.getConnection("jdbc:derby://localhost:1527/F4");
                 Statement statement = connection.createStatement();
 
                 statement.setQueryTimeout(2);  // set timeout to 2 sec.

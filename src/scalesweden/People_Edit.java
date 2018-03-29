@@ -251,9 +251,9 @@ public class People_Edit extends javax.swing.JInternalFrame {
         jLabel2.setText("Prefix:");
         jLabel2.setToolTipText("");
 
-        jTextField_prefix.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        jTextField_prefix.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jTextField_prefix.setText("SWE");
-        jTextField_prefix.setEnabled(false);
+        jTextField_prefix.setToolTipText("This is the prefix for the Nationalnumber e.g: SWE for Sweden.");
 
         jLabel3.setText(bundle.getString("FÖRNAMN:")); // NOI18N
         jLabel3.setToolTipText("");
