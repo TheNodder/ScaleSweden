@@ -265,7 +265,7 @@ public class Rules extends javax.swing.JInternalFrame {
 
             ts = (java.sql.Timestamp) rules_Model.getValueAt(jTable_Rules.getSelectedRow(), 3);
 
-            NewRule ERule = new NewRule(ts.getTime());
+            NewRule ERule = new NewRule(ts);
             Container Eparent = this.getParent();
 
             ERule.setLocation(((int) Eparent.getBounds().getWidth() / 2) - (ERule.getWidth() / 2), 2); //Try to center on screen

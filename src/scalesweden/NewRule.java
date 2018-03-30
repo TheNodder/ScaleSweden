@@ -7,14 +7,20 @@ package scalesweden;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Properties;
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableColumn;
 import javax.swing.table.DefaultTableModel;
 import static scalesweden.ScaleClasses.*;
+import java.sql.Timestamp;
+import java.util.Calendar;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -28,7 +34,8 @@ public class NewRule extends javax.swing.JInternalFrame {
     private DefaultTableModel fly_Model;
     private DefaultTableModel static_Model;
 
-    long created_at; // Timestamp
+  //  long created_at; // Timestamp
+    java.sql.Timestamp created_at;
 
     private char saveMode;
 
@@ -39,9 +46,9 @@ public class NewRule extends javax.swing.JInternalFrame {
         saveMode = 'N';  // N for new
     }
 
-    public NewRule(long ts) {
+    public NewRule(java.sql.Timestamp ts) {
         initComponents();
-        saveMode = 'E';
+        saveMode = 'E'; // e for edit
         created_at = ts;  // set a "class global"
         initTables();    // Prepare the tables
         initManouversColumn(jTable_Manouvers.getColumnModel().getColumn(1)); //Create a dropdownlist in the column
@@ -109,12 +116,23 @@ public class NewRule extends javax.swing.JInternalFrame {
                 //Static
                 static_Model = new DefaultTableModel();
                 jTable_Static.setModel(static_Model);
-
+                
+                //Manouvers
                 fly_Model = new DefaultTableModel(ScaleClasses.FlyOnly_Manouvers_Sweden, ScaleClasses.Manouvers_headers);
                 jTable_Manouvers.setModel(fly_Model);
 
                 break;
-
+            
+            case 5:
+                static_Model = new DefaultTableModel(ScaleClasses.POP_Static_Sweden, ScaleClasses.Static_headers);
+                jTable_Static.setModel(static_Model);
+                
+                //Manouvers
+                fly_Model = new DefaultTableModel(ScaleClasses.POP_Manouvers_Sweden, ScaleClasses.Manouvers_headers);
+                jTable_Manouvers.setModel(fly_Model);
+                
+                break;
+                
             default:
                 break;
         }
@@ -150,7 +168,7 @@ public class NewRule extends javax.swing.JInternalFrame {
         jMenuItem_StaticInsertRow = new javax.swing.JMenuItem();
         jSeparator_Static = new javax.swing.JPopupMenu.Separator();
         jMenuItem_StaticRemoveRow = new javax.swing.JMenuItem();
-        jTextField_CompName = new javax.swing.JTextField();
+        jTextField_RuleName = new javax.swing.JTextField();
         jComboBox_SetClass = new javax.swing.JComboBox();
         jComboBox_RuleType = new javax.swing.JComboBox();
         jLabel_Name = new javax.swing.JLabel();
@@ -235,20 +253,20 @@ public class NewRule extends javax.swing.JInternalFrame {
             e1.printStackTrace();
         }
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
-            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
             }
             public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
                 formInternalFrameClosing(evt);
             }
-            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
             }
             public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
             }
-            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
             }
-            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
             }
         });
 
@@ -305,10 +323,10 @@ public class NewRule extends javax.swing.JInternalFrame {
 
         jPanelStatic_judges.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED), "Domare:"));
 
-        jSpinner_Static_Judges.setModel(new javax.swing.SpinnerNumberModel(Byte.valueOf((byte)3), Byte.valueOf((byte)1), null, Byte.valueOf((byte)1)));
+        jSpinner_Static_Judges.setModel(new javax.swing.SpinnerNumberModel(3, 1, 99, 1));
         jSpinner_Static_Judges.setToolTipText("Välj antal domare per panel.");
 
-        jSpinner_Static_Panels.setModel(new javax.swing.SpinnerNumberModel(Byte.valueOf((byte)1), Byte.valueOf((byte)1), null, Byte.valueOf((byte)1)));
+        jSpinner_Static_Panels.setModel(new javax.swing.SpinnerNumberModel(1, 1, 99, 1));
         jSpinner_Static_Panels.setToolTipText("Välj antal domarpaneler för regeln.");
 
         jLabel1.setText("Antal domare:");
@@ -390,10 +408,10 @@ public class NewRule extends javax.swing.JInternalFrame {
 
         jPanelManouvers_judges.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED), "Domare:"));
 
-        jSpinner_Fly_Judges.setModel(new javax.swing.SpinnerNumberModel(Byte.valueOf((byte)3), Byte.valueOf((byte)1), null, Byte.valueOf((byte)1)));
+        jSpinner_Fly_Judges.setModel(new javax.swing.SpinnerNumberModel(3, 1, 99, 1));
         jSpinner_Fly_Judges.setToolTipText("Välj antal domare per panel.");
 
-        jSpinner_Fly_Panels.setModel(new javax.swing.SpinnerNumberModel(Byte.valueOf((byte)1), Byte.valueOf((byte)1), null, Byte.valueOf((byte)1)));
+        jSpinner_Fly_Panels.setModel(new javax.swing.SpinnerNumberModel(1, 1, 99, 1));
         jSpinner_Fly_Panels.setToolTipText("Välj antal domarpaneler för regeln.");
 
         jLabel3.setText("Antal domare:");
@@ -422,14 +440,14 @@ public class NewRule extends javax.swing.JInternalFrame {
                 .addGroup(jPanelManouvers_judgesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jLabel4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
                 .addGroup(jPanelManouvers_judgesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jSpinner_Fly_Judges, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jSpinner_Fly_Panels, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20))
         );
 
-        jSpinner_flights.setModel(new javax.swing.SpinnerNumberModel(Byte.valueOf((byte)3), Byte.valueOf((byte)1), null, Byte.valueOf((byte)1)));
+        jSpinner_flights.setModel(new javax.swing.SpinnerNumberModel(3, 1, 99, 1));
 
         jLabel5.setText("Antal flygomgångar:");
 
@@ -437,7 +455,7 @@ public class NewRule extends javax.swing.JInternalFrame {
         jPanel_Manouvers.setLayout(jPanel_ManouversLayout);
         jPanel_ManouversLayout.setHorizontalGroup(
             jPanel_ManouversLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane_Manouvers, javax.swing.GroupLayout.DEFAULT_SIZE, 435, Short.MAX_VALUE)
+            .addComponent(jScrollPane_Manouvers, javax.swing.GroupLayout.DEFAULT_SIZE, 451, Short.MAX_VALUE)
             .addComponent(jPanelManouvers_judges, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_ManouversLayout.createSequentialGroup()
                 .addContainerGap()
@@ -449,14 +467,14 @@ public class NewRule extends javax.swing.JInternalFrame {
         jPanel_ManouversLayout.setVerticalGroup(
             jPanel_ManouversLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_ManouversLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(21, Short.MAX_VALUE)
                 .addComponent(jScrollPane_Manouvers, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel_ManouversLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jSpinner_flights, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanelManouvers_judges, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanelManouvers_judges, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -494,7 +512,7 @@ public class NewRule extends javax.swing.JInternalFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel_Name)
                                 .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(jTextField_CompName))
+                            .addComponent(jTextField_RuleName))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jComboBox_SetClass, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -515,7 +533,7 @@ public class NewRule extends javax.swing.JInternalFrame {
                     .addComponent(jLabel_Type))
                 .addGap(2, 2, 2)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField_CompName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField_RuleName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBox_SetClass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBox_RuleType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -564,7 +582,7 @@ public class NewRule extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jMenuItem_StaticRemoveRowActionPerformed
 
     private void checkToSave() {
-        if ((!jTextField_CompName.getText().isEmpty()) && (jComboBox_SetClass.getSelectedIndex() > 0) && (jComboBox_RuleType.getSelectedIndex() > 0)) {
+        if ((!jTextField_RuleName.getText().isEmpty()) && (jComboBox_SetClass.getSelectedIndex() > 0) && (jComboBox_RuleType.getSelectedIndex() > 0)) {
             //Save the data
             saveToDB();
         }
@@ -575,13 +593,18 @@ public class NewRule extends javax.swing.JInternalFrame {
         Connection connection = null;
         try {
             // create a database connection
-            connection = DriverManager.getConnection("jdbc:sqlite:db/scale.db");
+            // connection = DriverManager.getConnection("jdbc:sqlite:db/scale.db");
+            Properties connectionProps = new Properties();
+            connectionProps.put("user", "root");
+            connectionProps.put("password", "Pascal");
+        
+            connection = DriverManager.getConnection("jdbc:derby://localhost:1527/F4", connectionProps);
             Statement statement = connection.createStatement();
-            statement.setQueryTimeout(2);
+            statement.setQueryTimeout(15);
 
             ResultSet rs = statement.executeQuery("select * from rules where created_at = " + created_at);
 
-            jTextField_CompName.setText(rs.getString("name"));
+            jTextField_RuleName.setText(rs.getString("name"));
             jComboBox_SetClass.getModel().setSelectedItem(rs.getString("mainclass"));
             jComboBox_RuleType.getModel().setSelectedItem(rs.getString("type"));
             jSpinner_Static_Panels.getModel().setValue(rs.getInt("staticpanels"));
@@ -590,9 +613,9 @@ public class NewRule extends javax.swing.JInternalFrame {
             jSpinner_Fly_Judges.getModel().setValue(rs.getInt("flyjudges"));
             jSpinner_flights.getModel().setValue(rs.getInt("flights"));
 
-            if (rs.getString("readwrite").equals("Nej")) { //Not an editable rule
+            if (rs.getString("readwrite").equals("false")) { //Not an editable rule
                 this.setTitle("Visar ej redigerbar regel");
-                jTextField_CompName.setEnabled(false);
+                jTextField_RuleName.setEnabled(false);
                 jTable_Static.setEnabled(false);
                 jTable_Manouvers.setEnabled(false);
                 jPanel_PointBoard.setEnabled(false);
@@ -653,14 +676,19 @@ public class NewRule extends javax.swing.JInternalFrame {
         Connection connection = null;
         try {
             // create a database connection
-            connection = DriverManager.getConnection("jdbc:sqlite:db/scale.db");
+            //connection = DriverManager.getConnection("jdbc:sqlite:db/scale.db");
+            Properties connectionProps = new Properties();
+            connectionProps.put("user", "root");
+            connectionProps.put("password", "Pascal");
+        
+            connection = DriverManager.getConnection("jdbc:derby://localhost:1527/F4", connectionProps);
             Statement statement = connection.createStatement();
             statement.setQueryTimeout(15);
 
             if (saveMode == 'E') {
                 // Update the rules-table in the DB
                 int rs = statement.executeUpdate("UPDATE rules SET "
-                        + "name='" + jTextField_CompName.getText() + "', "
+                        + "name='" + jTextField_RuleName.getText() + "', "
                         + "mainclass='" + jComboBox_SetClass.getSelectedItem().toString() + "', "
                         + "type='" + jComboBox_RuleType.getSelectedItem().toString() + "', "
                         + "staticpanels='" + jSpinner_Static_Panels.getModel().getValue() + "', "
@@ -668,58 +696,112 @@ public class NewRule extends javax.swing.JInternalFrame {
                         + "flypanels='" + jSpinner_Fly_Panels.getModel().getValue() + "', "
                         + "flyjudges='" + jSpinner_Fly_Judges.getModel().getValue() + "', "
                         + "flights='" + jSpinner_flights.getModel().getValue() + "' "
-                        + "WHERE created_at='" + created_at + "';");
+                        + "WHERE created_at='" + created_at + "'");
 
                 // Update the rules_static-table in the DB
-                rs = statement.executeUpdate("DELETE FROM rules_static where created_at = '" + created_at + "';");
+                rs = statement.executeUpdate("DELETE FROM rules_static where created_at = '" + created_at + "'");
 
                 for (int i = 0; i < static_Model.getRowCount(); i++) {
                     rs = statement.executeUpdate("INSERT INTO rules_static(created_at, k, description, section)"
                             + "VALUES ('" + created_at + "', '" + static_Model.getValueAt(i, 2) + "', '"
                             + static_Model.getValueAt(i, 1) + "', '"
-                            + static_Model.getValueAt(i, 0) + "');");
+                            + static_Model.getValueAt(i, 0) + "')");
                 }
 
                 // Update the rules_manouvers-table in the DB
-                rs = statement.executeUpdate("DELETE FROM rules_manouvers where created_at = '" + created_at + "';");
+                rs = statement.executeUpdate("DELETE FROM rules_manouvers where created_at = '" + created_at + "'");
 
                 for (int i = 0; i < fly_Model.getRowCount(); i++) {
                     rs = statement.executeUpdate("INSERT INTO rules_manouvers(created_at, k, description, section)"
                             + "VALUES ('" + created_at + "', '" + fly_Model.getValueAt(i, 2) + "', '"
                             + fly_Model.getValueAt(i, 1) + "', '"
-                            + fly_Model.getValueAt(i, 0) + "');");
+                            + fly_Model.getValueAt(i, 0) + "')");
                 }
 
             } else if (saveMode == 'N') {
-                created_at = System.currentTimeMillis(); //Create timestamp
-
-                // Update the rules-table in the DB
-                int rs = statement.executeUpdate("INSERT INTO rules (name, mainclass, type, created_at, staticpanels, staticjudges, flypanels, flyjudges, flights)"
-                        + "VALUES ('" + jTextField_CompName.getText() + "', '"
-                        + jComboBox_SetClass.getSelectedItem().toString() + "', '"
-                        + jComboBox_RuleType.getSelectedItem().toString() + "', '"
-                        + created_at + "', '"
-                        + jSpinner_Static_Panels.getModel().getValue() + "', '"
-                        + jSpinner_Static_Judges.getModel().getValue() + "', '"
-                        + jSpinner_Fly_Panels.getModel().getValue() + "', '"
-                        + jSpinner_Fly_Judges.getModel().getValue() + "', '"
-                        + jSpinner_flights.getModel().getValue() + "');");
-
+                
+                //Create timestamp
+                Calendar calendar = Calendar.getInstance();
+                created_at = new java.sql.Timestamp(calendar.getTime().getTime());
+                
+                // Update the rules-table in the DB              
+                String sql = "INSERT INTO rules (name, mainclass, type, created_at, staticpanels, staticjudges, flypanels, flyjudges, flights) VALUES (?,?,?,?,?,?,?,?,?)";
+                int rs;
+                try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+                    preparedStatement.setString(1, jTextField_RuleName.getText());
+                    preparedStatement.setString(2, jComboBox_SetClass.getSelectedItem().toString());
+                    preparedStatement.setString(3, jComboBox_RuleType.getSelectedItem().toString());
+                    preparedStatement.setTimestamp(4, created_at);
+                    preparedStatement.setInt(5,(int)jSpinner_Static_Panels.getModel().getValue());
+                    preparedStatement.setInt(6,(int)jSpinner_Static_Judges.getModel().getValue());
+                    preparedStatement.setInt(7,(int)jSpinner_Fly_Panels.getModel().getValue());
+                    preparedStatement.setInt(8,(int)jSpinner_Fly_Judges.getModel().getValue());
+                    preparedStatement.setInt(9,(int)jSpinner_flights.getModel().getValue());
+                    rs = preparedStatement.executeUpdate();
+                    System.out.println(rs);
+                    try {
+                        preparedStatement.close();
+                    } catch (SQLException ex) {
+                        Logger.getLogger(NewRule.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+                
                 // Update the rules_static-table in the DB
+                sql = "INSERT INTO rules_static(created_at, k, description, section) VALUES (?,?,?,?)";
                 for (int i = 0; i < static_Model.getRowCount(); i++) {
-                    rs = statement.executeUpdate("INSERT INTO rules_static(created_at, k, description, section)"
-                            + "VALUES ('" + created_at + "', '" + static_Model.getValueAt(i, 2) + "', '"
-                            + static_Model.getValueAt(i, 1) + "', '"
-                            + static_Model.getValueAt(i, 0) + "');");
+                    
+                    try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+                        preparedStatement.setString(4, static_Model.getValueAt(i, 0).toString()); //Sektion
+                        preparedStatement.setString(3, static_Model.getValueAt(i, 1).toString()); //Beskrivning
+                       
+                        if(!static_Model.getValueAt(i, 2).toString().isEmpty()){                  //if field not empty
+                        preparedStatement.setInt(2, Integer.parseUnsignedInt(static_Model.getValueAt(i, 2).toString())); //K-faktor
+                        } else {
+                                preparedStatement.setInt(2,0); //set the K to zero if the field is empty
+                        }
+                        
+                        preparedStatement.setTimestamp(1, created_at);
+                                               
+                        rs = preparedStatement.executeUpdate();
+                        System.out.println(rs);
+                        try {
+                            preparedStatement.close();
+                        } catch (SQLException ex) {
+                            Logger.getLogger(NewRule.class.getName()).log(Level.SEVERE, null, ex);
+                        }  
+                    }
                 }
 
                 // Update the rules_manouvers-table in the DB
+                sql = "INSERT INTO rules_manouvers(created_at, k, description, section) VALUES (?,?,?,?)";
                 for (int i = 0; i < fly_Model.getRowCount(); i++) {
-                    rs = statement.executeUpdate("INSERT INTO rules_manouvers(created_at, k, description, section)"
+                   /* rs = statement.executeUpdate("INSERT INTO rules_manouvers(created_at, k, description, section)"
                             + "VALUES ('" + created_at + "', '" + fly_Model.getValueAt(i, 2) + "', '"
                             + fly_Model.getValueAt(i, 1) + "', '"
-                            + fly_Model.getValueAt(i, 0) + "');");
+                            + fly_Model.getValueAt(i, 0) + "')");
+                */
+                    try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+                        preparedStatement.setString(4, fly_Model.getValueAt(i, 0).toString()); //Sektion
+                        preparedStatement.setString(3, fly_Model.getValueAt(i, 1).toString()); //Beskrivning
+                       
+                        if(!fly_Model.getValueAt(i, 2).toString().isEmpty()){                  //if field not empty
+                        preparedStatement.setInt(2, Integer.parseUnsignedInt(fly_Model.getValueAt(i, 2).toString())); //K-faktor
+                        } else {
+                                preparedStatement.setInt(2,0); //set the K to zero if the field is empty
+                        }
+                        
+                        preparedStatement.setTimestamp(1, created_at);
+                                               
+                        rs = preparedStatement.executeUpdate();
+                        System.out.println(rs);
+                        try {
+                            preparedStatement.close();
+                        } catch (SQLException ex) {
+                            Logger.getLogger(NewRule.class.getName()).log(Level.SEVERE, null, ex);
+                        }  
+                    }
                 }
+                
                 saveMode = 'E';
             }
         } catch (SQLException e) {
@@ -789,7 +871,7 @@ public class NewRule extends javax.swing.JInternalFrame {
 
     private void jComboBox_RuleTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox_RuleTypeActionPerformed
 
-        checkToSave();
+       // checkToSave();
     }//GEN-LAST:event_jComboBox_RuleTypeActionPerformed
 
     private void formInternalFrameClosing(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameClosing
@@ -838,6 +920,6 @@ public class NewRule extends javax.swing.JInternalFrame {
     private javax.swing.JSpinner jSpinner_flights;
     private javax.swing.JTable jTable_Manouvers;
     private javax.swing.JTable jTable_Static;
-    private javax.swing.JTextField jTextField_CompName;
+    private javax.swing.JTextField jTextField_RuleName;
     // End of variables declaration//GEN-END:variables
 }

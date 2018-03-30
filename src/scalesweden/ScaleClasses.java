@@ -17,7 +17,7 @@ public interface ScaleClasses {
     
     static Object[][] Init_Empty_Table = {{ "", "", "" }}; //When creating a new model, populate with void data.
     
-    static String[] ListOfClasses = { "[Välj i listan]", "F4C", "F4H", "Klubbskala", "FlyOnly"};
+    static String[] ListOfClasses = { "[Välj i listan]", "F4C", "F4H", "Klubbskala", "FlyOnly", "POP-skala"};
     
     static String[] ListOfRuleType = { "[Välj i listan]", "Klubbregel", "Officiell"};
     
@@ -130,5 +130,12 @@ public interface ScaleClasses {
     Object[][] FlyOnly_Manouvers_Sweden = F4C_Manouvers_Sweden;
     
     Object[][] FlyOnly_Static_Sweden = null;
+    
+    /* **************************************************************************************************************
+     * Declarations for POP-Skala                                                                                    *
+     * **************************************************************************************************************/
+    Object[][] POP_Manouvers_Sweden = F4C_Manouvers_Sweden;
+    
+    Object[][] POP_Static_Sweden = F4C_Static_Sweden;
 
 }
