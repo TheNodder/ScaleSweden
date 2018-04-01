@@ -17,7 +17,6 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableColumn;
 import javax.swing.table.DefaultTableModel;
 import static scalesweden.ScaleClasses.*;
-import java.sql.Timestamp;
 import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -593,21 +592,34 @@ public class NewRule extends javax.swing.JInternalFrame {
         Connection connection = null;
         try {
             // create a database connection
-            // connection = DriverManager.getConnection("jdbc:sqlite:db/scale.db");
+            
             Properties connectionProps = new Properties();
             connectionProps.put("user", "root");
             connectionProps.put("password", "Pascal");
         
             connection = DriverManager.getConnection("jdbc:derby://localhost:1527/F4", connectionProps);
-            Statement statement = connection.createStatement();
-            statement.setQueryTimeout(15);
-
-            ResultSet rs = statement.executeQuery("select * from rules where created_at = " + created_at);
-
+            
+            String sql = "select * from RULES where CREATED_AT = ?";//+created_at;
+            //Statement preparedStatement = connection.createStatement();
+            //preparedStatement.setQueryTimeout(15);
+            
+           // preparedStatement.(1, created_at);
+           // ResultSet rs = preparedStatement.executeQuery(sql);
+            
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            int P = preparedStatement.getParameterMetaData().getParameterCount();
+           
+            preparedStatement.setQueryTimeout(15);
+            preparedStatement.setTimestamp(1, created_at);
+            
+            
+            boolean result = preparedStatement.execute();
+            ResultSet rs = preparedStatement.getResultSet();
+            int T = rs.getFetchSize();
             jTextField_RuleName.setText(rs.getString("name"));
             jComboBox_SetClass.getModel().setSelectedItem(rs.getString("mainclass"));
             jComboBox_RuleType.getModel().setSelectedItem(rs.getString("type"));
-            jSpinner_Static_Panels.getModel().setValue(rs.getInt("staticpanels"));
+            jSpinner_Static_Panels.getModel().setValue(rs.getShort("staticpanels"));
             jSpinner_Static_Judges.getModel().setValue(rs.getInt("staticjudges"));
             jSpinner_Fly_Panels.getModel().setValue(rs.getInt("flypanels"));
             jSpinner_Fly_Judges.getModel().setValue(rs.getInt("flyjudges"));
@@ -630,7 +642,7 @@ public class NewRule extends javax.swing.JInternalFrame {
                 jComboBox_RuleType.setEnabled(false);
                 saveMode = 'X';
             }
-
+/*
             static_Model.removeRow(0); // Tidy up the rows
             rs = statement.executeQuery("select * from rules_static where created_at = " + created_at);
 
@@ -652,7 +664,7 @@ public class NewRule extends javax.swing.JInternalFrame {
                 }
                 fly_Model.addRow(row);
             }
-
+*/
         } catch (SQLException e) {
             // if the error message is "out of memory", 
             // it probably means no database file is found
@@ -746,7 +758,7 @@ public class NewRule extends javax.swing.JInternalFrame {
                     }
                 }
                 
-                // Update the rules_static-table in the DB
+                // Insert the rules_static-table in the DB
                 sql = "INSERT INTO rules_static(created_at, k, description, section) VALUES (?,?,?,?)";
                 for (int i = 0; i < static_Model.getRowCount(); i++) {
                     
@@ -761,7 +773,7 @@ public class NewRule extends javax.swing.JInternalFrame {
                         }
                         
                         preparedStatement.setTimestamp(1, created_at);
-                                               
+                                              
                         rs = preparedStatement.executeUpdate();
                         System.out.println(rs);
                         try {
