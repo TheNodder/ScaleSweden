@@ -286,7 +286,7 @@ public class Rules extends javax.swing.JInternalFrame {
 
     private void jMenuItem_DeleteRuleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_DeleteRuleActionPerformed
 
-        if ("Nej".equals(rules_Model.getValueAt(jTable_Rules.getSelectedRow(), 4))) {
+        if (rules_Model.getValueAt(jTable_Rules.getSelectedRow(), 4).equals(false)){
 
             JOptionPane.showMessageDialog(this.getDesktopPane(),
                     "Det är inte tillåtet att radera denna regel!",
@@ -296,20 +296,24 @@ public class Rules extends javax.swing.JInternalFrame {
 
             java.sql.Timestamp ts;
 
-            ts = (java.sql.Timestamp) rules_Model.getValueAt(jTable_Rules.getSelectedRow(), 4);
+            ts = (java.sql.Timestamp) rules_Model.getValueAt(jTable_Rules.getSelectedRow(), 3);
 
             Connection connection = null;
             try {
                 // create a database connection
-                //connection = DriverManager.getConnection("jdbc:sqlite:db/scale.db");
-                connection = DriverManager.getConnection("jdbc:derby://localhost:1527/F4");
+                
+                Properties connectionProps = new Properties();
+                connectionProps.put("user", "root");
+                connectionProps.put("password", "Pascal");
+                connection = DriverManager.getConnection("jdbc:derby://localhost:1527/F4", connectionProps);
+
                 Statement statement = connection.createStatement();
 
                 statement.setQueryTimeout(2);  // set timeout to 2 sec.
 
-                int rs = statement.executeUpdate("DELETE FROM rules_static WHERE created_at = '" + ts.getTime() + "';");
-                rs = statement.executeUpdate("DELETE FROM rules_manouvers WHERE created_at = '" + ts.getTime() + "';");
-                rs = statement.executeUpdate("DELETE FROM rules WHERE created_at = '" + ts.getTime() + "';");
+                int rs = statement.executeUpdate("DELETE FROM rules_static WHERE created_at = '" + ts + "'");
+                rs = statement.executeUpdate("DELETE FROM rules_manouvers WHERE created_at = '" + ts + "'");
+                rs = statement.executeUpdate("DELETE FROM rules WHERE created_at = '" + ts + "'");
 
             } catch (SQLException e) {
                 // if the error message is "out of memory", 
