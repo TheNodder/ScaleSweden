@@ -52,6 +52,7 @@ public class NewRule extends javax.swing.JInternalFrame {
         initTables();    // Prepare the tables
         initManouversColumn(jTable_Manouvers.getColumnModel().getColumn(1)); //Create a dropdownlist in the column
         this.setTitle("Redigera regel...");
+        initDropDowns(); // Prepare the dropdowns in the title area
         jComboBox_SetClass.setEnabled(false);
         jComboBox_RuleType.setEnabled(false);
         popFromDB(); //Get data from DB and populate the frame
@@ -599,72 +600,65 @@ public class NewRule extends javax.swing.JInternalFrame {
         
             connection = DriverManager.getConnection("jdbc:derby://localhost:1527/F4", connectionProps);
             
-            String sql = "select * from RULES where CREATED_AT = ?";//+created_at;
-            //Statement preparedStatement = connection.createStatement();
-            //preparedStatement.setQueryTimeout(15);
+            String sql = "SELECT * FROM rules where created_at = '" + created_at.toString() + "'";
             
-           // preparedStatement.(1, created_at);
-           // ResultSet rs = preparedStatement.executeQuery(sql);
-            
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            int P = preparedStatement.getParameterMetaData().getParameterCount();
-           
-            preparedStatement.setQueryTimeout(15);
-            preparedStatement.setTimestamp(1, created_at);
-            
-            
-            boolean result = preparedStatement.execute();
-            ResultSet rs = preparedStatement.getResultSet();
-            int T = rs.getFetchSize();
-            jTextField_RuleName.setText(rs.getString("name"));
-            jComboBox_SetClass.getModel().setSelectedItem(rs.getString("mainclass"));
-            jComboBox_RuleType.getModel().setSelectedItem(rs.getString("type"));
-            jSpinner_Static_Panels.getModel().setValue(rs.getShort("staticpanels"));
-            jSpinner_Static_Judges.getModel().setValue(rs.getInt("staticjudges"));
-            jSpinner_Fly_Panels.getModel().setValue(rs.getInt("flypanels"));
-            jSpinner_Fly_Judges.getModel().setValue(rs.getInt("flyjudges"));
-            jSpinner_flights.getModel().setValue(rs.getInt("flights"));
+            Statement statement = connection.createStatement();
 
-            if (rs.getString("readwrite").equals("false")) { //Not an editable rule
-                this.setTitle("Visar ej redigerbar regel");
-                jTextField_RuleName.setEnabled(false);
-                jTable_Static.setEnabled(false);
-                jTable_Manouvers.setEnabled(false);
-                jPanel_PointBoard.setEnabled(false);
-                jPanelStatic_judges.setEnabled(false);
-                jPanelManouvers_judges.setEnabled(false);
-                jSpinner_Fly_Judges.setEnabled(false);
-                jSpinner_Fly_Panels.setEnabled(false);
-                jSpinner_Static_Judges.setEnabled(false);
-                jSpinner_Static_Panels.setEnabled(false);
-                jSpinner_flights.setEnabled(false);
-                jComboBox_SetClass.setEnabled(false);
-                jComboBox_RuleType.setEnabled(false);
-                saveMode = 'X';
-            }
-/*
-            static_Model.removeRow(0); // Tidy up the rows
-            rs = statement.executeQuery("select * from rules_static where created_at = " + created_at);
+            statement.setQueryTimeout(15);  // set timeout to 15 sec.
 
-            while (rs.next()) {
-                Object[] row = new Object[rs.getMetaData().getColumnCount()];
-                for (int i = 0; i < rs.getMetaData().getColumnCount(); i++) {
-                    row[i] = rs.getObject(i + 1);
+            ResultSet rs = statement.executeQuery(sql);
+            if(rs.next()){
+            
+                jTextField_RuleName.setText(rs.getString("name"));
+                jComboBox_SetClass.getModel().setSelectedItem(rs.getString("mainclass"));
+                jComboBox_RuleType.getModel().setSelectedItem(rs.getString("type"));
+                jSpinner_Static_Panels.getModel().setValue(rs.getShort("staticpanels"));
+                jSpinner_Static_Judges.getModel().setValue(rs.getInt("staticjudges"));
+                jSpinner_Fly_Panels.getModel().setValue(rs.getInt("flypanels"));
+                jSpinner_Fly_Judges.getModel().setValue(rs.getInt("flyjudges"));
+                jSpinner_flights.getModel().setValue(rs.getInt("flights"));
+
+                if (rs.getString("readwrite").equals("false")) { //Not an editable rule
+                    this.setTitle("Visar ej redigerbar regel");
+                    jTextField_RuleName.setEnabled(false);
+                    jTable_Static.setEnabled(false);
+                    jTable_Manouvers.setEnabled(false);
+                    jPanel_PointBoard.setEnabled(false);
+                    jPanelStatic_judges.setEnabled(false);
+                    jPanelManouvers_judges.setEnabled(false);
+                    jSpinner_Fly_Judges.setEnabled(false);
+                    jSpinner_Fly_Panels.setEnabled(false);
+                    jSpinner_Static_Judges.setEnabled(false);
+                    jSpinner_Static_Panels.setEnabled(false);
+                    jSpinner_flights.setEnabled(false);
+                    jComboBox_SetClass.setEnabled(false);
+                    jComboBox_RuleType.setEnabled(false);
+                    saveMode = 'X';
                 }
-                static_Model.addRow(row);
-            }
+    
+                static_Model.removeRow(0); // Tidy up the rows
+                rs = statement.executeQuery("select * from rules_static where created_at = '" + created_at + "'");
 
-            fly_Model.removeRow(0); // Tidy up the rows
-            rs = statement.executeQuery("select * from rules_manouvers where created_at = " + created_at);
-
-            while (rs.next()) {
-                Object[] row = new Object[rs.getMetaData().getColumnCount()];
-                for (int i = 0; i < rs.getMetaData().getColumnCount(); i++) {
-                    row[i] = rs.getObject(i + 1);
+                while (rs.next()) {
+                    Object[] row = new Object[rs.getMetaData().getColumnCount()];
+                    for (int i = 0; i < rs.getMetaData().getColumnCount(); i++) {
+                        row[i] = rs.getObject(i + 1);
+                    }
+                    static_Model.addRow(row);
                 }
-                fly_Model.addRow(row);
+
+                fly_Model.removeRow(0); // Tidy up the rows
+                rs = statement.executeQuery("select * from rules_manouvers where created_at = '" + created_at + "'");
+
+                while (rs.next()) {
+                    Object[] row = new Object[rs.getMetaData().getColumnCount()];
+                    for (int i = 0; i < rs.getMetaData().getColumnCount(); i++) {
+                        row[i] = rs.getObject(i + 1);
+                    }
+                    fly_Model.addRow(row);
+                }
+
             }
-*/
         } catch (SQLException e) {
             // if the error message is "out of memory", 
             // it probably means no database file is found
@@ -703,11 +697,11 @@ public class NewRule extends javax.swing.JInternalFrame {
                         + "name='" + jTextField_RuleName.getText() + "', "
                         + "mainclass='" + jComboBox_SetClass.getSelectedItem().toString() + "', "
                         + "type='" + jComboBox_RuleType.getSelectedItem().toString() + "', "
-                        + "staticpanels='" + jSpinner_Static_Panels.getModel().getValue() + "', "
-                        + "staticjudges='" + jSpinner_Static_Judges.getModel().getValue() + "', "
-                        + "flypanels='" + jSpinner_Fly_Panels.getModel().getValue() + "', "
-                        + "flyjudges='" + jSpinner_Fly_Judges.getModel().getValue() + "', "
-                        + "flights='" + jSpinner_flights.getModel().getValue() + "' "
+                        + "staticpanels= " + (short)jSpinner_Static_Panels.getModel().getValue() + ", "
+                        + "staticjudges= " + (int)jSpinner_Static_Judges.getModel().getValue() + ", "
+                        + "flypanels= " + (int)jSpinner_Fly_Panels.getModel().getValue() + ", "
+                        + "flyjudges= " + (int)jSpinner_Fly_Judges.getModel().getValue() + ", "
+                        + "flights= " + (int)jSpinner_flights.getModel().getValue() + " "
                         + "WHERE created_at='" + created_at + "'");
 
                 // Update the rules_static-table in the DB
@@ -715,7 +709,7 @@ public class NewRule extends javax.swing.JInternalFrame {
 
                 for (int i = 0; i < static_Model.getRowCount(); i++) {
                     rs = statement.executeUpdate("INSERT INTO rules_static(created_at, k, description, section)"
-                            + "VALUES ('" + created_at + "', '" + static_Model.getValueAt(i, 2) + "', '"
+                            + "VALUES ('" + created_at + "', " + static_Model.getValueAt(i, 2) + ", '"
                             + static_Model.getValueAt(i, 1) + "', '"
                             + static_Model.getValueAt(i, 0) + "')");
                 }
@@ -725,7 +719,7 @@ public class NewRule extends javax.swing.JInternalFrame {
 
                 for (int i = 0; i < fly_Model.getRowCount(); i++) {
                     rs = statement.executeUpdate("INSERT INTO rules_manouvers(created_at, k, description, section)"
-                            + "VALUES ('" + created_at + "', '" + fly_Model.getValueAt(i, 2) + "', '"
+                            + "VALUES ('" + created_at + "', " + fly_Model.getValueAt(i, 2) + "', '"
                             + fly_Model.getValueAt(i, 1) + "', '"
                             + fly_Model.getValueAt(i, 0) + "')");
                 }
@@ -750,7 +744,7 @@ public class NewRule extends javax.swing.JInternalFrame {
                     preparedStatement.setInt(8,(int)jSpinner_Fly_Judges.getModel().getValue());
                     preparedStatement.setInt(9,(int)jSpinner_flights.getModel().getValue());
                     rs = preparedStatement.executeUpdate();
-                    System.out.println(rs);
+                   
                     try {
                         preparedStatement.close();
                     } catch (SQLException ex) {
@@ -787,11 +781,7 @@ public class NewRule extends javax.swing.JInternalFrame {
                 // Update the rules_manouvers-table in the DB
                 sql = "INSERT INTO rules_manouvers(created_at, k, description, section) VALUES (?,?,?,?)";
                 for (int i = 0; i < fly_Model.getRowCount(); i++) {
-                   /* rs = statement.executeUpdate("INSERT INTO rules_manouvers(created_at, k, description, section)"
-                            + "VALUES ('" + created_at + "', '" + fly_Model.getValueAt(i, 2) + "', '"
-                            + fly_Model.getValueAt(i, 1) + "', '"
-                            + fly_Model.getValueAt(i, 0) + "')");
-                */
+                   
                     try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
                         preparedStatement.setString(4, fly_Model.getValueAt(i, 0).toString()); //Sektion
                         preparedStatement.setString(3, fly_Model.getValueAt(i, 1).toString()); //Beskrivning
@@ -805,7 +795,7 @@ public class NewRule extends javax.swing.JInternalFrame {
                         preparedStatement.setTimestamp(1, created_at);
                                                
                         rs = preparedStatement.executeUpdate();
-                        System.out.println(rs);
+                        
                         try {
                             preparedStatement.close();
                         } catch (SQLException ex) {

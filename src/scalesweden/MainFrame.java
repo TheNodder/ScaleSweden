@@ -194,7 +194,7 @@ public class MainFrame extends javax.swing.JFrame {
     @SuppressWarnings("empty-statement")
     private void jButtonCompetitionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCompetitionActionPerformed
 
-        if (!setModal("compDlg")) {
+        if (!setModal("compDlg")) { //if returns false the dialog already exist
 
             Competition CompList = new Competition();
 
