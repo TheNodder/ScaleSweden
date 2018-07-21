@@ -11,6 +11,8 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
+import java.util.Calendar;
 import java.util.Properties;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
@@ -24,7 +26,7 @@ public class Rules extends javax.swing.JInternalFrame {
 
     Object[] columnNames = {"Namn:", "Tävlingsklass:", "Typ av regel:", "Skapad:", "Redigerbar:"};
     private DefaultTableModel rules_Model;
-    
+
     /**
      * Creates new form Rules
      */
@@ -178,16 +180,16 @@ public class Rules extends javax.swing.JInternalFrame {
     public void populateRulesTable() {
 
         rules_Model = new DefaultTableModel(columnNames, 0);
-                
+
         jTable_Rules.setModel(rules_Model);
-       
+
         Connection connection = null;
         try {
             // create a database connection
             Properties connectionProps = new Properties();
             connectionProps.put("user", "root");
             connectionProps.put("password", "Pascal");
-        
+
             connection = DriverManager.getConnection("jdbc:derby://localhost:1527/F4", connectionProps);
             Statement statement = connection.createStatement();
 
@@ -201,16 +203,17 @@ public class Rules extends javax.swing.JInternalFrame {
                 Object[] row = new Object[rs.getMetaData().getColumnCount()];
                 for (int i = 0; i < rs.getMetaData().getColumnCount(); i++) {
                     row[i] = rs.getObject(i + 1);
-                    
+
                 }
                 rules_Model.addRow(row);
-                
+
             }
         } catch (SQLException e) {
             // if the error message is "out of memory", 
             // it probably means no database file is found
             System.err.println(e.getMessage());
-            // JOptionPane.showMessageDialog(this, "Problem: " + System.err.(e.getMessage())+ "Problem...", JOptionPane.ERROR_MESSAGE);
+             JOptionPane.showMessageDialog(this.getDesktopPane(), "Problem: " + e.getMessage() + " Rules.java -> populateRulesTable()", "Problem...", JOptionPane.ERROR_MESSAGE);
+           
         } finally {
             try {
                 if (connection != null) {
@@ -259,13 +262,18 @@ public class Rules extends javax.swing.JInternalFrame {
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void showEditDialog() {
+    private void showEditDialog(boolean Copy) {
         if (!checkForDialogs()) {
+            NewRule ERule;
             java.sql.Timestamp ts;
 
             ts = (java.sql.Timestamp) rules_Model.getValueAt(jTable_Rules.getSelectedRow(), 3);
+            if (Copy) {
+                ERule = new NewRule(ts, Copy);
+            } else {
+                ERule = new NewRule(ts);
+            }
 
-            NewRule ERule = new NewRule(ts);
             Container Eparent = this.getParent();
 
             ERule.setLocation(((int) Eparent.getBounds().getWidth() / 2) - (ERule.getWidth() / 2), 2); //Try to center on screen
@@ -273,60 +281,62 @@ public class Rules extends javax.swing.JInternalFrame {
             ERule.setVisible(true);
         }
     }
-    
+
     private void jTable_RulesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable_RulesMouseClicked
-        
-    
+
+
     }//GEN-LAST:event_jTable_RulesMouseClicked
 
     private void jMenuItem_EditRuleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_EditRuleActionPerformed
 
-        showEditDialog();
+        showEditDialog(false);
     }//GEN-LAST:event_jMenuItem_EditRuleActionPerformed
 
     private void jMenuItem_DeleteRuleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_DeleteRuleActionPerformed
 
-        if (rules_Model.getValueAt(jTable_Rules.getSelectedRow(), 4).equals(false)){
+        if (rules_Model.getValueAt(jTable_Rules.getSelectedRow(), 4).equals(false)) {
 
             JOptionPane.showMessageDialog(this.getDesktopPane(),
                     "Det är inte tillåtet att radera denna regel!",
                     "Regel är inte raderbar!",
                     JOptionPane.WARNING_MESSAGE);
         } else {
+            if (JOptionPane.showConfirmDialog(this.getDesktopPane(), "Är du säker på att Du vill radera vald regel?", "Radera regel?", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
 
-            java.sql.Timestamp ts;
+                java.sql.Timestamp ts;
 
-            ts = (java.sql.Timestamp) rules_Model.getValueAt(jTable_Rules.getSelectedRow(), 3);
+                ts = (java.sql.Timestamp) rules_Model.getValueAt(jTable_Rules.getSelectedRow(), 3);
 
-            Connection connection = null;
-            try {
-                // create a database connection
-                
-                Properties connectionProps = new Properties();
-                connectionProps.put("user", "root");
-                connectionProps.put("password", "Pascal");
-                connection = DriverManager.getConnection("jdbc:derby://localhost:1527/F4", connectionProps);
-
-                Statement statement = connection.createStatement();
-
-                statement.setQueryTimeout(2);  // set timeout to 2 sec.
-
-                int rs = statement.executeUpdate("DELETE FROM rules_static WHERE created_at = '" + ts + "'");
-                rs = statement.executeUpdate("DELETE FROM rules_manouvers WHERE created_at = '" + ts + "'");
-                rs = statement.executeUpdate("DELETE FROM rules WHERE created_at = '" + ts + "'");
-
-            } catch (SQLException e) {
-                // if the error message is "out of memory", 
-                // it probably means no database file is found
-                System.err.println(e.getMessage());
-            } finally {
+                Connection connection = null;
                 try {
-                    if (connection != null) {
-                        connection.close();
-                    }
-                } catch (SQLException e) {
+                    // create a database connection
 
-                    System.err.println(e);
+                    Properties connectionProps = new Properties();
+                    connectionProps.put("user", "root");
+                    connectionProps.put("password", "Pascal");
+                    connection = DriverManager.getConnection("jdbc:derby://localhost:1527/F4", connectionProps);
+
+                    Statement statement = connection.createStatement();
+
+                    statement.setQueryTimeout(2);  // set timeout to 2 sec.
+
+                    int rs = statement.executeUpdate("DELETE FROM rules_static WHERE created_at = '" + ts + "'");
+                    rs = statement.executeUpdate("DELETE FROM rules_manouvers WHERE created_at = '" + ts + "'");
+                    rs = statement.executeUpdate("DELETE FROM rules WHERE created_at = '" + ts + "'");
+
+                } catch (SQLException e) {
+                    // if the error message is "out of memory", 
+                    // it probably means no database file is found
+                    System.err.println(e.getMessage());
+                } finally {
+                    try {
+                        if (connection != null) {
+                            connection.close();
+                        }
+                    } catch (SQLException e) {
+
+                        System.err.println(e);
+                    }
                 }
             }
             populateRulesTable();
@@ -335,12 +345,11 @@ public class Rules extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jMenuItem_DeleteRuleActionPerformed
 
     private void jMenuItem_CopyRuleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_CopyRuleActionPerformed
-        // TODO add your handling code here:
-        JOptionPane.showMessageDialog(this.getDesktopPane(),
-                "Jobba på Niclas! Sluta sov på kvällar å nätter!",
-                "Jag ska ympa in kod!",
-                JOptionPane.INFORMATION_MESSAGE);
+        // Create a new TimeStamp
+        Calendar calendar = Calendar.getInstance();
+        Timestamp ts = new java.sql.Timestamp(calendar.getTime().getTime());
 
+        showEditDialog(true);
     }//GEN-LAST:event_jMenuItem_CopyRuleActionPerformed
 
     private void formInternalFrameActivated(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameActivated
@@ -351,8 +360,8 @@ public class Rules extends javax.swing.JInternalFrame {
 
     private void jTable_RulesMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable_RulesMousePressed
         // TODO add your handling code here:
-        if (evt.getClickCount() == 2){
-            showEditDialog();
+        if (evt.getClickCount() == 2) {
+            showEditDialog(false);
             evt.consume();
         }
     }//GEN-LAST:event_jTable_RulesMousePressed

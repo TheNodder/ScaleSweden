@@ -54,7 +54,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         jToolBar1.setRollover(true);
 
-        jButtonCompetition.setText("Competitions");
+        jButtonCompetition.setText("Tävlingar");
         jButtonCompetition.setToolTipText("Här administrerar Du tävlingar.");
         jButtonCompetition.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButtonCompetition.setFocusable(false);
@@ -68,7 +68,7 @@ public class MainFrame extends javax.swing.JFrame {
         });
         jToolBar1.add(jButtonCompetition);
 
-        jButtonRules.setText("Rules");
+        jButtonRules.setText("Regler");
         jButtonRules.setToolTipText("Här hanterar Du regler.");
         jButtonRules.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButtonRules.setFocusable(false);
@@ -83,7 +83,7 @@ public class MainFrame extends javax.swing.JFrame {
         });
         jToolBar1.add(jButtonRules);
 
-        jButtonDocuments.setText("Documents");
+        jButtonDocuments.setText("Dokument");
         jButtonDocuments.setToolTipText("Här kan Du leta efter dokumnet och regler.");
         jButtonDocuments.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButtonDocuments.setFocusable(false);
@@ -98,8 +98,8 @@ public class MainFrame extends javax.swing.JFrame {
         });
         jToolBar1.add(jButtonDocuments);
 
-        jButtonPilotes.setText("Performers");
-        jButtonPilotes.setToolTipText("Här redigerar och lägger till piloter.");
+        jButtonPilotes.setText("Utövare");
+        jButtonPilotes.setToolTipText("Här redigerar och lägger till piloter, domare och funktionärer.");
         jButtonPilotes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButtonPilotes.setFocusable(false);
         jButtonPilotes.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);

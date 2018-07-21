@@ -58,6 +58,20 @@ public class NewRule extends javax.swing.JInternalFrame {
         popFromDB(); //Get data from DB and populate the frame
 
     }
+    
+    public NewRule(java.sql.Timestamp ts, boolean Copy) {
+        initComponents();
+        saveMode = 'N'; // N for new
+        created_at = ts;  // set a "class global"
+        initTables();    // Prepare the tables
+        initManouversColumn(jTable_Manouvers.getColumnModel().getColumn(1)); //Create a dropdownlist in the column
+        this.setTitle("Redigera kopierad regel...");
+        initDropDowns(); // Prepare the dropdowns in the title area
+        jComboBox_SetClass.setEnabled(false);
+        jComboBox_RuleType.setEnabled(false);
+        popFromDB(); //Get data from DB and populate the frame
+        
+    }
 
     private void initTables() {
         fly_Model = new DefaultTableModel(ScaleClasses.Init_Empty_Table, ScaleClasses.Manouvers_headers);
